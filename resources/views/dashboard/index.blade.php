@@ -1,7 +1,6 @@
 @if (Auth::check())
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,12 +25,44 @@
                 }
             }
         </script>
+        <script>
+            function startTime() {
+                var today = new Date();
+                var hr = today.getHours();
+                var min = today.getMinutes();
+                //Add a zero in front of numbers<10
+                hr = checkTime(hr);
+                min = checkTime(min);
+
+                document.getElementById("clockHour").innerHTML = hr;
+                document.getElementById("clockMin").innerHTML = min;
+                var months = ['JAN', 'FEB', 'MAR', 'APR', 'MEI', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+                var curDay = today.getDate();
+                var curMonth = months[today.getMonth()];
+                var curYear = today.getFullYear();
+                var date = curDay + " " + curMonth + " " + curYear;
+                document.getElementById("date").innerHTML = date;
+
+                var time = setTimeout(function() {
+                    startTime()
+                }, 500);
+            }
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        </script>
+
+
         {{-- alert logout --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
     </head>
 
-    <body>
+    <body onload="startTime()">
         {{-- NAVBAR --}}
         <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -121,7 +152,7 @@
                     {{-- ADMIN  --}}
                     @if (Auth::user()->status == 'admin')
                         <li>
-                            <a href="#"
+                            <a href="admin/dataspp"
                                 class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -132,7 +163,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="/admin/datasiswa"
                                 class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -180,6 +211,18 @@
                                 </div>
                             </li>
                         </ul>
+                        <div class="absolute p-10 mt-32">
+                            <div id="clockdate" class="float-right rounded-md bg-gray-300 p-14">
+                                <div class="clockdate-wrapper">
+                                    <div class="clockWrap flex items-center">
+                                        <div id="clockHour" class="text-4xl font-bold text-black "></div>
+                                        <span id="clockSpan" class="text-4xl font-bold text-black">:</span>
+                                        <div id="clockMin" class="text-4xl font-bold text-black"></div>
+                                    </div>
+                                    <div id="date" class="text-lg  text-gray-600  mt-1 rounded-md"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="w-2/3 ml-14 block">
                             <canvas class="" id="chartLine"></canvas>
                         </div>
@@ -217,127 +260,146 @@
 
 
                 @if (Auth::user()->status == 'siswa')
-                    <p class="text-justify">
-                        luptate libero! Aspernatur tenetur voluptate deserunt
-                        eveniet perferendis quam eaque quisquam provident earum ipsam? Amet culpa deleniti quod illo
-                        voluptatum veniam saepe, non illum, doloribus velit optio ad nemo dignissimos eos? Explicabo
-                        ipsa, incidunt a molestias beatae deleniti atque sapiente nobis maiores laboriosam porro tempora
-                        pariatur nihil ratione quos saepe assumenda officiis! Quaerat consectetur nihil deserunt
-                        mollitia atque eveniet! Facilis ea voluptates enim cumque sunt odio possimus. Officiis
-                        reprehenderit debitis repellat perferendis vel omnis sunt delectus modi aperiam non quas, rerum
-                        animi fugit laboriosam corporis vero sequi ipsum voluptates, ut ex voluptatem harum praesentium!
-                        Et nemo error dignissimos consequatur sapiente repellat velit minima nam quis dolorem sunt,
-                        inventore amet distinctio corrupti illo porro. Voluptates autem consectetur tempore distinctio
-                        aliquid facilis architecto cupiditate non ea esse nobis praesentium cumque ipsam perspiciatis
-                        temporibus, libero molestias obcaecati molestiae reprehenderit ducimus quasi est placeat nihil
-                        modi. Odit sed optio illo labore, consequatur alias accusamus consectetur voluptates obcaecati
-                    </p>
-                @endif
+                    <div class="flex">
+                        <img src="{{ url('image/chief.png') }}" alt="" class="h-44 mr-4 rounded-lg">
+                        <p class="text-justify">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus unde maiores,
+                            esse, aliquam non ut recusandae deleniti fugiat excepturi accusamus quaerat nemo ex fuga
+                            aspernatur quas eligendi veniam rerum possimus consequuntur! Pariatur consectetur nam
+                            rem soluta ab quisquam harum dolores unde, sequi ipsum, sit labore consequatur! Iste
+                            illo vitae minus blanditiis. Quod aspernatur nemo vel laudantium ut cupiditate voluptate
+                            possimus, voluptas repellendus sapiente natus modi ex assumenda deleniti suscipit minima
+                            dolore? Ex hic laboriosam minima optio similique nulla alias placeat suscipit
+                            perferendis incidunt molestiae velit voluptas commodi eum sint quaerat aliquid eligendi,
+                            inventore voluptate obcaecati nisi nobis minus ullam? Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Provident, inventore. Lorem ipsum Lorem ipsum dolor sit
+                            amet consectetur adipisicing elit. Doloribus quasi sit necessitatibus perferendis
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-justify">
+                            Chiiiiiieeeeeef V dolor sit amet consectetur adipisicing elit. Odit sit exercitationem sed
+                            voluptas reprehenderit vitae, alias tempora perferendis ex necessitatibus tenetur eaque!
+                            Est veniam praesentium, blanditiis repellat doloremque molestias ad consectetur quas?
+                            Error quod repellendus magni, esse excepturi nesciunt asperiores cupiditate qui sequi
+                            optio placeat, commodi animi fuga debitis officiis.
+                        </p>
+                    </div>
             </div>
-        </main>
+            <div class="">
+                <div class="mt-48">
+                    <div id="clockdate" class="float-right rounded-md p-14">
+                        <div class="clockdate-wrapper">
+                            <div class="clockWrap flex items-center">
+                                <div id="clockHour" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md"></div>
+                                <span id="clockSpan" class="text-4xl font-bold text-black">:</span>
+                                <div id="clockMin" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md"></div>
+                            </div>
+                            <div id="date" class="text-lg text-center text-gray-600 bg-gray-200 p-1 mt-1 rounded-md"></div>
+                        </div>
+                    </div>
+                </div>
+@endif
+</main>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const labels = ["1", "2", "3", "4", "5", "7", "8", "9", "10"];
+    const datasets = [{
+            label: "Sudah Membayar",
+            backgroundColor: "green",
+            borderColor: 'rgb(97, 255, 84)',
+            data: [40, 10, 5, 2, 20, 30, 45, 40, 40],
+            fill: false,
+        },
+        {
+            label: "Belum Membayar",
+            backgroundColor: "red",
+            borderColor: 'rgb(255, 44, 44)',
+            data: [10, 15, 20, 25, 30, 35, 40, 10, 5],
+            fill: false,
+        },
+        {
+            label: "Menunggu Konfirmasi",
+            backgroundColor: "gray",
+            borderColor: 'rgb(146, 145, 145)',
+            data: [10, 10, 5, 5, 5, 2, 0, 0, 0],
+            fill: false,
+        },
+    ];
 
+    const configLineChart = {
+        type: "line",
+        data: {
+            labels,
+            datasets
+        },
+        options: {},
+    };
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-            integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-            const labels = ["1", "2", "3", "4", "5", "7", "8", "9", "10"];
-            const datasets = [{
-                    label: "Sudah Membayar",
-                    backgroundColor: "green",
-                    borderColor: 'rgb(97, 255, 84)',
-                    data: [0, 10, 5, 2, 20, 30, 45, 40, 40],
-                    fill: false,
-                },
-                {
-                    label: "Belum Membayar",
-                    backgroundColor: "red",
-                    borderColor: 'rgb(255, 44, 44)',
-                    data: [10, 15, 20, 25, 30, 35, 40, 10, 5],
-                    fill: false,
-                },
-                {
-                    label: "Menunggu Konfirmasi",
-                    backgroundColor: "gray",
-                    borderColor: 'rgb(146, 145, 145)',
-                    data: [10, 10, 5, 5, 5, 2, 0, 0, 0],
-                    fill: false,
-                },
-            ];
+    var chartLine = new Chart(
+        document.getElementById("chartLine"),
+        configLineChart
+    );
 
-            const configLineChart = {
-                type: "line",
-                data: {
-                    labels,
-                    datasets
-                },
-                options: {},
-            };
+    const listItems = document.querySelectorAll("#listItems li");
+    const datasetStatus = [false, false, false];
 
-            var chartLine = new Chart(
-                document.getElementById("chartLine"),
-                configLineChart
-            );
+    listItems.forEach((item) => {
+        item.addEventListener("click", function() {
+            const dataIndex = item.getAttribute("data-index");
+            datasetStatus[dataIndex] = !datasetStatus[dataIndex];
 
-            const listItems = document.querySelectorAll("#listItems li");
-            const datasetStatus = [false, false, false];
+            // Menonaktifkan atau mengaktifkan dataset berdasarkan status
+            datasets[dataIndex].hidden = !datasetStatus[dataIndex];
+            chartLine.update();
+        });
+    });
+</script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: ' #de3c10',
+        });
+    </script>
+@endif
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('logoutLink').addEventListener('click', function() {
+            event.preventDefault();
+            confirmLogout();
+        });
 
-            listItems.forEach((item) => {
-                item.addEventListener("click", function() {
-                    const dataIndex = item.getAttribute("data-index");
-                    datasetStatus[dataIndex] = !datasetStatus[dataIndex];
-
-                    // Menonaktifkan atau mengaktifkan dataset berdasarkan status
-                    datasets[dataIndex].hidden = !datasetStatus[dataIndex];
-                    chartLine.update();
-                });
-            });
-        </script>
-        @if (session('success'))
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                    confirmButtonColor: ' #de3c10',
-                });
-            </script>
-        @endif
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('logoutLink').addEventListener('click', function() {
-                    event.preventDefault();
-                    confirmLogout();
-                });
-
-                function confirmLogout() {
-                    Swal.fire({
-                        title: 'Logout',
-                        text: 'Apakah kamu ingin keluar?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: 'Tidak',
-                        confirmButtonText: 'Ya, saya ingin keluar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire('Logged Out', 'Kamu berhasil Logout.', 'success', );
-
-                            window.location.href = "/logout";
-                        }
-                    });
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Logout',
+                text: 'Apakah kamu ingin keluar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Tidak',
+                confirmButtonText: 'Ya, saya ingin keluar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/logout";
                 }
             });
-        </script>
+        }
+    });
+</script>
 
-    </body>
+</body>
 
-    </html>
+</html>
 @else
-    <?php
-    return redirect('login');
-    ?>
+<?php
+return redirect('login');
+?>
 @endif

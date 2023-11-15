@@ -2,6 +2,7 @@
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -16,6 +17,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('sesi/login');
+});
 
 Route::middleware(['guest'])->group(function(){
 
@@ -35,6 +39,19 @@ Route::middleware(['auth','isLogin'])->group(function(){
     // ->middleware('isLogin');
     Route::get('/dashboard/siswa', [DashboardController::class, 'siswa'] )->middleware('userAkses:siswa');
     Route::get('/dashboard/admin', [DashboardController::class, 'admin'] )->middleware('userAkses:admin');
+});
+
+Route::middleware(['auth','isLogin'])->group(function(){
+    Route::get('/logout', [SessionController::class, 'logout'] );
+    Route::get('/dashboard', [DashboardController::class, 'index'] );
+    // ->middleware('isLogin');
+    Route::get('/dashboard/siswa', [DashboardController::class, 'siswa'] )->middleware('userAkses:siswa');
+    Route::get('/dashboard/admin', [DashboardController::class, 'admin'] )->middleware('userAkses:admin');
+
+});
+
+Route::middleware(['auth','isLogin'])->group(function(){
+    Route::get('/admin/datasiswa', [AdminController::class, 'index'] )->middleware('userAkses:admin');
 });
 
 // Route::get('/dashboard', function () {
