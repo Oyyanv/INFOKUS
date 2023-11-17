@@ -57,11 +57,11 @@ Route::middleware(['auth','isLogin'])->group(function(){
     Route::get('/admin/datasiswa', [AdminController::class, 'index'] )->middleware('userAkses:admin');
     
     Route::controller(SiswaController::class)->group(function (){
-        Route::get('/siswa', 'index');
-        Route::get('/siswa', 'tambah');
+        Route::get('/siswa/index', 'index');
+        Route::get('/siswa/create', 'create');
         Route::get('/siswa/edit', 'edit');
-        Route::patch('/siswa/edit', 'update');
-        Route::delete('/siswa', 'delete');
+        Route::patch('/siswa/update', 'update');
+        Route::delete('/siswa/delete', 'destroy');
     });
 });
 
