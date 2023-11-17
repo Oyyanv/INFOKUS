@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('sesi/login');
 });
 

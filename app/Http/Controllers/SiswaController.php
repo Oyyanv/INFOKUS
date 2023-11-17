@@ -7,8 +7,63 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-  function datashow (){
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
         $siswa = Siswa::all();
-        return response()->json($siswa);
-  }  
+        return view('siswa/index', compact('siswas'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('siswa.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        // $request->validate([
+        //     'NIS_Kelas'=>'required|unique:siswas,NIK_Orangtua,NIS_Kelas',
+        //     ''
+        // ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }
