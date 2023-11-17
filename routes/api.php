@@ -58,8 +58,8 @@ Route::middleware(['auth','isLogin'])->group(function(){
     
     Route::controller(SiswaController::class)->group(function (){
         Route::get('/siswa/index', 'index');
-        Route::get('/siswa/create', 'create');
-        Route::get('/siswa/edit', 'edit');
+        Route::post('/siswa/create', 'create');
+        Route::put('/siswa/edit', 'edit');
         Route::patch('/siswa/update', 'update');
         Route::delete('/siswa/delete', 'destroy');
     });
