@@ -1,11 +1,11 @@
 <?php
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Route;
-use illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+// use App\Http\Controllers\SessionController;
+// use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\StatusController;
+// use App\Http\Controllers\AdminController;
+// use Illuminate\Support\Facades\Route;
+// use illuminate\Support\Facades\Auth;
+// use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------

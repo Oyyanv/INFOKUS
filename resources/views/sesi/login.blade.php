@@ -57,7 +57,7 @@
                                           </svg>
                                     </div>
                                 </div>
-                                @error('email');
+                                @error('email')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                                  @enderror
                             </div>
