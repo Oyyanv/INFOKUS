@@ -37,7 +37,7 @@
                     <div class="w-full">
                         <div class="flex justify-center">
                         </div>
-                        <h1 class="mb-12 text-2xl font-bold text-center text-gray-700">
+                        <h1 class="text-2xl font-bold text-center text-gray-700">
                             INFOKUS SKATEL
                         <br>
                         <h3 class="mb-12 text-2xl text-center text-gray-700">
