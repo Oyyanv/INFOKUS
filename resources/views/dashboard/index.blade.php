@@ -229,23 +229,22 @@
                     </div>
                     <div class="mt-10">
                         <div class="flex">
-                            <img src="{{ url('image/infokus.png') }}" alt="" class="h-44 mr-4 rounded-lg">
-                            <p class="text-justify">
-                              INFOKUS (Informasi Keuangan Siswa Skatel) adalah sebuah web untuk pembayaran SPP siswa siswi 
-                              SMK TELKOM BANJARBARU yang dirancang untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
-                              keunggulan dan pengenmabngan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
+                            <img src="{{ url('image/iconweb.png') }}" alt="" class="h-44 mr-4 rounded-lg">
+                            <p class="text-justify indent-10">
+                              INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
+                              SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
+                              keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
                               pembayaran siswa siswi dalam per bulan dengan menggunakan diagram (Sudah Membayar) dengan warna diagram 
-                              hijau (Belum Membayar) dengan warna diagram merah dan (Menunggu Konfirmasi) dengan menggunakan warna abu-abu,
-                              grafik ini akan berubah tiap bulan nya sesuai dengan pembayaran yang dilakukan oleh siswa siswi
+                              hijau (Belum Membayar) dengan warna diagram merah dan (Menunggu Konfirmasi) dengan menggunakan warna diagram 
+                              abu-abu, grafik ini akan berubah tiap bulan nya sesuai dengan pembayaran yang dilakukan oleh siswa siswi. 
+                              Ini adalah halam Dashboard dari admin, halaman ini berfungngsi memantau grafik dan juga penyusunan data 
+                              bagi sudah membayar, belum membayar dan menunggu konfirmasi dan untuk lebih lanjut nya silah kan di coba dan 
+                              digunakan pada web tersebut, Terima Kasih.
                             </p>
                         </div>
                         <div>
                             <p class="text-justify">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit sit exercitationem sed
-                                voluptas reprehenderit vitae, alias tempora perferendis ex necessitatibus tenetur eaque!
-                                Est veniam praesentium, blanditiis repellat doloremque molestias ad consectetur quas?
-                                Error quod repellendus magni, esse excepturi nesciunt asperiores cupiditate qui sequi
-                                optio placeat, commodi animi fuga debitis officiis.
+                                
                             </p>
                         </div>
                     </div>
