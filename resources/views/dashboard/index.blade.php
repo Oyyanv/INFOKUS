@@ -255,27 +255,27 @@
                 @if (Auth::user()->status == 'siswa')
                     <div class="flex">
                         <img src="{{ url('image/chief.png') }}" alt="" class="h-44 mr-4 rounded-lg">
-                        <p class="text-justify">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus unde maiores,
-                            esse, aliquam non ut recusandae deleniti fugiat excepturi accusamus quaerat nemo ex fuga
-                            aspernatur quas eligendi veniam rerum possimus consequuntur! Pariatur consectetur nam
-                            rem soluta ab quisquam harum dolores unde, sequi ipsum, sit labore consequatur! Iste
-                            illo vitae minus blanditiis. Quod aspernatur nemo vel laudantium ut cupiditate voluptate
-                            possimus, voluptas repellendus sapiente natus modi ex assumenda deleniti suscipit minima
-                            dolore? Ex hic laboriosam minima optio similique nulla alias placeat suscipit
-                            perferendis incidunt molestiae velit voluptas commodi eum sint quaerat aliquid eligendi,
-                            inventore voluptate obcaecati nisi nobis minus ullam? Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Provident, inventore. Lorem ipsum Lorem ipsum dolor sit
-                            amet consectetur adipisicing elit. Doloribus quasi sit necessitatibus perferendis
+                        <p class="text-justify indent-10">
+                            INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
+                            SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
+                            keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan siswa siswi untuk melakukan 
+                            pembayaran SPP pada siswa siswi dalam per bulan dengan menggunakan WEB tersebut. WEB ini dirancang untuk 
+                            admin dan siswa siswi untuk lebih mudah melakukan pembayaran SPP, disini para siswa bisa menggunakan Tabel
+                            SPP sebagai melakukan pembayaran dan jika sudah melakukan pembayaran nanti akan menunggu konfirmasi dan akan
+                            mendapat kan notifikasi di email untuk bukti pembayaran dan jika ada ke gagalan bisa di coba ulang atau melakukan
+                            pembayaran secara langsung ke kantor. Ini adalah halam Dashboard dari siswa, halaman ini berfungngsi memantau grafik 
+                            dan juga penyusunan data bagi sudah membayar, belum membayar dan menunggu konfirmasi dan untuk lebih lanjut nya silah 
+                            kan di coba dan digunakan pada web tersebut, Terima Kasih.
+                            </p>
                         </p>
                     </div>
                     <div>
                         <p class="text-justify">
-                            Chiiiiiieeeeeef V dolor sit amet consectetur adipisicing elit. Odit sit exercitationem sed
-                            voluptas reprehenderit vitae, alias tempora perferendis ex necessitatibus tenetur eaque!
-                            Est veniam praesentium, blanditiis repellat doloremque molestias ad consectetur quas?
-                            Error quod repellendus magni, esse excepturi nesciunt asperiores cupiditate qui sequi
-                            optio placeat, commodi animi fuga debitis officiis.
+                            Siswa tidak bisa melihat diagram pembayaran dan hanya menggunakan fitur pembayaran sebaliknya admin bisa meliat
+                            diagram tapi tidak bisa meliat fitur pembayaran dari siswa tapi akan mendapat notifikasi jika siswa melakukan
+                            pembayaran atau belum dan mana siswa yang menunggu konfirmasi karna tiap fitur dari dashboard siswa dan admin
+                            dibuat berbeda/tidak sama. jika belum melakukan pembayaran akan dapat notifikasi dan jika sudah melakukan pembayaran
+                            juga akan mendapat notifikasi sehabis admin mengkonfirmasi pembayaran 
                         </p>
                     </div>
             </div>
