@@ -14,7 +14,7 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::all();
-        return view('admin/datasiswa', compact('siswa'));
+        return response()->json($siswa);
     }
 
     /**
@@ -22,7 +22,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa/create');
+        return view('admin/datasiswa/create');
     }
 
     /**
@@ -41,8 +41,8 @@ class SiswaController extends Controller
         ]);
 
         Siswa::create($request->all());
-        return redirect()->route('siswa/index')
-            ->with('Succes','Siswa Berhasil DiTambahkan');
+        return redirect()->route('admin/datasiswa/index')
+            ->with('Success','Siswa Berhasil DiTambahkan');
     }
 
     /**
@@ -50,7 +50,7 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        return view('siswa/show', compact('siswa'));
+        return view('admin/datasiswa/index', compact('siswa'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SiswaController extends Controller
      */
     public function edit(Siswa $siswa)
     {
-        return view('siswa/edit', compact('siswa'));
+        return view('admin/datasiswa/edit', compact('siswa'));
     }
 
     /**
@@ -76,8 +76,8 @@ class SiswaController extends Controller
         ]);
 
         $siswa -> update($request->all());
-        return redirect()->route('siswa/index')
-            ->with('Success','Siswa Berhasil DiTambahkan');
+        return redirect()->route('admin/datasiswa/index')
+            ->with('Success','Siswa Berhasil Di Update');
     }
 
     /**
@@ -87,7 +87,7 @@ class SiswaController extends Controller
     {
         $siswa -> delete();
 
-        return redirect()->route('siswa/index')
+        return redirect()->route('admin/datasiswa/index')
          ->with('Success','Siswa Berhasil Di Hapus');
     }
 }

@@ -163,7 +163,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/datasiswa"
+                            <a href="/admin/datasiswa/index"
                                 class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
