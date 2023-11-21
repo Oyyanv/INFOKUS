@@ -231,18 +231,12 @@
                         <div class="flex">
                             <img src="{{ url('image/infokus.png') }}" alt="" class="h-44 mr-4 rounded-lg">
                             <p class="text-justify">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda minus unde maiores,
-                                esse, aliquam non ut recusandae deleniti fugiat excepturi accusamus quaerat nemo ex fuga
-                                aspernatur quas eligendi veniam rerum possimus consequuntur! Pariatur consectetur nam
-                                rem soluta ab quisquam harum dolores unde, sequi ipsum, sit labore consequatur! Iste
-                                illo vitae minus blanditiis. Quod aspernatur nemo vel laudantium ut cupiditate voluptate
-                                possimus, voluptas repellendus sapiente natus modi ex assumenda deleniti suscipit minima
-                                dolore? Ex hic laboriosam minima optio similique nulla alias placeat suscipit
-                                perferendis incidunt molestiae velit voluptas commodi eum sint quaerat aliquid eligendi,
-                                inventore voluptate obcaecati nisi nobis minus ullam? Lorem ipsum dolor sit amet
-                                consectetur adipisicing elit. Provident, inventore. Lorem ipsum Lorem ipsum dolor sit
-                                amet consectetur adipisicing elit. Doloribus quasi sit necessitatibus perferendis
-                                veritatis porro.
+                              INFOKUS (Informasi Keuangan Siswa Skatel) adalah sebuah web untuk pembayaran SPP siswa siswi 
+                              SMK TELKOM BANJARBARU yang dirancang untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
+                              keunggulan dan pengenmabngan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
+                              pembayaran siswa siswi dalam per bulan dengan menggunakan diagram (Sudah Membayar) dengan warna diagram 
+                              hijau (Belum Membayar) dengan warna diagram merah dan (Menunggu Konfirmasi) dengan menggunakan warna abu-abu,
+                              grafik ini akan berubah tiap bulan nya sesuai dengan pembayaran yang dilakukan oleh siswa siswi
                             </p>
                         </div>
                         <div>
