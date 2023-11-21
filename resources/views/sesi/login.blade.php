@@ -37,13 +37,7 @@
                     <div class="w-full">
                         <div class="flex justify-center">
                         </div>
-                        <h1 class="text-2xl font-bold text-center text-gray-700">
-                            INFOKUS SKATEL
-                        <br>
-                        <h3 class="mb-12 text-sn text-center text-gray-700">
-                            Informasi Keungan Siswa SMK Telkom Banjarbaru
-                        </h3>
-                        </h1>
+                        <img src="{{ url('image/iconweb.png') }}" alt="" class="h-44 mr-4 rounded-lg">
                         <h1 class="block text-gray-700 mb-3 font-bold">
                             Login :
                         </h1>
