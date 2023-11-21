@@ -39,6 +39,8 @@
                         </div>
                         <h1 class="mb-12 text-2xl font-bold text-center text-gray-700">
                             INFOKUS SKATEL
+                        <br>
+                            Informasi Keungan Siswa
                         </h1>
                         <h1 class="block text-gray-700 mb-3 font-bold">
                             Login :
