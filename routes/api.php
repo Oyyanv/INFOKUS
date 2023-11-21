@@ -54,15 +54,14 @@ Route::middleware(['auth','isLogin'])->group(function(){
 
 });
 
-Route::middleware(['auth','isLogin'])->group(function(){
-    Route::get('/admin/datasiswa', [AdminController::class, 'index'] )->middleware('userAkses:admin');
-    
+Route::get('/admin/datasiswa/index', [AdminController::class, 'index'] );
+
     Route::controller(SiswaController::class)->group(function (){
-        Route::get('/siswa', 'index');
-        Route::post('/siswa', 'create');
-        Route::put('/siswa', 'edit');
-        Route::patch('/siswa', 'update');
-        Route::delete('/siswa', 'destroy');
+        Route::get('/admin/datasiswa/index', 'index');
+        Route::get('/admin/datasiswa/show', 'show');
+        Route::post('/admin/datasiswa/create', 'create');
+        Route::put('/admin/datasiswa/edit', 'edit');
+        Route::patch('/admin/datasiswa/update', 'update');
+        Route::delete('/admin/datasiswa/delete', 'destroy');
     });
-});
 
