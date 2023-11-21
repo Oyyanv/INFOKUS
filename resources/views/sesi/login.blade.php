@@ -40,7 +40,9 @@
                         <h1 class="mb-12 text-2xl font-bold text-center text-gray-700">
                             INFOKUS SKATEL
                         <br>
+                        <h3 class="mb-12 text-2xl text-center text-gray-700">
                             Informasi Keungan Siswa
+                        </h3>
                         </h1>
                         <h1 class="block text-gray-700 mb-3 font-bold">
                             Login :
