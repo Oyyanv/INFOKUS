@@ -41,7 +41,7 @@
                             INFOKUS SKATEL
                         <br>
                         <h3 class="mb-12 text-xl text-center text-gray-700">
-                            Informasi Keungan Siswa
+                            Informasi Keungan Siswa SMK Telkom Banjarbaru
                         </h3>
                         </h1>
                         <h1 class="block text-gray-700 mb-3 font-bold">
