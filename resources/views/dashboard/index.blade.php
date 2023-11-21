@@ -230,7 +230,7 @@
                     <div class="mt-10">
                         <div class="flex">
                             <img src="{{ url('image/infokus.png') }}" alt="" class="h-44 mr-4 rounded-lg">
-                            <p class="text-justify indent-20">
+                            <p class="text-justify indent-10">
                               INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
                               SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
                               keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
