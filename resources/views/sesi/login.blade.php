@@ -33,11 +33,11 @@
                     <img class="object-cover w-full h-full rounded-lg" src="{{ url('image/tes2.png') }}"
                         alt="img" />
                 </div>
-                <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                <div class="flex items-center justify-center sm:p-12 md:w-1/2">
                     <div class="w-full">
                         <div class="flex justify-center">
                         </div>
-                        <img src="{{ url('image/iconweb.png') }}" alt="" class="h-44 w-60 mr-4 rounded-lg">
+                        <img src="{{ url('image/iconweb.png') }}" alt="" class="h-30 w-60 ml-14 mb-10 rounded-lg">
                         <h1 class="block text-gray-700 mb-3 font-bold">
                             Login :
                         </h1>
