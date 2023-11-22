@@ -37,7 +37,7 @@
                     <div class="w-full">
                         <div class="flex justify-center">
                         </div>
-                        <img src="{{ url('image/iconweb.png') }}" alt="" class="h-max w-max mr-4 rounded-lg">
+                        <img src="{{ url('image/iconweb.png') }}" alt="" class="h-44 w-60 mr-4 rounded-lg">
                         <h1 class="block text-gray-700 mb-3 font-bold">
                             Login :
                         </h1>
