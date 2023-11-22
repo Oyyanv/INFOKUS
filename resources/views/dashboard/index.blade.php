@@ -80,7 +80,7 @@
                         class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
                         <li>
                             <a href="#"
-                                class="block py-2 pl-3 pr-4 rounded md:border-0 hover:text-black md:p-0 text-black text-black hover:bg-gray-700 hover:text-black hover:bg-transparent">
+                                class="block py-2 pl-3 pr-4 ml-32 rounded md:border-0 hover:text-black md:p-0 text-black text-black hover:bg-gray-700 hover:text-black hover:bg-transparent">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="w-6 h-6">
                                     <path fill-rule="evenodd"
@@ -175,14 +175,14 @@
                         </li>
                         <li class="flex items-center justify-center">
                             <a href="#" id="logoutLink"
-                                class="flex justify-center mt-96 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                class="flex justify-center mt-80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                                 </svg>
                                 <div>
-                                <button class="ml-32" id="logout">Keluar</button>
+                                <button class="ml-4" id="logout">Keluar</button>
                                 </div>
                             </a>
                         </li>
