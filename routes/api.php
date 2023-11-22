@@ -55,14 +55,24 @@ use Illuminate\Http\Request;
 
 // });
 
-Route::get('/admin/datasiswa/index', [AdminController::class, 'index'] );
 
-Route::group(['prefix' => '/admin/datasiswa'], function () {
-    Route::get('/index', [SiswaController::class, 'index']);
-    Route::get('/show', [SiswaController::class, 'show']);
-    Route::post('/create', [SiswaController::class, 'create']);
-    Route::put('/edit', [SiswaController::class, 'edit']);
-    Route::patch('/update', [SiswaController::class, 'update']);
-    Route::delete('/delete', [SiswaController::class, 'destroy']);
+// Route::get('/admin/datasiswa/index', [AdminController::class, 'index'] );
+
+// Route::group(['prefix' => '/admin/datasiswa'], function () {
+//     Route::get('/index', [SiswaController::class, 'index']);
+//     Route::get('/show', [SiswaController::class, 'show']);
+//     Route::post('/create', [SiswaController::class, 'create']);
+//     Route::put('/edit', [SiswaController::class, 'edit']);
+//     Route::patch('/update', [SiswaController::class, 'update']);
+//     Route::delete('/delete', [SiswaController::class, 'destroy']);
+// });
+
+Route::controller(SiswaController::class)->group(function (){
+    Route::get('/admin/datasiswa/index', 'index');
+    Route::get('/admin/datasiswa/show', 'show');
+    Route::post('/admin/datasiswa/create', 'create');
+    Route::put('/admin/datasiswa/edit', 'edit');
+    Route::patch('/admin/datasiswa/update', 'update');
+    Route::delete('/admin/datasiswa/delete', 'destroy');
 });
 

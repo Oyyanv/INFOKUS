@@ -52,7 +52,16 @@ Route::middleware(['auth','isLogin'])->group(function(){
 });
 
 
-    // Route::get('/admin/datasiswa/index', [AdminController::class, 'index'] );
+    Route::get('/admin/datasiswa/index', [AdminController::class, 'index'] );
+
+    // Route::controller(SiswaController::class)->group(function (){
+    //     Route::get('/admin/datasiswa/index', 'index');
+    //     Route::get('/admin/datasiswa/show', 'show');
+    //     Route::post('/admin/datasiswa/create', 'create');
+    //     Route::put('/admin/datasiswa/edit', 'edit');
+    //     Route::patch('/admin/datasiswa/update', 'update');
+    //     Route::delete('/admin/datasiswa/delete', 'destroy');
+    // });
 
     // Route::group(['prefix' => '/admin/datasiswa'], function () {
     //     Route::get('/index', [SiswaController::class, 'index']);
