@@ -3,7 +3,9 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GurustaffController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TagihanController;
 use Illuminate\Support\Facades\Route;
 use illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -76,3 +78,20 @@ Route::controller(SiswaController::class)->group(function (){
     Route::delete('/admin/datasiswa/delete', 'destroy');
 });
 
+Route::controller(GurustaffController::class)->group(function (){
+    Route::get('/admin/datasiswa/index', 'index');
+    Route::get('/admin/datasiswa/show', 'show');
+    Route::post('/admin/datasiswa/create', 'create');
+    Route::put('/admin/datasiswa/edit', 'edit');
+    Route::patch('/admin/datasiswa/update', 'update');
+    Route::delete('/admin/datasiswa/delete', 'destroy');
+});
+
+Route::controller(TagihanController::class)->group(function (){
+    Route::get('/admin/datasiswa/index', 'index');
+    Route::get('/admin/datasiswa/show', 'show');
+    Route::post('/admin/datasiswa/create', 'create');
+    Route::put('/admin/datasiswa/edit', 'edit');
+    Route::patch('/admin/datasiswa/update', 'update');
+    Route::delete('/admin/datasiswa/delete', 'destroy');
+});
