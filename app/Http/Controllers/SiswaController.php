@@ -15,6 +15,7 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::all();
         return response()->json($siswa);
+        return view('admin/datasiswa/index', compact('siswa'));
     }
 
     /**
@@ -50,7 +51,8 @@ class SiswaController extends Controller
      */
     public function show(Siswa $siswa)
     {
-        return view('admin/datasiswa/index', compact('siswa'));
+
+        return view('admin/datasiswa/show', compact('siswa'));
     }
 
     /**
