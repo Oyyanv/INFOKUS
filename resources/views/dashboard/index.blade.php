@@ -275,7 +275,7 @@
                             diagram tapi tidak bisa meliat fitur pembayaran dari siswa tapi akan mendapat notifikasi jika siswa melakukan
                             pembayaran atau belum dan mana siswa yang menunggu konfirmasi karna tiap fitur dari dashboard siswa dan admin
                             dibuat berbeda/tidak sama. jika belum melakukan pembayaran akan dapat notifikasi dan jika sudah melakukan pembayaran
-                            juga akan mendapat notifikasi sehabis admin mengkonfirmasi pembayaran 
+                            juga akan mendapat notifikasi sehabis admin mengkonfirmasi pembayaran.
                         </p>
                     </div>
             </div>
