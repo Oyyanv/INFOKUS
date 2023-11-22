@@ -181,7 +181,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                                 </svg>
-                                <button class="ml-3" id="logout">Keluar</button>
+                                <div>
+                                <button class="ml-32" id="logout">Keluar</button>
+                                </div>
                             </a>
                         </li>
                     @endif
@@ -229,8 +231,8 @@
                     </div>
                     <div class="mt-10">
                         <div class="flex">
-                            <img src="{{ url('image/iconweb.png') }}" alt="" class="h-44 mr-4 rounded-lg">
-                            <p class="text-justify indent-10">
+                            <img src="{{ url('image/iconweb.png') }}" alt="" class="h-20 w-70 mr-4 ml-3 mt-10 rounded-lg">
+                            <p class="text-justify indent-10 mr-6">
                               INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
                               SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
                               keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
