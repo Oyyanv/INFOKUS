@@ -13,6 +13,6 @@ class Siswa extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'NIS_Kelas', 'NIK_Orangtua', 'NIS', 'Nama', 'Kelas', 'Jurusan', 'Angkatan'
+        'NIS_Kelas', 'NIK_Orangtua', 'NIS', 'Nama', 'kelas', 'Jurusan', 'Angkatan'
     ];
 }

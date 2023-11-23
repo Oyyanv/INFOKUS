@@ -40,7 +40,7 @@
                     <ul class="list-none m-0 p-0">
                         <li class="text-2xl font-semibold text-black ml-48">
                             <a href="/dashboard" class="flex items-center">
-                                Tabel Data Siswa
+                                Tabel Data SPP
                             </a>
                         </li>
                     </ul>
@@ -97,7 +97,7 @@
                     {{-- ADMIN  --}}
                     @if (Auth::user()->status == 'admin')
                         <li>
-                            <a href="admin/dataspp"
+                            <a href="/admin/dataspp/index"
                                 class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

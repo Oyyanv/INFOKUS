@@ -13,4 +13,8 @@ class AdminController extends Controller
     function tambah(){
         return view('admin/datasiswa/tambah');
     }
+
+    function indexspp(){
+        return view('admin/dataspp/index');
+    }
 }

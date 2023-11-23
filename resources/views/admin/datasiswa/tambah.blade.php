@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +23,7 @@
                         reda: '#EC0000',
                         bgtable: '#F1F1F1',
                         txttable: '#737373',
+                        redbtn: '#CD2727',
                     }
                 }
             }
@@ -86,8 +88,8 @@
                 <li>
                     <a href="/dashboard"
                         class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
@@ -97,7 +99,7 @@
                 {{-- ADMIN  --}}
                 @if (Auth::user()->status == 'admin')
                     <li>
-                        <a href="admin/dataspp"
+                        <a href="/admin/dataspp/index"
                             class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -128,7 +130,7 @@
                             </svg>
                             <button class="ml-3" id="logout">Keluar</button>
                         </a>
-                    </li>                       
+                    </li>
                 @endif
             </ul>
         </div>
@@ -136,7 +138,97 @@
     {{-- FORM TAMBAH DATA SISWA --}}
     <main class="ml-64 p-10">
         <div class="bg-gray-100 py-4 p-5 rounded-md">
-            
+            <form action="{{ url('admin/datasiswa/create') }}" method="post">
+                @csrf
+                <div class=" bg-gray-100 flex flex-col justify-center ">
+                    <div class="relative sm:max-w-xl sm:mx-auto">
+                        <div class="relative bg-white shadow rounded-3xl p-10">
+                            <div class="max-w-md mx-auto">
+                                <div class="divide-y divide-gray-200">
+                                    <div class="text-base  space-y-4 text-gray-700 text-lg ">
+                                        <div class="flex flex-col">
+                                            <label for="nis" class="leading-loose">NIS</label>
+                                            <input type="text" name="nis" id="nis"
+                                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                placeholder="NIS" required>
+                                        </div>
+                                        <div class="text-base  space-y-4 text-gray-700 text-lg ">
+                                            <div class="flex flex-col">
+                                                <label for="nama" class="leading-loose">Nama</label>
+                                                <input type="text" name="nama" id="nama"
+                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                    placeholder="Nama" required>
+                                            </div>
+                                            <div class="flex items-center space-x-4">
+                                                <div class="flex flex-col">
+                                                    <label for="kelas" class="leading-loose">Kelas</label>
+                                                    <div class="relative focus-within:text-gray-600 text-gray-400">
+                                                        <select name="kelas" id="kelas"
+                                                            class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-48 sm:text-sm border-gray-300
+                                                     rounded-md focus:outline-none text-gray-600" required>
+                                                            <option value="" selected>-Kelas-</option>
+                                                            <option value="XA">XA</option>
+                                                            <option value="XB">XB</option>
+                                                            <option value="XC">XC</option>
+                                                            <option value="XD">XD</option>
+                                                            <option value="XE">XE</option>
+                                                            <option value="XF">XF</option>
+                                                            <option value="XG">XG</option>
+                                                            <option value="XIA">XIA</option>
+                                                            <option value="XIB">XIB</option>
+                                                            <option value="XIC">XIC</option>
+                                                            <option value="XID">XID</option>
+                                                            <option value="XIE">XIE</option>
+                                                            <option value="XIF">XIF</option>
+                                                            <option value="XIG">XIG</option>
+                                                            <option value="XIIA">XIIA</option>
+                                                            <option value="XIIB">XIIB</option>
+                                                            <option value="XIIC">XIIC</option>
+                                                            <option value="XIID">XIID</option>
+                                                            <option value="XIIE">XIIE</option>
+                                                            <option value="XIIF">XIIF</option>
+                                                            <option value="XIIG">XIIG</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="flex flex-col">
+                                                    <label for="angkatan" class="leading-loose">Angkatan</label>
+                                                    <div class="relative focus-within:text-gray-600 text-gray-400">
+                                                        <input type="text" id="angkatan" name="angkatan"
+                                                            class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                            placeholder="Angkatan" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <label for="jurusan" class="leading-loose">Jurusan</label>
+                                                <Select
+                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300
+                                                rounded-md focus:outline-none text-gray-600"
+                                                    name="jurusan" id="jurusan" required>
+                                                    <option value="" selected>-Jurusan-</option>
+                                                    <option value="TJA">TJA</option>
+                                                    <option value="TKJ">TKJ</option>
+                                                    <option value="TJAT">TJAT</option>
+                                                    <option value="RPL">RPL</option>
+                                                    <option value="DKV">DKV</option>
+                                                    <option value="ANIMASI">ANIMASI</option>
+                                                </Select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-16 flex justify-between">
+                        <button type="submit" class="bg-redbtn flex justify-center items-center w-48
+                            text-white px-1 py-2 rounded-md focus:outline-none">Kembali</button>
+                        <button type="submit" class="bg-redbtn flex justify-center items-center w-48
+                            text-white px-1 py-2 rounded-md focus:outline-none">Tambah</button>
+                    </div>                    
+            </form>
         </div>
     </main>
     @if (session('success'))
@@ -176,4 +268,5 @@
     </script>
 
 </body>
+
 </html>

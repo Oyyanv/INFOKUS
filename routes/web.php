@@ -53,24 +53,18 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
 Route::middleware(['auth', 'isLogin'])->group(function () {   
     Route::get('/admin/datasiswa/tambah', [AdminController::class, 'tambah'])->middleware('userAkses:admin');
     Route::get('/admin/datasiswa/index', [AdminController::class, 'index'])->middleware('userAkses:admin');
-    Route::controller(SiswaController::class)->group(function () {
-        Route::get('/admin/datasiswa/index', 'index');
-        Route::get('/admin/datasiswa/show', 'show');
-        Route::post('/admin/datasiswa/create', 'create');
-        Route::put('/admin/datasiswa/edit', 'edit');
-        Route::patch('/admin/datasiswa/update', 'update');
-        Route::delete('/admin/datasiswa/delete', 'destroy');
-    });
+    Route::get('/admin/dataspp/index', [AdminController::class, 'indexspp'])->middleware('userAkses:admin');
+    
+    Route::group(['prefix' => '/admin/datasiswa'], function () {
+    Route::get('/index', [SiswaController::class, 'index']);
+    Route::get('/show', [SiswaController::class, 'show']);
+    Route::post('/create', [SiswaController::class, 'create']);
+    Route::put('/edit', [SiswaController::class, 'edit']);
+    Route::patch('/update', [SiswaController::class, 'update']);
+    Route::delete('/delete', [SiswaController::class, 'destroy']);
+});
 });
 
-// Route::group(['prefix' => '/admin/datasiswa'], function () {
-//     Route::get('/index', [SiswaController::class, 'index']);
-//     Route::get('/show', [SiswaController::class, 'show']);
-//     Route::post('/create', [SiswaController::class, 'create']);
-//     Route::put('/edit', [SiswaController::class, 'edit']);
-//     Route::patch('/update', [SiswaController::class, 'update']);
-//     Route::delete('/delete', [SiswaController::class, 'destroy']);
-// });
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka
