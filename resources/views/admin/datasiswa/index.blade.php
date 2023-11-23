@@ -259,8 +259,4 @@
         </script>
 
     </body>
-
-    </html>
-</body>
-
 </html>
