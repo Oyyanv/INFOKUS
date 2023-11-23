@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>INFOKUS</title>
-</head>
-
-<body>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tailwindcss.com"></script>
-        <title>Dashboard</title>
+        <title>INFOKUS</title>
         <script>
             tailwind.config = {
                 theme: {
@@ -149,77 +137,6 @@
         <main class="ml-64 p-10">
             <div class="bg-gray-100 py-4 p-5 rounded-md">
                 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-center rtl:text-right border border-collapse">
-                        <thead class="text-xs uppercase bg-reda text-white">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    No
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    NIS
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Nama
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Kelas
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Jurusan
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Angkatan
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Aksi
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-txttable bg-bgtable">
-                            @foreach ($siswa as $row)
-                                <tr>
-                                    <td scope="row" class="px-6 py-4 font-medium">
-                                        {{ $loop->iteration }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $row->NIS }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $row->Nama }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $row->kelas }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $row->Jurusan }}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{ $row->Angkatan }}
-                                    </td>
-                                    <td class="px-6 py-4 flex justify-center space-x-4">
-                                        <a href="" class="font-medium">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path
-                                                    d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-                                            </svg>
-                                        </a>
-                                        <a href="#" class="font-medium">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="w-6 h-6">
-                                                <path fill-rule="evenodd"
-                                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </a>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </main>
         @if (session('success'))

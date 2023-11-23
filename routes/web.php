@@ -1,8 +1,10 @@
 <?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GurustaffController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\TagihanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,28 +50,10 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'isLogin'])->group(function () {
+Route::middleware(['auth', 'isLogin'])->group(function () {   
+    Route::get('/admin/datasiswa/tambah', [AdminController::class, 'tambah'])->middleware('userAkses:admin');
     Route::get('/admin/datasiswa/index', [AdminController::class, 'index'])->middleware('userAkses:admin');
-
     Route::controller(SiswaController::class)->group(function () {
-        Route::get('/admin/datasiswa/index', 'index');
-        Route::get('/admin/datasiswa/show', 'show');
-        Route::post('/admin/datasiswa/create', 'create');
-        Route::put('/admin/datasiswa/edit', 'edit');
-        Route::patch('/admin/datasiswa/update', 'update');
-        Route::delete('/admin/datasiswa/delete', 'destroy');
-    });
-    
-    Route::controller(TagihanController::class)->group(function (){
-        Route::get('/admin/datasiswa/index', 'index');
-        Route::get('/admin/datasiswa/show', 'show');
-        Route::post('/admin/datasiswa/create', 'create');
-        Route::put('/admin/datasiswa/edit', 'edit');
-        Route::patch('/admin/datasiswa/update', 'update');
-        Route::delete('/admin/datasiswa/delete', 'destroy');
-    });
-
-    Route::controller(TagihanController::class)->group(function (){
         Route::get('/admin/datasiswa/index', 'index');
         Route::get('/admin/datasiswa/show', 'show');
         Route::post('/admin/datasiswa/create', 'create');
