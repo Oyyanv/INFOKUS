@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSiswaRequest;
+use App\Http\Requests\UpdateSiswaRequest;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 
 class SiswaController extends Controller
@@ -14,8 +18,7 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::all();
-        return response()->json($siswa);
-        return view('admin/datasiswa/index', compact('siswa'));
+        return view('admin.datasiswa.index', compact('siswa'));
     }
 
     /**
@@ -33,7 +36,7 @@ class SiswaController extends Controller
     {
         $request->validate([
             'NIS_Kelas'=>'required|unique:siswas,NIS_Kelas',
-            'NIK_Orangtua'=>'required|unique',
+            'NIK_Orangtua'=>'required|unique:siswas,NIK_Orangtua',
             'NIS'=>'required',
             'Nama'=>'required',
             'kelas'=>'required',
