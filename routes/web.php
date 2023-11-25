@@ -1,10 +1,9 @@
 <?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\GurustaffController;
+use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\TagihanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,21 +49,32 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
 
 });
 
-Route::middleware(['auth', 'isLogin'])->group(function () {   
+Route::middleware(['auth', 'isLogin'])->group(function () {
+    //form
     Route::get('/admin/datasiswa/tambah', [AdminController::class, 'tambah'])->middleware('userAkses:admin');
+    Route::get('/admin/dataortu/tambah', [AdminController::class, 'tambahortu'])->middleware('userAkses:admin');
+    //index
     Route::get('/admin/datasiswa/index', [AdminController::class, 'index'])->middleware('userAkses:admin');
     Route::get('/admin/dataspp/index', [AdminController::class, 'indexspp'])->middleware('userAkses:admin');
-    
-    Route::group(['prefix' => '/admin/datasiswa'], function () {
-    Route::get('/index', [SiswaController::class, 'index']);
-    Route::get('/show', [SiswaController::class, 'show']);
-    Route::post('/create', [SiswaController::class, 'store']);
-    Route::put('/edit', [SiswaController::class, 'edit']);
-    Route::patch('/update', [SiswaController::class, 'update']);
-    Route::delete('/delete', [SiswaController::class, 'destroy']);
-});
-});
+    Route::get('/admin/dataortu/index', [AdminController::class, 'indexortu'])->middleware('userAkses:admin');
 
+    Route::group(['prefix' => '/admin/datasiswa'], function () {
+        Route::get('/index', [SiswaController::class, 'index'])->name('/admin/datasiswa/index');
+        Route::get('/show', [SiswaController::class, 'show']);
+        Route::post('/create', [SiswaController::class, 'store']);
+        Route::put('/edit', [SiswaController::class, 'edit']);
+        Route::patch('/update', [SiswaController::class, 'update']);
+        Route::delete('/delete', [SiswaController::class, 'destroy']);
+    });
+    Route::group(['prefix' => '/admin/dataortu'], function () {
+        Route::get('/index', [OrtuController::class, 'index'])->name('/admin/dataortu/index');
+        Route::get('/show', [OrtuController::class, 'show']);
+        Route::post('/create', [OrtuController::class, 'store']);
+        Route::put('/edit', [OrtuController::class, 'edit']);
+        Route::patch('/update', [OrtuController::class, 'update']);
+        Route::delete('/delete', [OrtuController::class, 'destroy']);
+    });
+});
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka

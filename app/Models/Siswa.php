@@ -16,3 +16,5 @@ class Siswa extends Model
         'NIS_Kelas', 'NIK_Orangtua', 'NIS', 'Nama', 'kelas', 'Jurusan', 'Angkatan'
     ];
 }
+
+

@@ -22,7 +22,7 @@ class StoreSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => 'required|numeric|min:9',
+            'nis' => 'required|numeric|digits:9',
             'nama' => 'required',
             'kelas' => 'required',
             'angkatan' => 'required|numeric',

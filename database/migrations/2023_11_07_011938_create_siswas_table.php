@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->string("NIS_Kelas", 20)->primary();
-            $table->string("NIK_Orangtua", 20)->unique();
+            $table->string("NIK_Orangtua", 50)->unique();
             $table->string("NIS", 20);  
             $table->string("Nama", 100);
             $table->enum('kelas', ['XA', 'XB', 'XC', 'XD', 'XE', 'XF', 'XG','XIA', 'XIB', 'XIC', 'XID', 'XIE', 'XIF', 'XIG', 

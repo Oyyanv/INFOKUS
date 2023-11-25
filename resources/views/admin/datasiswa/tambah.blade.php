@@ -41,7 +41,7 @@
             <div class="flex items-center justify-center">
                 <ul class="list-none m-0 p-0">
                     <li class="text-2xl font-semibold text-black ml-48">
-                        <a href="/dashboard" class="flex items-center">
+                        <a href="#" class="flex items-center">
                             Tambah Data Siswa
                         </a>
                     </li>
@@ -120,17 +120,27 @@
                             <span class="ml-3">Data Siswa</span>
                         </a>
                     </li>
-                    <li class="flex items-center justify-center overflow-x-hidden">
-                        <a href="#" id="logoutLink"
-                            class="flex justify-center mt-96 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                    <a href="/admin/dataortu/index"
+                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
                             </svg>
-                            <button class="ml-3" id="logout">Keluar</button>
+                            <span class="ml-3">Data Orangtua Siswa</span>
                         </a>
                     </li>
+                       <li class="flex items-center justify-center overflow-x-hidden">
+                           <a href="#" id="logoutLink"
+                               class="flex justify-center mt-80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                               </svg>
+                               <button class="ml-3" id="logout">Keluar</button>
+                           </a>
+                       </li>
                 @endif
             </ul>
         </div>
@@ -150,7 +160,7 @@
                                             <label for="nis" class="leading-loose">NIS</label>
                                             <input type="text" name="nis" id="nis"
                                                 class=" @error('nis') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="NIS" value="{{ old('nis')}}">
+                                                placeholder="NIS" value="{{ old('nis') }}">
                                             @error('nis')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
@@ -160,44 +170,86 @@
                                                 <label for="nama" class="leading-loose">Nama</label>
                                                 <input type="text" name="nama" id="nama"
                                                     class="@error('nama') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    placeholder="Nama" value="{{ old('nama')}}">
-                                                    @error('nama')
-                                                <div class="text-red-500 text-sm">{{ $message }}</div>
-                                            @enderror
+                                                    placeholder="Nama" value="{{ old('nama') }}">
+                                                @error('nama')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="">
                                                 <div class="">
                                                     <label for="kelas" class="leading-loose">Kelas</label>
                                                     <div class="relative focus-within:text-gray-600 text-gray-400">
                                                         <select name="kelas" id="kelas"
-                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300
+                                                            class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300
                                                                rounded-md focus:outline-none text-gray-600 @error('kelas') border-red-500 @enderror">
-                                                        <option value="" selected>-Kelas-</option>
-                                                        <option value="XA" {{ old('kelas') == 'XA' ? 'selected' : '' }}>XA</option>
-                                                        <option value="XB" {{ old('kelas') == 'XB' ? 'selected' : '' }}>XB</option>
-                                                        <option value="XC" {{ old('kelas') == 'XC' ? 'selected' : '' }}>XC</option>
-                                                        <option value="XD" {{ old('kelas') == 'XD' ? 'selected' : '' }}>XD</option>
-                                                        <option value="XE" {{ old('kelas') == 'XE' ? 'selected' : '' }}>XE</option>
-                                                        <option value="XF" {{ old('kelas') == 'XF' ? 'selected' : '' }}>XF</option>
-                                                        <option value="XG" {{ old('kelas') == 'XG' ? 'selected' : '' }}>XG</option>
-                                                        <option value="XIA" {{ old('kelas') == 'XIA' ? 'selected' : '' }}>XIA</option>
-                                                        <option value="XIB" {{ old('kelas') == 'XIB' ? 'selected' : '' }}>XIB</option>
-                                                        <option value="XIC" {{ old('kelas') == 'XIC' ? 'selected' : '' }}>XIC</option>
-                                                        <option value="XID" {{ old('kelas') == 'XID' ? 'selected' : '' }}>XID</option>
-                                                        <option value="XIE" {{ old('kelas') == 'XIE' ? 'selected' : '' }}>XIE</option>
-                                                        <option value="XIF" {{ old('kelas') == 'XIF' ? 'selected' : '' }}>XIF</option>
-                                                        <option value="XIG" {{ old('kelas') == 'XIG' ? 'selected' : '' }}>XIG</option>
-                                                        <option value="XIIA" {{ old('kelas') == 'XIIA' ? 'selected' : '' }}>XIIA</option>
-                                                        <option value="XIIB" {{ old('kelas') == 'XIIB' ? 'selected' : '' }}>XIIB</option>
-                                                        <option value="XIIC" {{ old('kelas') == 'XIIC' ? 'selected' : '' }}>XIIC</option>
-                                                        <option value="XIID" {{ old('kelas') == 'XIID' ? 'selected' : '' }}>XIID</option>
-                                                        <option value="XIIE" {{ old('kelas') == 'XIIE' ? 'selected' : '' }}>XIIE</option>
-                                                        <option value="XIIF" {{ old('kelas') == 'XIIF' ? 'selected' : '' }}>XIIF</option>
-                                                        <option value="XIIG" {{ old('kelas') == 'XIIG' ? 'selected' : '' }}>XIIG</option>
-                                                </select>
-                                                @error('kelas')
-                                                <div class="text-red-500 text-sm">{{ $message }}</div>
-                                           @enderror
+                                                            <option value="" selected>-Kelas-</option>
+                                                            <option value="XA"
+                                                                {{ old('kelas') == 'XA' ? 'selected' : '' }}>XA
+                                                            </option>
+                                                            <option value="XB"
+                                                                {{ old('kelas') == 'XB' ? 'selected' : '' }}>XB
+                                                            </option>
+                                                            <option value="XC"
+                                                                {{ old('kelas') == 'XC' ? 'selected' : '' }}>XC
+                                                            </option>
+                                                            <option value="XD"
+                                                                {{ old('kelas') == 'XD' ? 'selected' : '' }}>XD
+                                                            </option>
+                                                            <option value="XE"
+                                                                {{ old('kelas') == 'XE' ? 'selected' : '' }}>XE
+                                                            </option>
+                                                            <option value="XF"
+                                                                {{ old('kelas') == 'XF' ? 'selected' : '' }}>XF
+                                                            </option>
+                                                            <option value="XG"
+                                                                {{ old('kelas') == 'XG' ? 'selected' : '' }}>XG
+                                                            </option>
+                                                            <option value="XIA"
+                                                                {{ old('kelas') == 'XIA' ? 'selected' : '' }}>XIA
+                                                            </option>
+                                                            <option value="XIB"
+                                                                {{ old('kelas') == 'XIB' ? 'selected' : '' }}>XIB
+                                                            </option>
+                                                            <option value="XIC"
+                                                                {{ old('kelas') == 'XIC' ? 'selected' : '' }}>XIC
+                                                            </option>
+                                                            <option value="XID"
+                                                                {{ old('kelas') == 'XID' ? 'selected' : '' }}>XID
+                                                            </option>
+                                                            <option value="XIE"
+                                                                {{ old('kelas') == 'XIE' ? 'selected' : '' }}>XIE
+                                                            </option>
+                                                            <option value="XIF"
+                                                                {{ old('kelas') == 'XIF' ? 'selected' : '' }}>XIF
+                                                            </option>
+                                                            <option value="XIG"
+                                                                {{ old('kelas') == 'XIG' ? 'selected' : '' }}>XIG
+                                                            </option>
+                                                            <option value="XIIA"
+                                                                {{ old('kelas') == 'XIIA' ? 'selected' : '' }}>XIIA
+                                                            </option>
+                                                            <option value="XIIB"
+                                                                {{ old('kelas') == 'XIIB' ? 'selected' : '' }}>XIIB
+                                                            </option>
+                                                            <option value="XIIC"
+                                                                {{ old('kelas') == 'XIIC' ? 'selected' : '' }}>XIIC
+                                                            </option>
+                                                            <option value="XIID"
+                                                                {{ old('kelas') == 'XIID' ? 'selected' : '' }}>XIID
+                                                            </option>
+                                                            <option value="XIIE"
+                                                                {{ old('kelas') == 'XIIE' ? 'selected' : '' }}>XIIE
+                                                            </option>
+                                                            <option value="XIIF"
+                                                                {{ old('kelas') == 'XIIF' ? 'selected' : '' }}>XIIF
+                                                            </option>
+                                                            <option value="XIIG"
+                                                                {{ old('kelas') == 'XIIG' ? 'selected' : '' }}>XIIG
+                                                            </option>
+                                                        </select>
+                                                        @error('kelas')
+                                                            <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="">
@@ -205,29 +257,37 @@
                                                     <div class="relative focus-within:text-gray-600 text-gray-400">
                                                         <input type="text" id="angkatan" name="angkatan"
                                                             class="@error('angkatan') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                            placeholder="Angkatan" value="{{ old('angkatan')}}">
-                                                            @error('angkatan')
-                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                            placeholder="Angkatan" value="{{ old('angkatan') }}">
+                                                        @error('angkatan')
+                                                            <div class="text-red-500 text-sm">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="">
                                                 <label for="jurusan" class="leading-loose">Jurusan</label>
-                                                <select class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300
+                                                <select
+                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300
                                                            rounded-md focus:outline-none text-gray-600 @error('jurusan') border-red-500 @enderror"
                                                     name="jurusan" id="jurusan">
-                                                     <option value="" selected>-Jurusan-</option>
-                                                     <option value="TJA" {{ old('jurusan') == 'TJA' ? 'selected' : '' }}>TJA</option>
-                                                     <option value="TKJ" {{ old('jurusan') == 'TKJ' ? 'selected' : '' }}>TKJ</option>
-                                                     <option value="TJAT" {{ old('jurusan') == 'TJAT' ? 'selected' : '' }}>TJAT</option>
-                                                     <option value="RPL" {{ old('jurusan') == 'RPL' ? 'selected' : '' }}>RPL</option>
-                                                     <option value="DKV" {{ old('jurusan') == 'DKV' ? 'selected' : '' }}>DKV</option>
-                                                     <option value="ANIMASI" {{ old('jurusan') == 'ANIMASI' ? 'selected' : '' }}>ANIMASI</option>
-                                            </select>
-                                            @error('jurusan')
-                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
-                                            @enderror
+                                                    <option value="" selected>-Jurusan-</option>
+                                                    <option value="TJA"
+                                                        {{ old('jurusan') == 'TJA' ? 'selected' : '' }}>TJA</option>
+                                                    <option value="TKJ"
+                                                        {{ old('jurusan') == 'TKJ' ? 'selected' : '' }}>TKJ</option>
+                                                    <option value="TJAT"
+                                                        {{ old('jurusan') == 'TJAT' ? 'selected' : '' }}>TJAT</option>
+                                                    <option value="RPL"
+                                                        {{ old('jurusan') == 'RPL' ? 'selected' : '' }}>RPL</option>
+                                                    <option value="DKV"
+                                                        {{ old('jurusan') == 'DKV' ? 'selected' : '' }}>DKV</option>
+                                                    <option value="ANIMASI"
+                                                        {{ old('jurusan') == 'ANIMASI' ? 'selected' : '' }}>ANIMASI
+                                                    </option>
+                                                </select>
+                                                @error('jurusan')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
 

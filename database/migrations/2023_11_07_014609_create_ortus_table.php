@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orangtua', function (Blueprint $table) {
-            $table->string("NIK_Orangtua", 20)->primary();
+            $table->string("NIK_Orangtua", 50)->primary();
+            $table->string("NIK", 16);
             $table->string("Nama", 100);
             $table->text("Alamat");
             $table->string("No_Telp", 20);            

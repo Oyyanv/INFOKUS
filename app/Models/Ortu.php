@@ -13,6 +13,6 @@ class Ortu extends Model
     public $incrementing = false;
 
     protected $fillable = [
-         'NIK_Orangtua', 'Nama', 'Alamat', 'No_Telp'
+         'NIK_Orangtua', 'NIK', 'Nama', 'Alamat', 'No_Telp'
     ];
 }

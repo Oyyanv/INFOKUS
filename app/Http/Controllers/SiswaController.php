@@ -32,25 +32,25 @@ class SiswaController extends Controller
     public function store(StoreSiswaRequest $request)
     {
         $request->validate([
-            'NIS' => 'required',
-            'Nama' => 'required',
+            'nis' => 'required',
+            'nama' => 'required',
             'kelas' => 'required',
-            'Jurusan' => 'required',
-            'Angkatan' => 'required|numeric',
+            'jurusan' => 'required',
+            'angkatan' => 'required|numeric',
         ]);
     
         // Simpan data ke dalam database
         Siswa::create([
-            'NIS_Kelas' => $request->NIS . "_" . $request->kelas,
-            'NIS' => $request->NIS,
-            'Nama' => $request->Nama,
+            'NIS_Kelas' => $request->nis . "_" . $request->kelas,
+            'NIS' => $request->nis,
+            'Nama' => $request->nama,
             'kelas' => $request->kelas,
-            'Jurusan' => $request->Jurusan,
-            'Angkatan' => $request->Angkatan,
+            'Jurusan' => $request->jurusan,
+            'Angkatan' => $request->angkatan,
         ]);
     
         return redirect()->route('admin/datasiswa/index')
-            ->with('success', 'Siswa Berhasil Ditambahkan');
+            ->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**

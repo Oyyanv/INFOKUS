@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Ortu;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrtuRequest;
+use App\Http\Requests\UpdateOrtuRequest;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 
 class OrtuController extends Controller
 {
@@ -13,32 +18,41 @@ class OrtuController extends Controller
     public function index()
     {
         $ortu = Ortu::all();
-        return response()->json($ortu);
-        return view('admin/datasiswa/index', compact('ortu'));
+        // return response()->json($ortu);
+        return view('admin/dataortu/index', compact('ortu'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('admin/datasiswa/create');
-    }
+    // public function create()
+    // {
+    //     return view('admin/dataortu/create');
+    // }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrtuRequest $request)
     {
         $request->validate([
-            'NIK_Orangtua' => 'required|unique:orangtua,NIK_Orangtua',
-            'Nama' => 'required',
-            'Alamat' => 'required',
-            'No_Telp' => 'required']);
-
-        Ortu::create($request->all());
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Orang Tua Berhasil DiTambahkan');
+            'nik' => 'required|numeric',
+            'nama_ortu' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required|numeric',
+        ]);
+    
+        // Simpan data ke dalam database
+        Ortu::create([
+            'NIK_Orangtua' => $request->nik . "_" . $request->nama_ortu,
+            'NIK' => $request->nik,
+            'Nama' => $request->nama_ortu,
+            'Alamat' => $request->alamat,
+            'No_Telp' => $request->no_telp,
+        ]);
+    
+        return redirect()->route('/admin/dataortu/index')
+            ->with('success', 'Data Berhasil Ditambahkan');
 
     }
 
@@ -47,7 +61,7 @@ class OrtuController extends Controller
      */
     public function show(Ortu $ortu)
     {
-        return view('admin/datasiswa/show', compact('ortu'));
+        return view('admin/dataortu/show', compact('ortu'));
     }
 
     /**
@@ -55,7 +69,7 @@ class OrtuController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin/datasiswa/edit', compact('ortu'));
+        return view('admin/dataortu/edit', compact('ortu'));
     }
 
     /**
@@ -69,7 +83,7 @@ class OrtuController extends Controller
             'No_Telp' => 'required']);
 
         $ortu->update($request->all());
-        return redirect()->route('admin/datasiswa/index')
+        return redirect()->route('admin/dataortu/index')
             ->with('Success', 'Orang Tua Berhasil Di Update');
     }
 
@@ -79,7 +93,7 @@ class OrtuController extends Controller
     public function destroy(Ortu $ortu)
     {
         $ortu->delete();
-        return redirect()->route('admin/datasiswa/index')
+        return redirect()->route('admin/dataortu/index')
             ->with('Success', 'Orang Tua Berhasil Di Hapus');
     }
 }
