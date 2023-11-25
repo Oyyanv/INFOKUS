@@ -58,7 +58,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
     Route::group(['prefix' => '/admin/datasiswa'], function () {
     Route::get('/index', [SiswaController::class, 'index']);
     Route::get('/show', [SiswaController::class, 'show']);
-    Route::post('/create', [SiswaController::class, 'create']);
+    Route::post('/create', [SiswaController::class, 'store']);
     Route::put('/edit', [SiswaController::class, 'edit']);
     Route::patch('/update', [SiswaController::class, 'update']);
     Route::delete('/delete', [SiswaController::class, 'destroy']);

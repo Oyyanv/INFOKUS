@@ -148,7 +148,6 @@
                    </svg>
                    <span class="ml-2">Tambah Data</span>
                </button>
-
                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
                    <table class="w-full text-sm text-center rtl:text-right border border-collapse">
                        <thead class="text-xs uppercase bg-reda text-white">

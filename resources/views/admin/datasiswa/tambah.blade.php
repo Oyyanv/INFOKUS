@@ -145,75 +145,89 @@
                         <div class="relative bg-white shadow rounded-3xl p-10">
                             <div class="max-w-md mx-auto">
                                 <div class="divide-y divide-gray-200">
-                                    <div class="text-base  space-y-4 text-gray-700 text-lg ">
+                                    <div class="text-base text-gray-700 text-lg ">
                                         <div class="flex flex-col">
                                             <label for="nis" class="leading-loose">NIS</label>
                                             <input type="text" name="nis" id="nis"
-                                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="NIS" required>
+                                                class=" @error('nis') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                placeholder="NIS" value="{{ old('nis')}}">
+                                            @error('nis')
+                                                <div class="text-red-500 text-sm">{{ $message }}</div>
+                                            @enderror
                                         </div>
-                                        <div class="text-base  space-y-4 text-gray-700 text-lg ">
+                                        <div class="text-base text-gray-700 text-lg ">
                                             <div class="flex flex-col">
                                                 <label for="nama" class="leading-loose">Nama</label>
                                                 <input type="text" name="nama" id="nama"
-                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    placeholder="Nama" required>
+                                                    class="@error('nama') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                    placeholder="Nama" value="{{ old('nama')}}">
+                                                    @error('nama')
+                                                <div class="text-red-500 text-sm">{{ $message }}</div>
+                                            @enderror
                                             </div>
-                                            <div class="flex items-center space-x-4">
-                                                <div class="flex flex-col">
+                                            <div class="">
+                                                <div class="">
                                                     <label for="kelas" class="leading-loose">Kelas</label>
                                                     <div class="relative focus-within:text-gray-600 text-gray-400">
                                                         <select name="kelas" id="kelas"
-                                                            class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-48 sm:text-sm border-gray-300
-                                                     rounded-md focus:outline-none text-gray-600" required>
-                                                            <option value="" selected>-Kelas-</option>
-                                                            <option value="XA">XA</option>
-                                                            <option value="XB">XB</option>
-                                                            <option value="XC">XC</option>
-                                                            <option value="XD">XD</option>
-                                                            <option value="XE">XE</option>
-                                                            <option value="XF">XF</option>
-                                                            <option value="XG">XG</option>
-                                                            <option value="XIA">XIA</option>
-                                                            <option value="XIB">XIB</option>
-                                                            <option value="XIC">XIC</option>
-                                                            <option value="XID">XID</option>
-                                                            <option value="XIE">XIE</option>
-                                                            <option value="XIF">XIF</option>
-                                                            <option value="XIG">XIG</option>
-                                                            <option value="XIIA">XIIA</option>
-                                                            <option value="XIIB">XIIB</option>
-                                                            <option value="XIIC">XIIC</option>
-                                                            <option value="XIID">XIID</option>
-                                                            <option value="XIIE">XIIE</option>
-                                                            <option value="XIIF">XIIF</option>
-                                                            <option value="XIIG">XIIG</option>
-                                                        </select>
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300
+                                                               rounded-md focus:outline-none text-gray-600 @error('kelas') border-red-500 @enderror">
+                                                        <option value="" selected>-Kelas-</option>
+                                                        <option value="XA" {{ old('kelas') == 'XA' ? 'selected' : '' }}>XA</option>
+                                                        <option value="XB" {{ old('kelas') == 'XB' ? 'selected' : '' }}>XB</option>
+                                                        <option value="XC" {{ old('kelas') == 'XC' ? 'selected' : '' }}>XC</option>
+                                                        <option value="XD" {{ old('kelas') == 'XD' ? 'selected' : '' }}>XD</option>
+                                                        <option value="XE" {{ old('kelas') == 'XE' ? 'selected' : '' }}>XE</option>
+                                                        <option value="XF" {{ old('kelas') == 'XF' ? 'selected' : '' }}>XF</option>
+                                                        <option value="XG" {{ old('kelas') == 'XG' ? 'selected' : '' }}>XG</option>
+                                                        <option value="XIA" {{ old('kelas') == 'XIA' ? 'selected' : '' }}>XIA</option>
+                                                        <option value="XIB" {{ old('kelas') == 'XIB' ? 'selected' : '' }}>XIB</option>
+                                                        <option value="XIC" {{ old('kelas') == 'XIC' ? 'selected' : '' }}>XIC</option>
+                                                        <option value="XID" {{ old('kelas') == 'XID' ? 'selected' : '' }}>XID</option>
+                                                        <option value="XIE" {{ old('kelas') == 'XIE' ? 'selected' : '' }}>XIE</option>
+                                                        <option value="XIF" {{ old('kelas') == 'XIF' ? 'selected' : '' }}>XIF</option>
+                                                        <option value="XIG" {{ old('kelas') == 'XIG' ? 'selected' : '' }}>XIG</option>
+                                                        <option value="XIIA" {{ old('kelas') == 'XIIA' ? 'selected' : '' }}>XIIA</option>
+                                                        <option value="XIIB" {{ old('kelas') == 'XIIB' ? 'selected' : '' }}>XIIB</option>
+                                                        <option value="XIIC" {{ old('kelas') == 'XIIC' ? 'selected' : '' }}>XIIC</option>
+                                                        <option value="XIID" {{ old('kelas') == 'XIID' ? 'selected' : '' }}>XIID</option>
+                                                        <option value="XIIE" {{ old('kelas') == 'XIIE' ? 'selected' : '' }}>XIIE</option>
+                                                        <option value="XIIF" {{ old('kelas') == 'XIIF' ? 'selected' : '' }}>XIIF</option>
+                                                        <option value="XIIG" {{ old('kelas') == 'XIIG' ? 'selected' : '' }}>XIIG</option>
+                                                </select>
+                                                @error('kelas')
+                                                <div class="text-red-500 text-sm">{{ $message }}</div>
+                                           @enderror
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-col">
+                                                <div class="">
                                                     <label for="angkatan" class="leading-loose">Angkatan</label>
                                                     <div class="relative focus-within:text-gray-600 text-gray-400">
                                                         <input type="text" id="angkatan" name="angkatan"
-                                                            class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                            placeholder="Angkatan" required>
+                                                            class="@error('angkatan') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                            placeholder="Angkatan" value="{{ old('angkatan')}}">
+                                                            @error('angkatan')
+                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col">
+                                            <div class="">
                                                 <label for="jurusan" class="leading-loose">Jurusan</label>
-                                                <Select
-                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300
-                                                rounded-md focus:outline-none text-gray-600"
-                                                    name="jurusan" id="jurusan" required>
-                                                    <option value="" selected>-Jurusan-</option>
-                                                    <option value="TJA">TJA</option>
-                                                    <option value="TKJ">TKJ</option>
-                                                    <option value="TJAT">TJAT</option>
-                                                    <option value="RPL">RPL</option>
-                                                    <option value="DKV">DKV</option>
-                                                    <option value="ANIMASI">ANIMASI</option>
-                                                </Select>
+                                                <select class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300
+                                                           rounded-md focus:outline-none text-gray-600 @error('jurusan') border-red-500 @enderror"
+                                                    name="jurusan" id="jurusan">
+                                                     <option value="" selected>-Jurusan-</option>
+                                                     <option value="TJA" {{ old('jurusan') == 'TJA' ? 'selected' : '' }}>TJA</option>
+                                                     <option value="TKJ" {{ old('jurusan') == 'TKJ' ? 'selected' : '' }}>TKJ</option>
+                                                     <option value="TJAT" {{ old('jurusan') == 'TJAT' ? 'selected' : '' }}>TJAT</option>
+                                                     <option value="RPL" {{ old('jurusan') == 'RPL' ? 'selected' : '' }}>RPL</option>
+                                                     <option value="DKV" {{ old('jurusan') == 'DKV' ? 'selected' : '' }}>DKV</option>
+                                                     <option value="ANIMASI" {{ old('jurusan') == 'ANIMASI' ? 'selected' : '' }}>ANIMASI</option>
+                                            </select>
+                                            @error('jurusan')
+                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
+                                            @enderror
                                             </div>
                                         </div>
 
@@ -222,12 +236,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pt-16 flex justify-between">
-                        <button type="submit" class="bg-redbtn flex justify-center items-center w-48
-                            text-white px-1 py-2 rounded-md focus:outline-none">Kembali</button>
-                        <button type="submit" class="bg-redbtn flex justify-center items-center w-48
+                    <div class=" flex justify-between">
+                        <a href="/admin/datasiswa/index"
+                            class="bg-redbtn flex justify-center items-center w-48
+                        text-white px-1 py-2 rounded-md focus:outline-none">
+                            Kembali
+                        </a>
+                        <button type="submit"
+                            class="bg-redbtn flex justify-center items-center w-48
                             text-white px-1 py-2 rounded-md focus:outline-none">Tambah</button>
-                    </div>                    
+                    </div>
             </form>
         </div>
     </main>

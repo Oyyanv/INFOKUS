@@ -24,29 +24,33 @@ class SiswaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('admin/datasiswa/create');
-    }
+   
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSiswaRequest $request)
     {
         $request->validate([
-            'NIS_Kelas'=>'required|unique:siswas,NIS_Kelas',
-            'NIK_Orangtua'=>'required|unique:siswas,NIK_Orangtua',
-            'NIS'=>'required',
-            'Nama'=>'required',
-            'kelas'=>'required',
-            'Jurusan'=>'required',
-            'Angkatan'=>'required|numeric'
+            'NIS' => 'required',
+            'Nama' => 'required',
+            'kelas' => 'required',
+            'Jurusan' => 'required',
+            'Angkatan' => 'required|numeric',
         ]);
-
-        Siswa::create($request->all());
+    
+        // Simpan data ke dalam database
+        Siswa::create([
+            'NIS_Kelas' => $request->NIS . "_" . $request->kelas,
+            'NIS' => $request->NIS,
+            'Nama' => $request->Nama,
+            'kelas' => $request->kelas,
+            'Jurusan' => $request->Jurusan,
+            'Angkatan' => $request->Angkatan,
+        ]);
+    
         return redirect()->route('admin/datasiswa/index')
-            ->with('Success','Siswa Berhasil DiTambahkan');
+            ->with('success', 'Siswa Berhasil Ditambahkan');
     }
 
     /**
