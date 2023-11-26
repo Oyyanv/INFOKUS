@@ -262,7 +262,6 @@
     
             function confirmLogout() {
                 Swal.fire({
-                    title: 'Kembali',
                     text: 'Apakah kamu yakin ingin kembali?',
                     icon: 'warning',
                     showCancelButton: true,

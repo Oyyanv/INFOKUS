@@ -121,26 +121,26 @@
                         </a>
                     </li>
                     <a href="/admin/dataortu/index"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                        class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                        </svg>
+                        <span class="ml-3">Data Orangtua Siswa</span>
+                    </a>
+                    </li>
+                    <li class="flex items-center justify-center overflow-x-hidden">
+                        <a href="#" id="logoutLink"
+                            class="flex justify-center mt-80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                             </svg>
-                            <span class="ml-3">Data Orangtua Siswa</span>
+                            <button class="ml-3" id="logout">Keluar</button>
                         </a>
                     </li>
-                       <li class="flex items-center justify-center overflow-x-hidden">
-                           <a href="#" id="logoutLink"
-                               class="flex justify-center mt-80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                   <path stroke-linecap="round" stroke-linejoin="round"
-                                       d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                               </svg>
-                               <button class="ml-3" id="logout">Keluar</button>
-                           </a>
-                       </li>
                 @endif
             </ul>
         </div>
@@ -148,6 +148,9 @@
     {{-- FORM TAMBAH DATA SISWA --}}
     <main class="ml-64 p-10">
         <div class="bg-gray-100 py-4 p-5 rounded-md">
+            @if (session('error'))
+                <div class="" id=""></div>
+            @endif
             <form action="{{ url('admin/datasiswa/create') }}" method="post">
                 @csrf
                 <div class=" bg-gray-100 flex flex-col justify-center ">
@@ -308,7 +311,7 @@
                         </div>
                     </div>
                     <div class=" flex justify-between">
-                        <a href="/admin/datasiswa/index"
+                        <a href="#" id="kembalisiswa"
                             class="bg-redbtn flex justify-center items-center w-48
                         text-white px-1 py-2 rounded-md focus:outline-none">
                             Kembali
@@ -350,6 +353,39 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/logout";
+                    }
+                });
+            }
+        });
+    </script>
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            title: "Error",
+            text: "{{ session('error') }}",
+            icon: "error"
+        });
+    </script>
+    @endif
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kembalisiswa').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+    
+            function confirmLogout() {
+                Swal.fire({
+                    text: 'Apakah kamu ingin kembali?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya, saya ingin kembali'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/admin/datasiswa/index";
                     }
                 });
             }
