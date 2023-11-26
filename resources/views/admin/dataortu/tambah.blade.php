@@ -99,7 +99,7 @@
                 {{-- ADMIN  --}}
                 @if (Auth::user()->status == 'admin')
                     <li>
-                        <a href="/admin/dataspp/index"
+                        <a href="#" id="kedataspp"
                             class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -110,7 +110,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/datasiswa/index"
+                        <a href="#" id="kedatasiswa"
                             class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -120,7 +120,7 @@
                             <span class="ml-3">Data Siswa</span>
                         </a>
                     </li>
-                    <a href="/admin/dataortu/index"
+                    <a href="#" id="kedataortu"
                             class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -255,14 +255,14 @@
     </script>
      <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('kembaliortu').addEventListener('click', function() {
+            document.getElementById('kedataortu').addEventListener('click', function() {
                 event.preventDefault();
                 confirmLogout();
             });
     
             function confirmLogout() {
                 Swal.fire({
-                    text: 'Apakah kamu yakin ingin kembali?',
+                    text: 'Apakah kamu ingin kembali?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -272,6 +272,78 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/admin/dataortu/index";
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kembaliortu').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+    
+            function confirmLogout() {
+                Swal.fire({
+                    text: 'Apakah kamu ingin kembali?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya, saya ingin kembali'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/admin/dataortu/index";
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kedataspp').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+    
+            function confirmLogout() {
+                Swal.fire({
+                    text: 'Apakah kamu ingin ke Data SPP?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/admin/dataspp/index";
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kedatasiswa').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+    
+            function confirmLogout() {
+                Swal.fire({
+                    text: 'Apakah kamu ingin ke Data Siswa?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/admin/datasiswa/index";
                     }
                 });
             }
