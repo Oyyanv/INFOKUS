@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSiswaRequest;
+use App\Models\Ortu;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreSiswaRequest;
-use App\Http\Requests\UpdateSiswaRequest;
-use Illuminate\Http\Response;
-use Illuminate\Http\RedirectResponse;
-
 
 class SiswaController extends Controller
 {
@@ -24,7 +21,6 @@ class SiswaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-   
 
     /**
      * Store a newly created resource in storage.
@@ -37,8 +33,25 @@ class SiswaController extends Controller
             'kelas' => 'required',
             'jurusan' => 'required',
             'angkatan' => 'required|numeric',
+            'nik' => 'required|numeric',
         ]);
-    
+
+        $orangtua = Ortu::where('NIK', $request->nik)->first();
+
+        // Jika orang tua tidak ditemukan, berikan respon atau lakukan penanganan yang sesuai
+        if (!$orangtua) {
+            return redirect()->back()
+                ->with('error', 'Orang Tua dengan NIK yang diinput tidak ditemukan.');
+        }
+
+        // Check apakah orang tua sudah menjadi orang tua dari siswa lain
+        $siswaDenganOrangTuaIni = Siswa::where('NIK_Orangtua', $orangtua->NIK_Orangtua)->first();
+
+        // Jika ditemukan siswa dengan orang tua yang sama, berikan respon atau lakukan penanganan yang sesuai
+        if ($siswaDenganOrangTuaIni) {
+            return redirect()->back()
+                ->with('error', 'Orang Tua dengan NIK yang diinput sudah Ada.');
+        }
         // Simpan data ke dalam database
         Siswa::create([
             'NIS_Kelas' => $request->nis . "_" . $request->kelas,
@@ -47,9 +60,10 @@ class SiswaController extends Controller
             'kelas' => $request->kelas,
             'Jurusan' => $request->jurusan,
             'Angkatan' => $request->angkatan,
+            'NIK_Orangtua' => $orangtua->NIK_Orangtua, // Ambil nilai NIK_Orangtua dari orang tua yang ditemukan
         ]);
-    
-        return redirect()->route('admin/datasiswa/index')
+
+        return redirect()->route('/admin/datasiswa/index')
             ->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -76,17 +90,17 @@ class SiswaController extends Controller
     public function update(Request $request, Siswa $siswa)
     {
         $request->validate([
-            'NIK_Orangtua'=>'required|unique',
-            'NIS'=>'required',
-            'Nama'=>'required',
-            'kelas'=>'required',
-            'Jurusan'=>'required',
-            'Angkatan'=>'required|numeric'
+            'NIK_Orangtua' => 'required|unique',
+            'NIS' => 'required',
+            'Nama' => 'required',
+            'kelas' => 'required',
+            'Jurusan' => 'required',
+            'Angkatan' => 'required|numeric',
         ]);
 
-        $siswa -> update($request->all());
+        $siswa->update($request->all());
         return redirect()->route('admin/datasiswa/index')
-            ->with('Success','Siswa Berhasil Di Update');
+            ->with('Success', 'Siswa Berhasil Di Update');
     }
 
     /**
@@ -94,9 +108,9 @@ class SiswaController extends Controller
      */
     public function destroy(Siswa $siswa)
     {
-        $siswa -> delete();
+        $siswa->delete();
 
         return redirect()->route('admin/datasiswa/index')
-         ->with('Success','Siswa Berhasil Di Hapus');
+            ->with('Success', 'Siswa Berhasil Di Hapus');
     }
 }

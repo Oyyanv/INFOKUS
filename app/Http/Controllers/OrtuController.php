@@ -41,7 +41,7 @@ class OrtuController extends Controller
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
         ]);
-    
+
         // Simpan data ke dalam database
         Ortu::create([
             'NIK_Orangtua' => $request->nik . "_" . $request->nama_ortu,

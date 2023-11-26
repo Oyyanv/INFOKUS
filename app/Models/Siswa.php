@@ -15,6 +15,11 @@ class Siswa extends Model
     protected $fillable = [
         'NIS_Kelas', 'NIK_Orangtua', 'NIS', 'Nama', 'kelas', 'Jurusan', 'Angkatan'
     ];
+
+    public function ortu()
+    {
+        return $this->belongsTo(Ortu::class, 'ortu_id', 'NIK_Orangtua');
+    }
 }
 
 

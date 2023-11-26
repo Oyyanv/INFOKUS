@@ -15,4 +15,9 @@ class Ortu extends Model
     protected $fillable = [
          'NIK_Orangtua', 'NIK', 'Nama', 'Alamat', 'No_Telp'
     ];
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class, 'ortu_id', 'NIK_Orangtua');
+    }
 }

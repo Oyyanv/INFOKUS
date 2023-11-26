@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class=" flex justify-between pt-20">
-                        <a href="/admin/dataortu/index"
+                        <a href="#" id="kembaliortu"
                             class="bg-redbtn flex justify-center items-center w-48
                         text-white px-1 py-2 rounded-md focus:outline-none">
                             Kembali
@@ -248,6 +248,31 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/logout";
+                    }
+                });
+            }
+        });
+    </script>
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('kembaliortu').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+    
+            function confirmLogout() {
+                Swal.fire({
+                    title: 'Kembali',
+                    text: 'Apakah kamu yakin ingin kembali?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Tidak',
+                    confirmButtonText: 'Ya, saya ingin kembali'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/admin/dataortu/index";
                     }
                 });
             }
