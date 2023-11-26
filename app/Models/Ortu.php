@@ -18,6 +18,6 @@ class Ortu extends Model
 
     public function siswas()
     {
-        return $this->hasMany(Siswa::class, 'ortu_id', 'NIK_Orangtua');
+        return $this->hasMany(Siswa::class, 'NIK_Orangtua', 'NIK_Orangtua');
     }
 }

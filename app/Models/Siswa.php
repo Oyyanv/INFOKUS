@@ -18,7 +18,7 @@ class Siswa extends Model
 
     public function ortu()
     {
-        return $this->belongsTo(Ortu::class, 'ortu_id', 'NIK_Orangtua');
+        return $this->belongsTo(Ortu::class, 'NIK_Orangtua', 'NIK_Orangtua');
     }
 }
 

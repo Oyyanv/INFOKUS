@@ -45,13 +45,13 @@ class SiswaController extends Controller
         }
 
         // Check apakah orang tua sudah menjadi orang tua dari siswa lain
-        $siswaDenganOrangTuaIni = Siswa::where('NIK_Orangtua', $orangtua->NIK_Orangtua)->first();
+        // $siswaDenganOrangTuaIni = Siswa::where('NIK_Orangtua', $orangtua->NIK_Orangtua)->first();
 
-        // Jika ditemukan siswa dengan orang tua yang sama, berikan respon atau lakukan penanganan yang sesuai
-        if ($siswaDenganOrangTuaIni) {
-            return redirect()->back()
-                ->with('error', 'Orang Tua dengan NIK yang diinput sudah Ada.');
-        }
+        // // Jika ditemukan siswa dengan orang tua yang sama, berikan respon atau lakukan penanganan yang sesuai
+        // if ($siswaDenganOrangTuaIni) {
+        //     return redirect()->back()
+        //         ->with('error', 'Orang Tua dengan NIK yang diinput sudah Ada.');
+        // }
         // Simpan data ke dalam database
         Siswa::create([
             'NIS_Kelas' => $request->nis . "_" . $request->kelas,
