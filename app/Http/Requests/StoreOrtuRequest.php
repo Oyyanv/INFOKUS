@@ -22,7 +22,7 @@ class StoreOrtuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => 'required|numeric|unique:orangtua,NIK|digits:16',
+            'nik' => 'required|numeric|unique:orangtua,NIK|digits:16|',
             'nama_ortu' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric|min:10',
@@ -33,6 +33,7 @@ class StoreOrtuRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'nik.digits' => ':attribute Wajib 16 Digit',
             'nik.required' => ':attribute Tidak Boleh Kosong',
             'nik.unique' => ':attribute Sudah Ada',
             'nama_ortu.required' => ':attribute Tidak Boleh Kosong',
