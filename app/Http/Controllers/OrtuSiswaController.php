@@ -13,4 +13,10 @@ class OrtuSiswaController extends Controller
         $siswa = Siswa::with('ortu')->find($NIK_Orangtua);
         return view('/admin/datasiswa/detailsiswa', compact('siswa'));
     }
+
+    public function indexortu($NIK_Orangtua){
+        
+        $ortu = Ortu::with('siswas')->find($NIK_Orangtua);
+        return view('/admin/dataortu/detailortu', compact('ortu'));
+    }
 }

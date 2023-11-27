@@ -79,6 +79,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::put('/edit', [OrtuController::class, 'edit']);
         Route::patch('/update', [OrtuController::class, 'update']);
         Route::delete('/delete', [OrtuController::class, 'destroy']);
+        //DETAIL INFORMASI ORANGTUA
+        Route::get('/detailortu/{NIK_Orangtua}', [OrtuSiswaController::class, 'indexortu'])->name('/admin/dataortu/detailortu');
     });
 });
 
