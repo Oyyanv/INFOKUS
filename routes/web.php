@@ -2,6 +2,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrtuController;
+use App\Http\Controllers\OrtuSiswaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -74,7 +75,10 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::patch('/update', [OrtuController::class, 'update']);
         Route::delete('/delete', [OrtuController::class, 'destroy']);
     });
+    // Route::get('/testortusiswa', [OrtuSiswaController::class, 'index'])->name('ortu.siswa.index');
+    Route::get('/ortusiswa/{NIK_Orangtua}',[OrtuSiswaController::class, 'index']);
 });
+
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka
