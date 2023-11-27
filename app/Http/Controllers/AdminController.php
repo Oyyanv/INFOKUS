@@ -13,6 +13,10 @@ class AdminController extends Controller
     function tambah(){
         return view('admin/datasiswa/tambah');
     }
+
+    function detailsiswa(){
+        return view('admin/datasiswa/detailsiswa');
+    }
     //datasiswa
 
     //spp

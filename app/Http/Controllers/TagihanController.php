@@ -13,7 +13,7 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = Tagihan::all();
-        return response()->json($tagihan);
+    
         return view('admin/datasiswa/index', compact('tagihan'));
     }
 
