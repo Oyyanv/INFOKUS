@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrtuSiswaController extends Controller
 {
-    public function index(){
+    public function index($NIK_Orangtua){
         
         $siswas = Siswa::with('ortu')->find($NIK_Orangtua);
         return view('/admin/datasiswa/detailsiswa', compact('siswas'));
