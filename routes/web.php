@@ -80,8 +80,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::patch('/update', [OrtuController::class, 'update']);
         Route::delete('/delete', [OrtuController::class, 'destroy']);
     });
-   
 });
+
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka
