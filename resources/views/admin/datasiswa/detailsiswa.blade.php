@@ -1,5 +1,5 @@
 <div>
-    <h3>NIS: {{ $siswa->NIS_Kelas }}</h3>
+    <h3>NIS: {{ $siswa->NIS }}</h3>
     <p>Nama Siswa: {{ $siswa->Nama }}</p>
     <p>Kelas: {{ $siswa->kelas }}</p>
     <p>Jurusan: {{ $siswa->Jurusan }}</p>

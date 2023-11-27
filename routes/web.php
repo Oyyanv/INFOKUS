@@ -69,7 +69,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::patch('/update', [SiswaController::class, 'update']);
         Route::delete('/delete', [SiswaController::class, 'destroy']);
         //DETAIL INFORMASI SISWA
-        Route::get('/detailsiswa/{id}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
+        Route::get('/detailsiswa/{NIK_Orangtua}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
     });
     //dataortu
     Route::group(['prefix' => '/admin/dataortu'], function () {
