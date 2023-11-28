@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSiswaRequest extends FormRequest
 {
@@ -22,7 +23,12 @@ class UpdateSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => 'required|numeric|unique:siswas,NIS|digits:9',
+            'nis' => [
+                'required',
+                Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
+                'numeric',
+                'digits:9',
+            ],
             'nik' => 'required|numeric|digits:16',
             'nama' => 'required',
             'kelas' => 'required',
@@ -48,7 +54,7 @@ class UpdateSiswaRequest extends FormRequest
     {
         return [
             'nis' => 'NIS',
-            'nik'=> 'NIK',
+            'nik' => 'NIK',
             'nama' => 'Nama',
             'kelas' => 'Kelas',
             'angkatan' => 'Angkatan',

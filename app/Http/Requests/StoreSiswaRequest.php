@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreSiswaRequest extends FormRequest
 {
@@ -22,7 +23,6 @@ class StoreSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => 'required|numeric|unique:siswas,NIS|digits:9',
             'nik' => 'required|numeric|digits:16',
             'nama' => 'required',
             'kelas' => 'required',
@@ -37,7 +37,7 @@ class StoreSiswaRequest extends FormRequest
             'nis.required' => ':attribute Tidak Boleh Kosong',
             'nik.required' => ':attribute Tidak Boleh Kosong',
             // 'nik.unique' => ':attribute Sudah Ada',
-            'nis.unique' => ':attribute Sudah Ada',
+            // 'nis.unique' => ':attribute Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
             'kelas.required' => ':attribute Harus Dipilih',
             'angkatan.required' => ':attribute Tidak Boleh Kosong',
@@ -48,7 +48,7 @@ class StoreSiswaRequest extends FormRequest
     {
         return [
             'nis' => 'NIS',
-            'nik'=> 'NIK',
+            'nik' => 'NIK',
             'nama' => 'Nama',
             'kelas' => 'Kelas',
             'angkatan' => 'Angkatan',

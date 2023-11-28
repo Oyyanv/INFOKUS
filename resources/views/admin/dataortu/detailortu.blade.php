@@ -14,7 +14,6 @@
             <ul>
                 <li>NIS: {{ $siswa->NIS }}</li>
                 <li>Nama Siswa: {{ $siswa->Nama }}</li>
-                <!-- Tampilkan data lainnya -->
             </ul>
         @else
             <p>Tidak ada siswa yang terkait dengan orang tua ini.</p>
