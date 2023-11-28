@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSiswaRequest;
+use App\Http\Requests\UpdateSiswaRequest;
 use App\Models\Ortu;
 use App\Models\Siswa;
-use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
@@ -70,37 +70,61 @@ class SiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Siswa $siswa)
+    public function show(Siswa $siswa, $NIS_Kelas)
     {
+        $datasiswa = $siswa->find($NIS_Kelas);
+        $ortusiswa = Ortu::where('NIK_Orangtua', $datasiswa->NIK_Orangtua)->first();
 
-        return view('admin/datasiswa/show', compact('siswa'));
-    }
+        return view('/admin/datasiswa/editsiswa')->with([
+            'NIS_Kelas' => $datasiswa->NIS . "_" . $datasiswa->kelas,
+            'NIS' => $datasiswa->NIS,
+            'NIK' => optional($ortusiswa)->NIK, // Pastikan NIK diambil dari tabel orang tua
+            'Nama' => $datasiswa->Nama,
+            'kelas' => $datasiswa->kelas,
+            'Jurusan' => $datasiswa->Jurusan,
+            'Angkatan' => $datasiswa->Angkatan,
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Siswa $siswa)
-    {
-        return view('admin/datasiswa/edit', compact('siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(UpdateSiswaRequest $request, Siswa $siswa, $NIS_Kelas)
     {
+        // Ambil data siswa
+        $siswa = Siswa::find($NIS_Kelas);
+
+        // Validasi data dari form
         $request->validate([
-            'NIK_Orangtua' => 'required|unique',
-            'NIS' => 'required',
-            'Nama' => 'required',
-            'kelas' => 'required',
-            'Jurusan' => 'required',
-            'Angkatan' => 'required|numeric',
+            'nis' => 'required|numeric',
+            'nik' => 'required|numeric', // Sesuaikan dengan aturan validasi Anda
+            'nama' => 'required', // Sesuaikan dengan aturan validasi Anda
+            'kelas' => 'required', // Sesuaikan dengan aturan validasi Anda
+            'jurusan' => 'required', // Sesuaikan dengan aturan validasi Anda
+            'angkatan' => 'required|', // Sesuaikan dengan aturan validasi Anda
         ]);
 
-        $siswa->update($request->all());
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Siswa Berhasil Di Update');
+        // Cek apakah NIK orang tua sudah ada di tabel ortu
+        $orangtua = Ortu::where('NIK', $request->input('NIK'))->first();
+
+        // Jika NIK orang tua tidak ditemukan
+        return redirect()->route('/admin/datasiswa/update', ['NIS_Kelas' => $NIS_Kelas])
+            ->withInput()
+            ->withErrors(['NIK' => 'NIK orang tua tidak ditemukan di tabel orangtua.']);
+
+        // Simpan data siswa
+        $siswa->update([
+            'NIK_Orangtua' => $orangtua->NIK_Orangtua,
+            'nis' => $request->input('nis'),
+            'nik' => $request->input('nik'),
+            'nama' => $request->input('nama'),
+            'kelas' => $request->input('kelas'),
+            'jurusan' => $request->input('jurusan'),
+            'angkatan' => $request->input('angkatan'),
+        ]);
+
+        return redirect()->route('/admin/datasiswa/index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     /**

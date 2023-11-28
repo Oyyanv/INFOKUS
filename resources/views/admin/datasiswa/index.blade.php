@@ -208,7 +208,7 @@
                                        {{ $row->Angkatan }}
                                    </td>
                                    <td class="px-6 py-4 flex justify-center space-x-4">
-                                       <a href="" class="font-medium">
+                                       <a href="{{ url('/admin/datasiswa/show', $row->NIS_Kelas) }}" class="font-medium">
                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                fill="currentColor" class="w-6 h-6">
                                                <path
