@@ -77,7 +77,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::get('/show/{NIK_Orangtua}', [OrtuController::class, 'show']);
         Route::post('/create', [OrtuController::class, 'store']);
         Route::put('/update/{NIK_Orangtua}', [OrtuController::class, 'update'])->name('/admin/dataortu/update');
-        Route::delete('/delete', [OrtuController::class, 'destroy']);
+        Route::delete('/delete/{NIK_Orangtua}', [OrtuController::class, 'delete'])->name('/admin/dataortu/delete');
         //DETAIL INFORMASI ORANGTUA
         Route::get('/detailortu/{NIK_Orangtua}', [OrtuSiswaController::class, 'indexortu'])->name('/admin/dataortu/detailortu');
     });
