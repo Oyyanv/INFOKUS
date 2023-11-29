@@ -42,7 +42,7 @@
                 <ul class="list-none m-0 p-0">
                     <li class="text-2xl font-semibold text-black ml-48">
                         <a href="#" class="flex items-center">
-                            Tambah Data Siswa
+                           Tambah Data Orang Tua
                         </a>
                     </li>
                 </ul>

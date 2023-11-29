@@ -45,23 +45,23 @@ class SiswaController extends Controller
                 ->with('error', 'Orang Tua dengan NIK yang diinput tidak ditemukan.');
         }
         //jika gak ada maka buat baru
-        if(!$siswasama){
-        Siswa::create([
-            'NIS_Kelas' => $request->nis . "_" . $request->kelas,
-            'NIS' => $request->nis,
-            'Nama' => $request->nama,
-            'kelas' => $request->kelas,
-            'Jurusan' => $request->jurusan,
-            'Angkatan' => $request->angkatan,
-            'NIK_Orangtua' => $orangtua->NIK_Orangtua, // Ambil nilai NIK_Orangtua dari orang tua yang ditemukan
-        ]);
+        if (!$siswasama) {
+            Siswa::create([
+                'NIS_Kelas' => $request->nis . "_" . $request->kelas,
+                'NIS' => $request->nis,
+                'Nama' => $request->nama,
+                'kelas' => $request->kelas,
+                'Jurusan' => $request->jurusan,
+                'Angkatan' => $request->angkatan,
+                'NIK_Orangtua' => $orangtua->NIK_Orangtua, // Ambil nilai NIK_Orangtua dari orang tua yang ditemukan
+            ]);
 
-        return redirect()->route('/admin/datasiswa/index')
-            ->with('success', 'Data Berhasil Ditambahkan');
+            return redirect()->route('/admin/datasiswa/index')
+                ->with('success', 'Data Berhasil Ditambahkan');
             //jika ada error
-        }else{
+        } else {
             return redirect()->back()
-            ->with('error', 'Siswa dengan NIS dan kelas yang sama sudah ada.');
+                ->with('error', 'Siswa dengan NIS dan kelas yang sama sudah ada.');
         }
     }
 
@@ -75,12 +75,12 @@ class SiswaController extends Controller
 
         return view('/admin/datasiswa/editsiswa')->with([
             'NIS_Kelas' => $datasiswa->NIS . "_" . $datasiswa->kelas,
-            'NIS' => $datasiswa->NIS,
-            'NIK' => optional($ortusiswa)->NIK, // Pastikan NIK diambil dari tabel orang tua
-            'Nama' => $datasiswa->Nama,
+            'nis' => $datasiswa->NIS,
+            'nik' => optional($ortusiswa)->NIK, // Pastikan NIK diambil dari tabel orang tua
+            'nama' => $datasiswa->Nama,
             'kelas' => $datasiswa->kelas,
-            'Jurusan' => $datasiswa->Jurusan,
-            'Angkatan' => $datasiswa->Angkatan,
+            'jurusan' => $datasiswa->Jurusan,
+            'angkatan' => $datasiswa->Angkatan,
         ]);
 
     }
@@ -90,23 +90,50 @@ class SiswaController extends Controller
      */
     public function update(UpdateSiswaRequest $request, Siswa $siswa, $NIS_Kelas)
     {
-        // Ambil data siswa
-        $siswa = Siswa::find($NIS_Kelas);
         $orangtua = Ortu::where('NIK', $request->nik)->first();
+
         if (!$orangtua) {
             return redirect()->back()
                 ->with('error', 'NIK yang diinput tidak ditemukan.');
         }
 
-        $siswa->NIS = $request->nis;
-        $siswa->NIK_Orangtua = $orangtua->NIK_Orangtua;
-        $siswa->Nama = $request->nama;
-        $siswa->kelas = $request->kelas;
-        $siswa->Angkatan = $request->angkatan;
-        $siswa->Jurusan = $request->jurusan;
-        $siswa->save();
+// Temukan siswa berdasarkan NIS_Kelas
+        $updatesiswa = Siswa::find($NIS_Kelas);
 
-        return redirect('/admin/datasiswa/index')->with('success', 'Data Siswa Berhasil Di Update');
+        if (!$updatesiswa) {
+            return redirect()->back()
+                ->with('error', 'Data siswa tidak ditemukan.');
+        }
+
+// Buat nilai baru untuk NIS dan kelas
+        $newNIS = $request->nis;
+        $newKelas = $request->kelas;
+
+// Periksa apakah kombinasi NIS dan kelas baru sudah ada di database
+        $existingSiswa = Siswa::where('NIS', $newNIS)
+            ->where('kelas', $newKelas)
+            ->where('NIS_Kelas', '!=', $NIS_Kelas)
+            ->first();
+
+// Jika kombinasi sudah ada, beri tanggapan atau handle sesuai kebutuhan
+        if ($existingSiswa) {
+            return redirect()->back()->with('error', 'Kombinasi NIS dan kelas sudah digunakan.');
+        }
+
+// Update nilai NIS dan kelas
+        $updatesiswa->fill([
+            'NIS' => $newNIS,
+            'kelas' => $newKelas,
+            'NIK_Orangtua' => $orangtua->NIK_Orangtua,
+            'Nama' => $request->nama,
+            'Angkatan' => $request->angkatan,
+            'Jurusan' => $request->jurusan,
+        ]);
+
+// Simpan perubahan
+        $updatesiswa->save();
+
+        return redirect('/admin/datasiswa/index')->with('success', 'Data Siswa Berhasil Diupdate');
 
     }
 

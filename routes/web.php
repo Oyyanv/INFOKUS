@@ -65,8 +65,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::get('/index', [SiswaController::class, 'index'])->name('/admin/datasiswa/index');
         Route::get('/show/{NIS_Kelas}', [SiswaController::class, 'show'])->name('/admin/datasiswa/show');  
         Route::post('/create', [SiswaController::class, 'store']);
-        // Route::put('/editsiswa', [SiswaController::class, 'edit']);
-        Route::put('/update/{NIS_Kelas}', [SiswaController::class, 'update']);  
+        //UPDATE/edit DATA SISWA
+        Route::put('/update/{NIS_Kelas}', [SiswaController::class, 'update'])->name('/admin/datasiswa/update');
         Route::delete('/delete', [SiswaController::class, 'destroy']);
         //DETAIL INFORMASI SISWA
         Route::get('/detailsiswa/{NIK_Orangtua}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
@@ -74,10 +74,9 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
     //dataortu
     Route::group(['prefix' => '/admin/dataortu'], function () {
         Route::get('/index', [OrtuController::class, 'index'])->name('/admin/dataortu/index');
-        Route::get('/show', [OrtuController::class, 'show']);
+        Route::get('/show/{NIK_Orangtua}', [OrtuController::class, 'show']);
         Route::post('/create', [OrtuController::class, 'store']);
-        Route::put('/edit', [OrtuController::class, 'edit']);
-        Route::patch('/update', [OrtuController::class, 'update']);
+        Route::put('/update/{NIK_Orangtua}', [OrtuController::class, 'update'])->name('/admin/dataortu/update');
         Route::delete('/delete', [OrtuController::class, 'destroy']);
         //DETAIL INFORMASI ORANGTUA
         Route::get('/detailortu/{NIK_Orangtua}', [OrtuSiswaController::class, 'indexortu'])->name('/admin/dataortu/detailortu');

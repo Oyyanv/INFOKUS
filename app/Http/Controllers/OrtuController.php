@@ -6,6 +6,7 @@ use App\Models\Ortu;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrtuRequest;
 use App\Http\Requests\UpdateOrtuRequest;
+use App\Http\Requests\UpdateSiswaRequest;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
@@ -59,32 +60,35 @@ class OrtuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ortu $ortu)
+    public function show(Ortu $ortu, $NIK_Orangtua)
     {
-        return view('admin/dataortu/show', compact('ortu'));
+        $dataortu = $ortu->find($NIK_Orangtua);
+        return view('/admin/dataortu/editortu')->with([
+            'NIK_Orangtua' => $dataortu -> NIK_Orangtua,
+            'nik' => $dataortu -> NIK,
+            'nama_ortu' => $dataortu -> Nama,
+            'alamat' => $dataortu -> Alamat,
+            'no_telp' => $dataortu -> No_Telp,
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        return view('admin/dataortu/edit', compact('ortu'));
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Ortu $ortu)
+    public function update(UpdateOrtuRequest $request, Ortu $ortu, $NIK_Orangtua)
     {
-        $request->validate([
-            'Nama' => 'required',
-            'Alamat' => 'required',
-            'No_Telp' => 'required']);
+        $dataortu = $ortu->find($NIK_Orangtua);
+        //yang kiri dari field data base
+        //                          kanan field form editortu tadi ribet banget
+        $dataortu ->NIK = $request->nik;
+        $dataortu ->Nama = $request->nama_ortu;
+        $dataortu ->Alamat = $request->alamat;
+        $dataortu ->No_Telp = $request->no_telp;
+        $dataortu ->save();
 
-        $ortu->update($request->all());
-        return redirect()->route('admin/dataortu/index')
-            ->with('Success', 'Orang Tua Berhasil Di Update');
+        return redirect()->route('/admin/dataortu/index')
+            ->with('success', 'Orang Tua Berhasil Di Update');
     }
 
     /**

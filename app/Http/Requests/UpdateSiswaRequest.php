@@ -23,12 +23,12 @@ class UpdateSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => [
-                'required',
-                Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
-                'numeric',
-                'digits:9',
-            ],
+            // 'nis' => [
+            //     'required',
+            //     Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
+            //     'numeric',
+            //     'digits:9',
+            // ],
             'nik' => 'required|numeric|digits:16',
             'nama' => 'required',
             'kelas' => 'required',
@@ -43,7 +43,7 @@ class UpdateSiswaRequest extends FormRequest
             'nis.required' => ':attribute Tidak Boleh Kosong',
             'nik.required' => ':attribute Tidak Boleh Kosong',
             // 'nik.unique' => ':attribute Sudah Ada',
-            'nis.unique' => ':attribute Sudah Ada',
+            // 'nis.unique' => ':attribute Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
             'kelas.required' => ':attribute Harus Dipilih',
             'angkatan.required' => ':attribute Tidak Boleh Kosong',

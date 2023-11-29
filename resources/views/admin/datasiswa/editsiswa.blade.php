@@ -164,7 +164,7 @@
                                             <label for="nis" class="leading-loose">NIS</label>
                                             <input type="text" name="nis" id="nis"
                                                 class=" @error('nis') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="NIS" value="{{ $NIS }}">
+                                                placeholder="NIS" value="{{ $nis }}">
                                             @error('nis')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
@@ -174,7 +174,7 @@
                                                 <label for="nik" class="leading-loose">NIK</label>
                                                 <input type="text" name="nik" id="nik"
                                                     class=" @error('nik') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    placeholder="NIK" value="{{ $NIK }}">
+                                                    placeholder="NIK" value="{{ $nik }}">
                                                 @error('nik')
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
@@ -185,7 +185,7 @@
                                                 <label for="nama" class="leading-loose">Nama</label>
                                                 <input type="text" name="nama" id="nama"
                                                     class="@error('nama') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    placeholder="Nama" value="{{ $Nama }}">
+                                                    placeholder="Nama" value="{{ $nama }}">
                                                 @error('nama')
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
@@ -272,7 +272,7 @@
                                                     <div class="relative focus-within:text-gray-600 text-gray-400">
                                                         <input type="text" id="angkatan" name="angkatan"
                                                             class="@error('angkatan') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                            placeholder="Angkatan" value="{{ $Angkatan }}">
+                                                            placeholder="Angkatan" value="{{ $angkatan }}">
                                                         @error('angkatan')
                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
                                                         @enderror
@@ -287,17 +287,17 @@
                                                     name="jurusan" id="jurusan">
                                                     <option value="" selected>-Jurusan-</option>
                                                     <option value="TJA"
-                                                        {{ $Jurusan == 'TJA' ? 'selected' : '' }}>TJA</option>
+                                                        {{ $jurusan == 'TJA' ? 'selected' : '' }}>TJA</option>
                                                     <option value="TKJ"
-                                                        {{ $Jurusan == 'TKJ' ? 'selected' : '' }}>TKJ</option>
+                                                        {{ $jurusan == 'TKJ' ? 'selected' : '' }}>TKJ</option>
                                                     <option value="TJAT"
-                                                        {{ $Jurusan == 'TJAT' ? 'selected' : '' }}>TJAT</option>
+                                                        {{ $jurusan == 'TJAT' ? 'selected' : '' }}>TJAT</option>
                                                     <option value="RPL"
-                                                        {{ $Jurusan == 'RPL' ? 'selected' : '' }}>RPL</option>
+                                                        {{ $jurusan == 'RPL' ? 'selected' : '' }}>RPL</option>
                                                     <option value="DKV"
-                                                        {{ $Jurusan == 'DKV' ? 'selected' : '' }}>DKV</option>
+                                                        {{ $jurusan == 'DKV' ? 'selected' : '' }}>DKV</option>
                                                     <option value="ANIMASI"
-                                                        {{ $Jurusan == 'ANIMASI' ? 'selected' : '' }}>ANIMASI
+                                                        {{ $jurusan == 'ANIMASI' ? 'selected' : '' }}>ANIMASI
                                                     </option>
                                                 </select>
                                                 @error('jurusan')
