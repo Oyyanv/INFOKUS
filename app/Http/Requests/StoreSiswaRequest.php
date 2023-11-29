@@ -23,7 +23,8 @@ class StoreSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nik' => 'required|numeric|digits:16',
+            'nis' => 'required|numeric|digits:9',
+            'nik' => 'nullable|numeric',
             'nama' => 'required',
             'kelas' => 'required',
             'angkatan' => 'required|numeric',
@@ -35,9 +36,6 @@ class StoreSiswaRequest extends FormRequest
     {
         return [
             'nis.required' => ':attribute Tidak Boleh Kosong',
-            'nik.required' => ':attribute Tidak Boleh Kosong',
-            // 'nik.unique' => ':attribute Sudah Ada',
-            // 'nis.unique' => ':attribute Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
             'kelas.required' => ':attribute Harus Dipilih',
             'angkatan.required' => ':attribute Tidak Boleh Kosong',

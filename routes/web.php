@@ -67,7 +67,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [SiswaController::class, 'store']);
         //UPDATE/edit DATA SISWA
         Route::put('/update/{NIS_Kelas}', [SiswaController::class, 'update'])->name('/admin/datasiswa/update');
-        Route::delete('/delete', [SiswaController::class, 'destroy']);
+        Route::delete('/delete/{NIS_Kelas}', [SiswaController::class, 'delete'])->name('/admin/datasiswa/delete');
         //DETAIL INFORMASI SISWA
         Route::get('/detailsiswa/{NIK_Orangtua}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
     });

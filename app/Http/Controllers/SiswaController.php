@@ -27,39 +27,42 @@ class SiswaController extends Controller
      */
     public function store(StoreSiswaRequest $request)
     {
-        $request->validate([
-            'nis' => 'required',
-            'nama' => 'required',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-            'angkatan' => 'required|numeric',
-            'nik' => 'required|numeric',
-        ]);
 
         $orangtua = Ortu::where('NIK', $request->nik)->first();
         //ini buat variabel baru buat nge cek ada gk siswa yg nis sama kelas nya itu sama
         $siswasama = Siswa::Where('NIS', $request->nis)->where('kelas', $request->kelas)->first();
+
         // Jika orang tua tidak ditemukan, berikan respon atau lakukan penanganan yang sesuai
-        if (!$orangtua) {
-            return redirect()->back()
-                ->with('error', 'Orang Tua dengan NIK yang diinput tidak ditemukan.');
-        }
+        // if (!$orangtua) {
+        //     return redirect()->back()
+        //         ->with('error', 'Orang Tua dengan NIK yang diinput tidak ditemukan.');
+        // }
+
         //jika gak ada maka buat baru
         if (!$siswasama) {
-            Siswa::create([
+            $siswaData = [
                 'NIS_Kelas' => $request->nis . "_" . $request->kelas,
                 'NIS' => $request->nis,
                 'Nama' => $request->nama,
                 'kelas' => $request->kelas,
                 'Jurusan' => $request->jurusan,
                 'Angkatan' => $request->angkatan,
-                'NIK_Orangtua' => $orangtua->NIK_Orangtua, // Ambil nilai NIK_Orangtua dari orang tua yang ditemukan
-            ]);
+            ];
+
+            // cek niknya ada atau engak
+            if ($orangtua) {
+                $siswaData['NIK_Orangtua'] = $orangtua->NIK_Orangtua;
+            } else {
+                $siswaData['NIK_Orangtua'] = null; // misal kalo nik nya ga ada skip
+            }
+
+            // buat data siswanya
+            Siswa::create($siswaData);
 
             return redirect()->route('/admin/datasiswa/index')
                 ->with('success', 'Data Berhasil Ditambahkan');
-            //jika ada error
         } else {
+            //kalo misalnya ada data siswa dengan nis dan kelas yg sama itu error karena pk kita itu gabungan dari nis+kelas
             return redirect()->back()
                 ->with('error', 'Siswa dengan NIS dan kelas yang sama sudah ada.');
         }
@@ -90,61 +93,46 @@ class SiswaController extends Controller
      */
     public function update(UpdateSiswaRequest $request, Siswa $siswa, $NIS_Kelas)
     {
+        // Ambil data siswa berdasarkan NIS_Kelas
+        $siswa = Siswa::where('NIS_Kelas', $NIS_Kelas)->first();
+
+        // ini gatau fungsinya buat apa
+        // if (!$siswa) {
+        //     return redirect()->back()->with('error', 'Data siswa tidak ditemukan.');
+        // }
+
+        // Ambil data orang tua berdasarkan NIK
         $orangtua = Ortu::where('NIK', $request->nik)->first();
 
+        //cek dulu apakah orang tua ditemukan
         if (!$orangtua) {
-            return redirect()->back()
-                ->with('error', 'NIK yang diinput tidak ditemukan.');
+            return redirect()->back()->with('error', 'NIK yang diinput tidak ditemukan.');
         }
 
-// Temukan siswa berdasarkan NIS_Kelas
-        $updatesiswa = Siswa::find($NIS_Kelas);
+        // Update nilai NIS dan kelas
+        $siswa->NIS = $request->nis;
+        $siswa->NIK_Orangtua = $orangtua->NIK_Orangtua;
+        $siswa->Nama = $request->nama;
+        $siswa->kelas = $request->kelas;
+        $siswa->Angkatan = $request->angkatan;
+        $siswa->Jurusan = $request->jurusan;
 
-        if (!$updatesiswa) {
-            return redirect()->back()
-                ->with('error', 'Data siswa tidak ditemukan.');
-        }
+        // update datanya
+        $siswa->save();
 
-// Buat nilai baru untuk NIS dan kelas
-        $newNIS = $request->nis;
-        $newKelas = $request->kelas;
-
-// Periksa apakah kombinasi NIS dan kelas baru sudah ada di database
-        $existingSiswa = Siswa::where('NIS', $newNIS)
-            ->where('kelas', $newKelas)
-            ->where('NIS_Kelas', '!=', $NIS_Kelas)
-            ->first();
-
-// Jika kombinasi sudah ada, beri tanggapan atau handle sesuai kebutuhan
-        if ($existingSiswa) {
-            return redirect()->back()->with('error', 'Kombinasi NIS dan kelas sudah digunakan.');
-        }
-
-// Update nilai NIS dan kelas
-        $updatesiswa->fill([
-            'NIS' => $newNIS,
-            'kelas' => $newKelas,
-            'NIK_Orangtua' => $orangtua->NIK_Orangtua,
-            'Nama' => $request->nama,
-            'Angkatan' => $request->angkatan,
-            'Jurusan' => $request->jurusan,
-        ]);
-
-// Simpan perubahan
-        $updatesiswa->save();
-
-        return redirect('/admin/datasiswa/index')->with('success', 'Data Siswa Berhasil Diupdate');
+        return redirect('/admin/datasiswa/index')->with('success', 'Data siswa berhasil diupdate.');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function delete(Siswa $siswa, $NIS_Kelas)
     {
-        $siswa->delete();
+        $siswahapus = $siswa->find($NIS_Kelas);
+        $siswahapus->delete();
 
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Siswa Berhasil Di Hapus');
+        return redirect()->route('/admin/datasiswa/index')
+            ->with('success', 'Siswa Berhasil Di Hapus');
     }
 }

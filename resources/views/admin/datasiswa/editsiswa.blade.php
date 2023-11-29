@@ -151,7 +151,7 @@
             @if (session('error'))
                 <div class="" id=""></div>
             @endif
-            <form action="{{ url('admin/datasiswa/update/' . $NIS_Kelas) }}" method="post">
+            <form action="{{ url('admin/datasiswa/update/' . $NIS_Kelas) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class=" bg-gray-100 flex flex-col justify-center ">

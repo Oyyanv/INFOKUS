@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum("Jurusan", ['TJA', 'TKJ', 'TJAT', 'RPL', 'DKV', 'ANIMASI']);
             $table->string("Angkatan", 5);
             $table->timestamps();
-            $table->string('NIK_Orangtua', 50)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtuas
+            $table->string('NIK_Orangtua', 50)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtua
             $table->foreign('NIK_Orangtua')->references('NIK_Orangtua')->on('orangtua')->onDelete('set null');
             // Tambahkan indeks untuk foreign key
             $table->index('NIK_Orangtua');
