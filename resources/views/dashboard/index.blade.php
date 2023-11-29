@@ -140,7 +140,7 @@
                         </li>
                         <li class="flex items-center justify-center overflow-x-hidden">
                             <a href="#" id="logoutLink"
-                                class="flex justify-center mt-80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                class="flex justify-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-64">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
