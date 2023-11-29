@@ -23,12 +23,12 @@ class UpdateSiswaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => [
-                'required',
-                Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
-                'numeric',
-                'digits:9',
-            ],
+            // 'nis' => [
+            //     'required',
+            //     Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
+            //     'numeric',
+            //     'digits:9',
+            // ],
             'nik' => 'nullable|numeric|digits:16',
             'nama' => 'required',
             'kelas' => 'required',

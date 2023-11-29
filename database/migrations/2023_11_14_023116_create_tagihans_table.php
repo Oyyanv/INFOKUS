@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tagihans', function (Blueprint $table) {
-            $table->string('id_tagihan', 10)->primary();
-            $table->string('bulan', 20);
+            $table->increments('id_tagihan', 20);
+            $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                'September', 'Oktober', 'November', 'Desember']);
             $table->string('tagihan', 50);
             $table->timestamps();
         });

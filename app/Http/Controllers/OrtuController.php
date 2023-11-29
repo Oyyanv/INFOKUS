@@ -94,10 +94,11 @@ class OrtuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ortu $ortu)
+    public function delete(Ortu $ortu, $NIK_Orangtua)
     {
-        $ortu->delete();
-        return redirect()->route('admin/dataortu/index')
-            ->with('Success', 'Orang Tua Berhasil Di Hapus');
+        $ortuhapus = $ortu->find($NIK_Orangtua);
+        $ortuhapus->delete();
+        return redirect()->route('/admin/dataortu/index')
+            ->with('success', 'Data Orang Tua Berhasil Di Hapus');
     }
 }

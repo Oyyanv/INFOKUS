@@ -1,6 +1,7 @@
 @if (Auth::check())
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -173,27 +174,39 @@
                                 <span class="ml-3">Data Siswa</span>
                             </a>
                         </li>
-                        <a href="/admin/dataortu/index"
-                        class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                        </svg>
-                        <span class="ml-3">Data Orangtua Siswa</span>
-                    </a>
-                </li>
-                   <li class="flex items-center justify-center overflow-x-hidden">
-                       <a href="#" id="logoutLink"
-                           class="flex items-center 80 p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-64">
-                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                               stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                               <path stroke-linecap="round" stroke-linejoin="round"
-                                   d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                           </svg>
-                           <button class="ml-4" id="logout">Keluar</button>
-                       </a>
-                   </li>
+                        <li>
+                            <a href="/admin/dataortu/index"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data Orangtua Siswa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/datatagihan/index"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data Tagihan</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center justify-center overflow-x-hidden">
+                            <a href="#" id="logoutLink"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-64">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                </svg>
+                                <button class="ml-4" id="logout">Keluar</button>
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -239,22 +252,31 @@
                     </div>
                     <div class="mt-10">
                         <div class="flex">
-                            <img src="{{ url('image/iconweb.png') }}" alt="" class="h-20 w-70 mr-4 ml-3 mt-10 rounded-lg">
+                            <img src="{{ url('image/iconweb.png') }}" alt=""
+                                class="h-20 w-70 mr-4 ml-3 mt-10 rounded-lg">
                             <p class="text-justify indent-10 mr-6">
-                              INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
-                              SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
-                              keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan admin untuk memeriksa/memantau 
-                              pembayaran siswa siswi dalam per bulan dengan menggunakan diagram (Sudah Membayar) dengan warna diagram 
-                              hijau (Belum Membayar) dengan warna diagram merah dan (Menunggu Konfirmasi) dengan menggunakan warna diagram 
-                              abu-abu, grafik ini akan berubah tiap bulan nya sesuai dengan pembayaran yang dilakukan oleh siswa siswi. 
-                              Ini adalah halam Dashboard dari admin, halaman ini berfungngsi memantau grafik dan juga penyusunan data 
-                              bagi sudah membayar, belum membayar dan menunggu konfirmasi dan untuk lebih lanjut nya silah kan di coba dan 
-                              digunakan pada web tersebut, Terima Kasih.
+                                INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP
+                                siswa siswi
+                                SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan
+                                mengandalkan
+                                keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan admin untuk
+                                memeriksa/memantau
+                                pembayaran siswa siswi dalam per bulan dengan menggunakan diagram (Sudah Membayar)
+                                dengan warna diagram
+                                hijau (Belum Membayar) dengan warna diagram merah dan (Menunggu Konfirmasi) dengan
+                                menggunakan warna diagram
+                                abu-abu, grafik ini akan berubah tiap bulan nya sesuai dengan pembayaran yang dilakukan
+                                oleh siswa siswi.
+                                Ini adalah halam Dashboard dari admin, halaman ini berfungngsi memantau grafik dan juga
+                                penyusunan data
+                                bagi sudah membayar, belum membayar dan menunggu konfirmasi dan untuk lebih lanjut nya
+                                silah kan di coba dan
+                                digunakan pada web tersebut, Terima Kasih.
                             </p>
                         </div>
                         <div>
                             <p class="text-justify">
-                                
+
                             </p>
                         </div>
                     </div>
@@ -266,25 +288,37 @@
                     <div class="flex">
                         <img src="{{ url('image/logouser.jpg') }}" alt="" class="h-44 mr-4 rounded-lg">
                         <p class="text-justify indent-10">
-                            INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP siswa siswi 
-                            SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan 
-                            keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan siswa siswi untuk melakukan 
-                            pembayaran SPP pada siswa siswi dalam per bulan dengan menggunakan WEB tersebut. WEB ini dirancang untuk 
-                            admin dan siswa siswi untuk lebih mudah melakukan pembayaran SPP, disini para siswa bisa menggunakan Tabel
-                            SPP sebagai melakukan pembayaran dan jika sudah melakukan pembayaran nanti akan menunggu konfirmasi dan akan
-                            mendapat kan notifikasi di email untuk bukti pembayaran dan jika ada ke gagalan bisa di coba ulang atau melakukan
-                            pembayaran secara langsung ke kantor. Ini adalah halam Dashboard dari siswa, halaman ini berfungngsi memantau grafik 
-                            dan juga penyusunan data bagi sudah membayar, belum membayar dan menunggu konfirmasi dan untuk lebih lanjut nya silah 
+                            INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP
+                            siswa siswi
+                            SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan mengandalkan
+                            keunggulan dan pengemabangan IT pada dunia sekarang. Web ini juga memudahkan siswa siswi
+                            untuk melakukan
+                            pembayaran SPP pada siswa siswi dalam per bulan dengan menggunakan WEB tersebut. WEB ini
+                            dirancang untuk
+                            admin dan siswa siswi untuk lebih mudah melakukan pembayaran SPP, disini para siswa bisa
+                            menggunakan Tabel
+                            SPP sebagai melakukan pembayaran dan jika sudah melakukan pembayaran nanti akan menunggu
+                            konfirmasi dan akan
+                            mendapat kan notifikasi di email untuk bukti pembayaran dan jika ada ke gagalan bisa di coba
+                            ulang atau melakukan
+                            pembayaran secara langsung ke kantor. Ini adalah halam Dashboard dari siswa, halaman ini
+                            berfungngsi memantau grafik
+                            dan juga penyusunan data bagi sudah membayar, belum membayar dan menunggu konfirmasi dan
+                            untuk lebih lanjut nya silah
                             kan di coba dan digunakan pada web tersebut, Terima Kasih.
-                            </p>
+                        </p>
                         </p>
                     </div>
                     <div>
                         <p class="text-justify">
-                            Siswa tidak bisa melihat diagram pembayaran dan hanya menggunakan fitur pembayaran sebaliknya admin bisa meliat
-                            diagram tapi tidak bisa meliat fitur pembayaran dari siswa tapi akan mendapat notifikasi jika siswa melakukan
-                            pembayaran atau belum dan mana siswa yang menunggu konfirmasi karna tiap fitur dari dashboard siswa dan admin
-                            dibuat berbeda/tidak sama. jika belum melakukan pembayaran akan dapat notifikasi dan jika sudah melakukan pembayaran
+                            Siswa tidak bisa melihat diagram pembayaran dan hanya menggunakan fitur pembayaran
+                            sebaliknya admin bisa meliat
+                            diagram tapi tidak bisa meliat fitur pembayaran dari siswa tapi akan mendapat notifikasi
+                            jika siswa melakukan
+                            pembayaran atau belum dan mana siswa yang menunggu konfirmasi karna tiap fitur dari
+                            dashboard siswa dan admin
+                            dibuat berbeda/tidak sama. jika belum melakukan pembayaran akan dapat notifikasi dan jika
+                            sudah melakukan pembayaran
                             juga akan mendapat notifikasi sehabis admin mengkonfirmasi pembayaran.
                         </p>
                     </div>
@@ -294,11 +328,14 @@
                     <div id="clockdate" class="float-right rounded-md p-14">
                         <div class="clockdate-wrapper">
                             <div class="clockWrap flex items-center">
-                                <div id="clockHour" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md"></div>
+                                <div id="clockHour" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md">
+                                </div>
                                 <span id="clockSpan" class="text-4xl font-bold text-black">:</span>
-                                <div id="clockMin" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md"></div>
+                                <div id="clockMin" class="text-4xl font-bold text-black bg-gray-200 p-2 rounded-md">
+                                </div>
                             </div>
-                            <div id="date" class="text-lg text-center text-gray-600 bg-gray-200 p-1 mt-1 rounded-md"></div>
+                            <div id="date"
+                                class="text-lg text-center text-gray-600 bg-gray-200 p-1 mt-1 rounded-md"></div>
                         </div>
                     </div>
                 </div>

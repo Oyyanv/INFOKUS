@@ -94,33 +94,30 @@ class SiswaController extends Controller
     public function update(UpdateSiswaRequest $request, Siswa $siswa, $NIS_Kelas)
     {
         // Ambil data siswa berdasarkan NIS_Kelas
-        $siswa = Siswa::where('NIS_Kelas', $NIS_Kelas)->first();
+    $siswa = Siswa::where('NIS_Kelas', $NIS_Kelas)->first();
 
-        // ini gatau fungsinya buat apa
-        // if (!$siswa) {
-        //     return redirect()->back()->with('error', 'Data siswa tidak ditemukan.');
-        // }
+    // Inisialisasi variabel orangtua
+    $orangtua = null;
 
-        // Ambil data orang tua berdasarkan NIK
+    if ($request->filled('nik')) {
+        // Jika NIK disediakan, cari orang tua berdasarkan NIK
         $orangtua = Ortu::where('NIK', $request->nik)->first();
 
-        //cek dulu apakah orang tua ditemukan
         if (!$orangtua) {
-            return redirect()->back()->with('error', 'NIK yang diinput tidak ditemukan.');
+            return redirect()->back()->with('error', 'Orang tua dengan NIK yang diinput tidak ditemukan.');
         }
+    }
+    $siswa->NIS = $request->nis;
+    $siswa->Nama = $request->nama;
+    $siswa->kelas = $request->kelas;
+    $siswa->Angkatan = $request->angkatan;
+    $siswa->Jurusan = $request->jurusan;
+    $siswa->NIK_Orangtua = $orangtua ? $orangtua->NIK_Orangtua : null;
 
-        // Update nilai NIS dan kelas
-        $siswa->NIS = $request->nis;
-        $siswa->NIK_Orangtua = $orangtua->NIK_Orangtua;
-        $siswa->Nama = $request->nama;
-        $siswa->kelas = $request->kelas;
-        $siswa->Angkatan = $request->angkatan;
-        $siswa->Jurusan = $request->jurusan;
+    // Simpan perubahan
+    $siswa->save();
 
-        // update datanya
-        $siswa->save();
-
-        return redirect('/admin/datasiswa/index')->with('success', 'Data siswa berhasil diupdate.');
+    return redirect('/admin/datasiswa/index')->with('success', 'Data siswa berhasil diupdate.');
 
     }
 
@@ -133,6 +130,6 @@ class SiswaController extends Controller
         $siswahapus->delete();
 
         return redirect()->route('/admin/datasiswa/index')
-            ->with('success', 'Siswa Berhasil Di Hapus');
+            ->with('success', 'Data Siswa Berhasil Di Hapus');
     }
 }

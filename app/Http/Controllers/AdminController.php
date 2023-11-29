@@ -34,4 +34,14 @@ class AdminController extends Controller
         return view('admin/dataortu/tambah');
     }
     //ortu
+
+    //tagihan
+    function indextagihan(){
+        return view('admin/datatagihan/index');
+    }
+
+    function tambahtagihan(){
+        return view('admin/datatagihan/tambah');
+    }
+    //tagihan
 }

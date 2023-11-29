@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTagihanRequest;
+use App\Http\Requests\UpdateTagihanRequest;
 use App\Models\Tagihan;
 use Illuminate\Http\Request;
 
@@ -13,74 +15,60 @@ class TagihanController extends Controller
     public function index()
     {
         $tagihan = Tagihan::all();
-    
-        return view('admin/datasiswa/index', compact('tagihan'));
+        return view('admin/datatagihan/index', compact('tagihan'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin/datasiswa/create');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTagihanRequest $request)
     {
-        $request->validate([
-            'id_tagihan' => 'required|unique:tagihans,id_tagihan',
-            'bulan' => 'required',
-            'tagihan' => 'required',
+        // Simpan data ke dalam database
+        Tagihan::create([
+            'tagihan' => $request->tagihan,
+            'bulan' => $request->bulan
         ]);
-
-        Tagihan::create($request->all());
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Tagihan Berhasil DiTambahkan');
+        return redirect()->route('/admin/datatagihan/index')
+            ->with('Success', 'Data Tagihan Berhasil DiTambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tagihan $tagihan)
+    public function show(Tagihan $tagihan ,$id_tagihan)
     {
-        return view('admin/datasiswa/show', compact('tagihan'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tagihan $tagihan)
-    {
-        return view('admin/datasiswa/edit', compact('tagihan'));
+        $datatagihan = $tagihan->find($id_tagihan);
+        return view('/admin/datatagihan/edittagihan')->with([
+            'id_tagihan' => $datatagihan ->id_tagihan,
+            'tagihan' => $datatagihan ->tagihan,
+            'bulan' => $datatagihan-> bulan,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tagihan $tagihan)
+    public function update(UpdateTagihanRequest $request, Tagihan $tagihan, $id_tagihan)
     {
+        $updatetagihan = $tagihan->find($id_tagihan);
+        //yang kiri dari field data base
+        //                          kanan field form editortu tadi ribet banget
+        $updatetagihan ->tagihan = $request->tagihan;
+        $updatetagihan ->bulan = $request->bulan;
+        $updatetagihan ->save();
 
-        $request->validate([
-            'bulan' => 'required',
-            'tagihan' => 'required',
-        ]);
-
-        $tagihan->update($request->all());
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Tagihan Berhasil Di Update');
+        return redirect()->route('/admin/datatagihan/index')
+            ->with('success', 'Data Tagihan Berhasil Di Update'); 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tagihan $tagihan)
+    public function delete(Tagihan $tagihan, $id_tagihan)
     {
-        $tagihan->delete();
+        $hapustagihan = $tagihan->find($id_tagihan);
+        $hapustagihan->delete();
 
-        return redirect()->route('admin/datasiswa/index')
-            ->with('Success', 'Tagihan Berhasil Di Hapus');
+        return redirect()->route('/admin/datatagihan/index')
+            ->with('success', 'Tagihan Berhasil Di Hapus');
     }
 }
