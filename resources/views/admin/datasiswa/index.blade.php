@@ -256,7 +256,7 @@
                                            action="{{ route('/admin/datasiswa/delete', ['NIS_Kelas' => $row->NIS_Kelas]) }}">
                                            @csrf
                                            @method('DELETE')
-                                           <button type="submit">
+                                           <button type="submit" class="hapussiswas">
                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                    fill="currentColor" class="w-5 h-5">
                                                    <path fill-rule="evenodd"
@@ -308,32 +308,43 @@
                }
            });
        </script>
-       <script>
-           document.addEventListener('DOMContentLoaded', function() {
-               document.getElementById('hapussiswa').addEventListener('click', function(event) {
-                   event.preventDefault();
-                   confirmDelete();
-               });
+        {{-- Confirm Delete --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    var deleteButtons = document.getElementsByClassName('hapussiswas');
 
-               function confirmDelete() {
-                   Swal.fire({
-                       text: 'Apakah Ingin Menghapus Data Siswa?',
-                       icon: 'warning',
-                       showCancelButton: true,
-                       confirmButtonColor: '#3085d6',
-                       cancelButtonColor: '#d33',
-                       cancelButtonText: 'Tidak',
-                       confirmButtonText: 'Ya'
-                   }).then((result) => {
-                       if (result.isConfirmed) {
-                           document.getElementById('hapussiswa').submit();
-                       }
-                   });
-               }
-           });
-       </script>
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function (event) {
+            event.preventDefault();
+            confirmDelete(event);
+        });
+    }
 
+    function confirmDelete(event) {
+        Swal.fire({
+            text: 'Apakah Ingin Menghapus Data Siswa?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Access the form associated with the clicked button
+                var form = event.target.closest('form');
 
+                // Check if a form is found
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found!');
+                }
+            }
+        });
+    }
+});
+        </script>
    </body>
 
    </html>

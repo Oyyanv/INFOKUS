@@ -212,8 +212,7 @@
                                             <div class="text-base text-gray-700 text-lg ">
                                                 <div class="flex flex-col">
                                                     <label for="alamat" class="leading-loose">Alamat</label>
-                                                    <textarea name="alamat" id="alamat" class="px-4 resize-none py-2 border 
-                                                    @error('alamat') border-red-500 @enderror
+                                                    <textarea name="alamat" id="alamat" class="px-4 resize-none py-2 border @error('alamat') border-red-500 @enderror
                                                     focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                     > {{old('alamat')}}
                                                 </textarea>

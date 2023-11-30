@@ -248,7 +248,7 @@
                                            action="{{ route('/admin/dataortu/delete', ['NIK_Orangtua' => $row->NIK_Orangtua]) }}">
                                            @csrf
                                            @method('DELETE')
-                                           <button type="submit">
+                                           <button type="submit" class="hapusortus">
                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                    fill="currentColor" class="w-5 h-5">
                                                    <path fill-rule="evenodd"
@@ -275,6 +275,7 @@
                });
            </script>
        @endif
+           {{-- Confirm Logout --}}
        <script>
            document.addEventListener('DOMContentLoaded', function() {
                document.getElementById('logoutLink').addEventListener('click', function() {
@@ -300,29 +301,41 @@
                }
            });
        </script>
+       {{-- Confirm Delete --}}
        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('hapusortu').addEventListener('click', function(event) {
-                event.preventDefault();
-                confirmDelete();
-            });
+document.addEventListener('DOMContentLoaded', function () {
+    var deleteButtons = document.getElementsByClassName('hapusortus');
 
-            function confirmDelete() {
-                Swal.fire({
-                    text: 'Apakah Ingin Menghapus Data Ortu?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    cancelButtonText: 'Tidak',
-                    confirmButtonText: 'Ya'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        document.getElementById('hapusortu').submit();
-                    }
-                });
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function (event) {
+            event.preventDefault();
+            confirmDelete(event);
+        });
+    }
+
+    function confirmDelete(event) {
+        Swal.fire({
+            text: 'Apakah Ingin Menghapus Data Ortu?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var form = event.target.closest('form');
+
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found!');
+                }
             }
         });
+    }
+});
+
     </script>
 
    </body>
