@@ -226,7 +226,12 @@
                                        {{ $row->Nama }}
                                    </td>
                                    <td class="px-6 py-4">
-                                       {{ $row->JK }}
+                                       {{-- {{ $row->JK }} --}}
+                                       @if ($row->JK == 'L')
+                                           Laki-Laki
+                                       @else
+                                           Perempuan
+                                       @endif
                                    </td>
                                    <td class="px-6 py-4">
                                        {{ $row->Alamat }}
