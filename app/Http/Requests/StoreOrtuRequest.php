@@ -24,6 +24,7 @@ class StoreOrtuRequest extends FormRequest
         return [
             'nik' => 'required|numeric|unique:orangtua,NIK|digits:16|',
             'nama_ortu' => 'required',
+            'jk' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric|min:10',
 
@@ -46,6 +47,7 @@ class StoreOrtuRequest extends FormRequest
         return [
             'nik' => 'NIK',
             'nama_ortu' => 'Nama',
+            'jk' => 'JK',
             'alamat' => 'Alamat',
             'no_telp' => 'Nomor Telepon',
         ];

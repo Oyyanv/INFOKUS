@@ -13,7 +13,7 @@ class Siswa extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'NIS_Kelas', 'NIS', 'Nama', 'kelas', 'Jurusan', 'Angkatan','NIK_Orangtua', 
+        'NIS_Kelas', 'NIS', 'Nama', 'kelas','JK', 'Jurusan', 'Angkatan','NIK_Orangtua', 
     ];
 
     public function ortu()

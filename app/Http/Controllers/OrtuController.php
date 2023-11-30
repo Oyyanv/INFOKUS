@@ -39,6 +39,7 @@ class OrtuController extends Controller
         $request->validate([
             'nik' => 'required|numeric',
             'nama_ortu' => 'required',
+            'jk' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
         ]);
@@ -48,6 +49,7 @@ class OrtuController extends Controller
             'NIK_Orangtua' => $request->nik . "_" . $request->nama_ortu,
             'NIK' => $request->nik,
             'Nama' => $request->nama_ortu,
+            'JK' => $request->jk,
             'Alamat' => $request->alamat,
             'No_Telp' => $request->no_telp,
         ]);
@@ -67,6 +69,7 @@ class OrtuController extends Controller
             'NIK_Orangtua' => $dataortu -> NIK_Orangtua,
             'nik' => $dataortu -> NIK,
             'nama_ortu' => $dataortu -> Nama,
+            'jk' => $dataortu -> JK,
             'alamat' => $dataortu -> Alamat,
             'no_telp' => $dataortu -> No_Telp,
         ]);
@@ -83,6 +86,7 @@ class OrtuController extends Controller
         //                          kanan field form editortu tadi ribet banget
         $dataortu ->NIK = $request->nik;
         $dataortu ->Nama = $request->nama_ortu;
+        $dataortu ->JK = $request->jk;
         $dataortu ->Alamat = $request->alamat;
         $dataortu ->No_Telp = $request->no_telp;
         $dataortu ->save();

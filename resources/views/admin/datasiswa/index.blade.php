@@ -203,6 +203,9 @@
                                    Nama
                                </th>
                                <th scope="col" class="px-6 py-3">
+                                   JK
+                               </th>
+                               <th scope="col" class="px-6 py-3">
                                    Kelas
                                </th>
                                <th scope="col" class="px-6 py-3">
@@ -224,6 +227,9 @@
                                    </td>
                                    <td class="px-6 py-4">
                                        {{ $row->Nama }}
+                                   </td>
+                                   <td class="px-6 py-4">
+                                       {{ $row->JK }}
                                    </td>
                                    <td class="px-6 py-4">
                                        {{ $row->kelas }}

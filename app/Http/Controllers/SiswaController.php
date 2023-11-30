@@ -44,6 +44,7 @@ class SiswaController extends Controller
                 'NIS_Kelas' => $request->nis . "_" . $request->kelas,
                 'NIS' => $request->nis,
                 'Nama' => $request->nama,
+                'JK' => $request->jk,
                 'kelas' => $request->kelas,
                 'Jurusan' => $request->jurusan,
                 'Angkatan' => $request->angkatan,
@@ -81,6 +82,7 @@ class SiswaController extends Controller
             'nis' => $datasiswa->NIS,
             'nik' => optional($ortusiswa)->NIK, // Pastikan NIK diambil dari tabel orang tua
             'nama' => $datasiswa->Nama,
+            'jk' => $datasiswa->JK,
             'kelas' => $datasiswa->kelas,
             'jurusan' => $datasiswa->Jurusan,
             'angkatan' => $datasiswa->Angkatan,
@@ -109,6 +111,7 @@ class SiswaController extends Controller
     }
     $siswa->NIS = $request->nis;
     $siswa->Nama = $request->nama;
+    $siswa->JK = $request->jk;
     $siswa->kelas = $request->kelas;
     $siswa->Angkatan = $request->angkatan;
     $siswa->Jurusan = $request->jurusan;

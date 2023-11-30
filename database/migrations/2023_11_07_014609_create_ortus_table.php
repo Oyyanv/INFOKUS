@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string("NIK_Orangtua", 50)->primary();
             $table->string("NIK", 16);
             $table->string("Nama", 100);
+            $table->string("JK", 1);
             $table->text("Alamat");
             $table->string("No_Telp", 20);            
             $table->timestamps();

@@ -26,6 +26,7 @@ class StoreSiswaRequest extends FormRequest
             'nis' => 'required|numeric|digits:9',
             'nik' => 'nullable|numeric',
             'nama' => 'required',
+            'jk'   => 'required',
             'kelas' => 'required',
             'angkatan' => 'required|numeric',
             'jurusan' => 'required',
@@ -37,6 +38,7 @@ class StoreSiswaRequest extends FormRequest
         return [
             'nis.required' => ':attribute Tidak Boleh Kosong',
             'nama.required' => ':attribute Tidak Boleh Kosong',
+            'jk.required' => ':attribute Tidak Boleh Kosong',
             'kelas.required' => ':attribute Harus Dipilih',
             'angkatan.required' => ':attribute Tidak Boleh Kosong',
             'jurusan.required' => ':attribute Harus Dipilih',
@@ -49,6 +51,7 @@ class StoreSiswaRequest extends FormRequest
             'nik' => 'NIK',
             'nama' => 'Nama',
             'kelas' => 'Kelas',
+            'jk'    => 'JK',
             'angkatan' => 'Angkatan',
             'jurusan' => 'Jurusan',
         ];

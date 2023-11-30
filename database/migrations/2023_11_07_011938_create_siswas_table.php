@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string("NIS_Kelas", 20)->primary();
             $table->string("NIS", 20);
             $table->string("Nama", 100);
+            $table->string("JK", 1);
             $table->enum('kelas', ['XA', 'XB', 'XC', 'XD', 'XE', 'XF', 'XG','XIA', 'XIB', 'XIC', 'XID', 'XIE', 'XIF', 'XIG', 
                                     'XIIA', 'XIIB', 'XIIC', 'XIID', 'XIIE', 'XIIF', 'XIIG']);
             $table->enum("Jurusan", ['TJA', 'TKJ', 'TJAT', 'RPL', 'DKV', 'ANIMASI']);

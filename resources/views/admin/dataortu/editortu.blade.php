@@ -210,6 +210,22 @@
                                                     <div class="text-red-500 text-sm">{{ $nama_ortu }}</div>
                                                 @enderror
                                             </div>
+                                            <div class="text-base text-gray-700 text-lg">
+                                                <label class="leading-loose">JK</label>
+                                                <div class="flex">
+                                                    <label for="laki" class="mr-4">
+                                                        <input type="radio" id="laki" name="jk" value="L"
+                                                               {{ $jk  == 'L' ? 'checked' : '' }}> Laki-laki
+                                                    </label>
+                                                    <label for="perempuan">
+                                                        <input type="radio" id="perempuan" name="jk" value="P"
+                                                               {{ $jk == 'P' ? 'checked' : '' }}> Perempuan
+                                                    </label>
+                                                </div>
+                                                @error('jk')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                             <div class="text-base text-gray-700 text-lg ">
                                                 <div class="flex flex-col">
                                                     <label for="alamat" class="leading-loose">Alamat</label>

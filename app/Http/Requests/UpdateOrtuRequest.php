@@ -30,6 +30,7 @@ class UpdateOrtuRequest extends FormRequest
                 'digits:16',
             ],
             'nama_ortu' => 'required',
+            'jk'        =>'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric|min:10',
 
@@ -43,6 +44,7 @@ class UpdateOrtuRequest extends FormRequest
             'nik.required' => ':attribute Tidak Boleh Kosong',
             'nik.unique' => ':attribute Sudah Ada',
             'nama_ortu.required' => ':attribute Tidak Boleh Kosong',
+            'jk.required' => ':attribute Tidak Boleh Kosong',
             'alamat.required' => ':attribute Tidak Boleh Kosong',
             'no_telp.required' => ':attribute Tidak Boleh Kosong',
         ];

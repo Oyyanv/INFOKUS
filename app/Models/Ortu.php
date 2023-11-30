@@ -13,7 +13,7 @@ class Ortu extends Model
     public $incrementing = false;
 
     protected $fillable = [
-         'NIK_Orangtua', 'NIK', 'Nama', 'Alamat', 'No_Telp'
+         'NIK_Orangtua', 'NIK', 'Nama','JK', 'Alamat', 'No_Telp'
     ];
 
     public function siswas()
