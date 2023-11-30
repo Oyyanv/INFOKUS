@@ -142,9 +142,31 @@
                             <span class="ml-3">Data Tagihan</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/gurustaff/index" id="kegurustaff"
+                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                            <span class="ml-3">Data Guru/Staff</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/datauser/index" id="keuser"
+                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                            <span class="ml-3">Data User</span>
+                        </a>
+                    </li>
                     <li class="flex items-center justify-center overflow-x-hidden">
                         <a href="#" id="logoutLink"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-64">
+                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-28">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"

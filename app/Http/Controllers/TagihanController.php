@@ -28,7 +28,7 @@ class TagihanController extends Controller
             'bulan' => $request->bulan
         ]);
         return redirect()->route('/admin/datatagihan/index')
-            ->with('Success', 'Data Tagihan Berhasil DiTambahkan');
+            ->with('success', 'Data Tagihan Berhasil DiTambahkan');
     }
 
     /**
