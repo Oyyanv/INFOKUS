@@ -34,7 +34,7 @@
     <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" class="overflow-hidden">
     {{-- NAVBAR --}}
     <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -334,7 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" flex justify-between">
+                    <div class=" flex justify-between pt-24">
                         <a href="#" id="kembalisiswa"
                             class="bg-redbtn flex justify-center items-center w-48
                         text-white px-1 py-2 rounded-md focus:outline-none">
