@@ -31,8 +31,8 @@ class UpdateSiswaRequest extends FormRequest
             // ],
             'nik' => 'nullable|numeric|digits:16',
             'nama' => 'required',
+            'jk'   => 'required',
             'kelas' => 'required',
-            // 'angkatan' => 'required|numeric',
             'jurusan' => 'required',
         ];
     }
@@ -45,8 +45,8 @@ class UpdateSiswaRequest extends FormRequest
             // 'nik.unique' => ':attribute Sudah Ada',
             // 'nis.unique' => ':attribute Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
+            'jk.required' => ':attribute Tidak Boleh Kosong',
             'kelas.required' => ':attribute Harus Dipilih',
-            // 'angkatan.required' => ':attribute Tidak Boleh Kosong',
             'jurusan.required' => ':attribute Harus Dipilih',
         ];
     }

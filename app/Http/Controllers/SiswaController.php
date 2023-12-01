@@ -72,7 +72,7 @@ class SiswaController extends Controller
             ]);
 
             return redirect()->route('/admin/datasiswa/index')
-                ->with('success', 'Data Berhasil Ditambahkan');
+                ->with('success', 'Data Siswa Berhasil Ditambahkan');
         } else {
             // Jika siswa dengan NIS, kelas, dan angkatan yang sama sudah ada, tampilkan error
             return redirect()->back()

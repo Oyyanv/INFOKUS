@@ -50,4 +50,13 @@ class AdminController extends Controller
         return view('admin/datauser/index');
     }
     //user
+
+    //gurustaff
+    function indexstaff(){
+        return view('admin/gurustaff/index');
+    }
+
+    function tambahstaff(){
+        return view('admin/gurustaff/tambah');
+    }
 }

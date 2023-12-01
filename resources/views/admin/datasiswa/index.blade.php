@@ -132,49 +132,49 @@
                            </a>
                        </li>
                        <li>
-                        <a href="/admin/datatagihan/index"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data Tagihan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/gurustaff/index" id="kegurustaff"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data Guru/Staff</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/datauser/index" id="keuser"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data User</span>
-                        </a>
-                    </li>
-                    <li class="flex items-center justify-center overflow-x-hidden">
-                        <a href="#" id="logoutLink"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-28">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                            </svg>
-                            <button class="ml-4" id="logout">Keluar</button>
-                        </a>
-                    </li>
+                           <a href="/admin/datatagihan/index"
+                               class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                               </svg>
+                               <span class="ml-3">Data Tagihan</span>
+                           </a>
+                       </li>
+                       <li>
+                           <a href="/admin/gurustaff/index" id="kegurustaff"
+                               class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                               </svg>
+                               <span class="ml-3">Data Guru/Staff</span>
+                           </a>
+                       </li>
+                       <li>
+                           <a href="/admin/datauser/index" id="keuser"
+                               class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                               </svg>
+                               <span class="ml-3">Data User</span>
+                           </a>
+                       </li>
+                       <li class="flex items-center justify-center overflow-x-hidden">
+                           <a href="#" id="logoutLink"
+                               class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-28">
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                   stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                   <path stroke-linecap="round" stroke-linejoin="round"
+                                       d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                               </svg>
+                               <button class="ml-4" id="logout">Keluar</button>
+                           </a>
+                       </li>
                    @endif
                </ul>
            </div>
@@ -229,12 +229,12 @@
                                        {{ $row->Nama }}
                                    </td>
                                    <td class="px-6 py-4">
-                                    @if ($row->jk == 'Laki-Laki')
-                                        Laki-Laki
-                                    @else
-                                        Perempuan
-                                    @endif
-                                </td>
+                                       @if ($row->jk == 'Laki-Laki')
+                                           Laki-Laki
+                                       @else
+                                           Perempuan
+                                       @endif
+                                   </td>
                                    <td class="px-6 py-4">
                                        {{ $row->kelas }}
                                    </td>
@@ -318,43 +318,43 @@
                }
            });
        </script>
-        {{-- Confirm Delete --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-    var deleteButtons = document.getElementsByClassName('hapussiswas');
+       {{-- Confirm Delete --}}
+       <script>
+           document.addEventListener('DOMContentLoaded', function() {
+               var deleteButtons = document.getElementsByClassName('hapussiswas');
 
-    for (var i = 0; i < deleteButtons.length; i++) {
-        deleteButtons[i].addEventListener('click', function (event) {
-            event.preventDefault();
-            confirmDelete(event);
-        });
-    }
+               for (var i = 0; i < deleteButtons.length; i++) {
+                   deleteButtons[i].addEventListener('click', function(event) {
+                       event.preventDefault();
+                       confirmDelete(event);
+                   });
+               }
 
-    function confirmDelete(event) {
-        Swal.fire({
-            text: 'Apakah Ingin Menghapus Data Siswa?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Tidak',
-            confirmButtonText: 'Ya'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Access the form associated with the clicked button
-                var form = event.target.closest('form');
+               function confirmDelete(event) {
+                   Swal.fire({
+                       text: 'Apakah Ingin Menghapus Data Siswa?',
+                       icon: 'warning',
+                       showCancelButton: true,
+                       confirmButtonColor: '#3085d6',
+                       cancelButtonColor: '#d33',
+                       cancelButtonText: 'Tidak',
+                       confirmButtonText: 'Ya'
+                   }).then((result) => {
+                       if (result.isConfirmed) {
+                           // Access the form associated with the clicked button
+                           var form = event.target.closest('form');
 
-                // Check if a form is found
-                if (form) {
-                    form.submit();
-                } else {
-                    console.error('Form not found!');
-                }
-            }
-        });
-    }
-});
-        </script>
+                           // Check if a form is found
+                           if (form) {
+                               form.submit();
+                           } else {
+                               console.error('Form not found!');
+                           }
+                       }
+                   });
+               }
+           });
+       </script>
    </body>
 
    </html>

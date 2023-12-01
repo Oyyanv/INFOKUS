@@ -24,6 +24,10 @@ class Siswa extends Model
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function pembayaran(){
+        return $this->hasMany(Pembayaran::class, 'NIS_Angkatan', 'NIS_Angkatan');
+    }
     
 }
 

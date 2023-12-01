@@ -19,4 +19,8 @@ class Gurustaff extends Model
     public function user(){
         return $this->belongsTo(User::class, 'id_user');
     }
+
+    public function pembayaran(){
+        return $this->hasMany(Pembayaran::class, 'id_nip', 'id_nip');
+    }
 }

@@ -14,19 +14,20 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('email')->unique();
-            $table->enum('status', ['siswa','admin'])->default('siswa');
+            $table->enum('status', ['siswa', 'admin'])->default('siswa');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            //siswa
-            $table->string('NIS_Angkatan', 20)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtua
+
+            // Foreign key untuk siswa
+            $table->string('NIS_Angkatan', 20)->nullable();
             $table->foreign('NIS_Angkatan')->references('NIS_Angkatan')->on('siswas')->onDelete('set null');
-            // Tambahkan indeks untuk foreign key
-            $table->index('NIS_Angkatan');
-            //guru/staff
-            $table->string('id_nip', 20)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtua
+
+            // Foreign key untuk guru/staff
+            $table->unsignedBigInteger('id_nip')->nullable();
             $table->foreign('id_nip')->references('id_nip')->on('gurustaffs')->onDelete('set null');
-            // Tambahkan indeks untuk foreign key
+            //index untuk menyambungkan foreignnya
+            $table->index('NIS_Angkatan');
             $table->index('id_nip');
         });
     }

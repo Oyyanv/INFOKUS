@@ -359,10 +359,7 @@
     });
 
     </script>
-
-
     </body>
-
     </html>
 @else
     <?php

@@ -211,7 +211,7 @@
                                                 @enderror
                                             </div>
                                             <div class="text-base text-gray-700 text-lg">
-                                                <label class="leading-loose">JK</label>
+                                                <label class="leading-loose">Jenis Kelamin</label>
                                                 <div class="flex">
                                                     <label for="laki" class="mr-4">
                                                         <input type="radio" id="laki" name="jk" value="Pria"

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GurustaffController;
 use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\OrtuSiswaController;
 use App\Http\Controllers\SessionController;
@@ -59,12 +60,14 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
     Route::get('/admin/datasiswa/tambah', [AdminController::class, 'tambah'])->middleware('userAkses:admin');
     Route::get('/admin/dataortu/tambah', [AdminController::class, 'tambahortu'])->middleware('userAkses:admin');
     Route::get('/admin/datatagihan/tambah', [AdminController::class, 'tambahtagihan'])->middleware('userAkses:admin');
+    Route::get('/admin/gurustaff/tambah', [AdminController::class, 'tambahstaff'])->middleware('userAkses:admin');
     //index
     Route::get('/admin/datasiswa/index', [AdminController::class, 'index'])->middleware('userAkses:admin');
     Route::get('/admin/dataspp/index', [AdminController::class, 'indexspp'])->middleware('userAkses:admin');
     Route::get('/admin/dataortu/index', [AdminController::class, 'indexortu'])->middleware('userAkses:admin');
     Route::get('/admin/datatagihan/index', [AdminController::class, 'indextagihan'])->middleware('userAkses:admin');
     Route::get('/admin/datauser/index', [AdminController::class, 'indexuser'])->middleware('userAkses:admin');
+    Route::get('/admin/gurustaff/index', [AdminController::class, 'indexstaff'])->middleware('userAkses:admin');
     //datasiswa
     Route::group(['prefix' => '/admin/datasiswa'], function () {
         Route::get('/index', [SiswaController::class, 'index'])->name('/admin/datasiswa/index');
@@ -102,6 +105,15 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [UserController::class, 'store']);
         Route::put('/update/{id_user}', [UserController::class, 'update'])->name('/admin/datauser/update');
         Route::delete('/delete/{id_user}', [UserController::class, 'delete'])->name('/admin/datauser/delete');
+    });
+
+     //data gurustaff
+     Route::group(['prefix' => '/admin/gurustaff'], function () {
+        Route::get('/index', [GurustaffController::class, 'index'])->name('/admin/gurustaff/index');
+        Route::get('/show/{id_nip}', [GurustaffController::class, 'show']);
+        Route::post('/create', [GurustaffController::class, 'store']);
+        Route::put('/update/{id_nip}', [GurustaffController::class, 'update'])->name('/admin/gurustaff/update');
+        Route::delete('/delete/{id_nip}', [GurustaffController::class, 'delete'])->name('/admin/gurustaff/delete');
     });
 });
 

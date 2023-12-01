@@ -218,24 +218,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="text-base text-gray-700">
-                                            <label class="leading-loose text-lg">Jenis Kelamin</label>
-                                            <div class="flex">
-                                                <label for="laki" class="mr-4">
-                                                    <input type="radio" id="laki" name="jk"
-                                                        value="Laki-Laki"
-                                                        {{ old('jk') == 'Laki-laki' ? 'checked' : '' }}> Laki-Laki
-                                                </label>
-                                                <label for="perempuan">
-                                                    <input type="radio" id="perempuan" name="jk"
-                                                        value="Perempuan"
-                                                        {{ old('jk') == 'Perempuan' ? 'checked' : '' }}> Perempuan
-                                                </label>
-                                            </div>
-                                            @error('jk')
-                                                <div class="text-red-500 text-sm">{{ $message }}</div>
-                                            @enderror
-                                        </div>
                                         <div class="text-base text-gray-700 text-lg ">
                                             <div class="flex flex-col">
                                                 <label for="nama" class="leading-loose">Nama</label>
@@ -243,6 +225,24 @@
                                                     class="@error('nama') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                     placeholder="Nama" value="{{ old('nama') }}">
                                                 @error('nama')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="text-base text-gray-700">
+                                                <label class="leading-loose text-lg">Jenis Kelamin</label>
+                                                <div class="flex">
+                                                    <label for="laki" class="mr-4">
+                                                        <input type="radio" id="laki" name="jk"
+                                                            value="Laki-Laki" {{ old('jk') == 'Laki-Laki' ? 'checked' : '' }}>
+                                                        Laki-Laki
+                                                    </label>
+                                                    <label for="perempuan">
+                                                        <input type="radio" id="perempuan" name="jk"
+                                                            value="Perempuan" {{ old('jk') == 'Perempuan' ? 'checked' : '' }}>
+                                                        Perempuan
+                                                    </label>
+                                                </div>
+                                                @error('jk')
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
                                             </div>

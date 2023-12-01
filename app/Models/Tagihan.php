@@ -15,4 +15,8 @@ class Tagihan extends Model
     protected $fillable = [
         'id_tagihan', 'bulan', 'tagihan'
     ];
+
+    public function pembayaran(){
+        return $this->hasMany(Pembayaran::class, 'id_tagihan', 'id_tagihan');
+    }
 }
