@@ -194,8 +194,8 @@
                                         <div class="flex flex-col">
                                             <label for="nik" class="leading-loose">NIK</label>
                                             <input type="text" name="nik" id="nik"
-                                                class=" @error('nik') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="NIK" value="{{ $nik }}">
+                                                class="border-none bg-transparent px-4 py-2 focus:outline-none text-gray-600 w-96"
+                                                placeholder="NIK" value="{{ $nik }}" readonly>
                                             @error('nik')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
@@ -208,6 +208,22 @@
                                                     placeholder="Nama" value="{{ $nama_ortu }}">
                                                 @error('nama_ortu')
                                                     <div class="text-red-500 text-sm">{{ $nama_ortu }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="text-base text-gray-700 text-lg">
+                                                <label class="leading-loose">JK</label>
+                                                <div class="flex">
+                                                    <label for="laki" class="mr-4">
+                                                        <input type="radio" id="laki" name="jk" value="Pria"
+                                                               {{ $jk  == 'Pria' ? 'checked' : '' }}>Pria
+                                                    </label>
+                                                    <label for="perempuan">
+                                                        <input type="radio" id="perempuan" name="jk" value="Wanita"
+                                                               {{ $jk == 'Wanita' ? 'checked' : '' }}> Wanita
+                                                    </label>
+                                                </div>
+                                                @error('jk')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="text-base text-gray-700 text-lg ">

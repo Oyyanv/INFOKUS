@@ -34,7 +34,7 @@
     <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" class="overflow-hidden">
     {{-- NAVBAR --}}
     <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -42,7 +42,7 @@
                 <ul class="list-none m-0 p-0">
                     <li class="text-2xl font-semibold text-black ml-48">
                         <a href="#" class="flex items-center">
-                           Tambah Data Orang Tua
+                            Tambah Data Orang Tua
                         </a>
                     </li>
                 </ul>
@@ -121,7 +121,7 @@
                         </a>
                     </li>
                     <li>
-                    <a href="#" id="kedataortu"
+                        <a href="#" id="kedataortu"
                             class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -209,17 +209,34 @@
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
                                             </div>
+                                            <div class="text-base text-gray-700 text-lg">
+                                                <label class="leading-loose">Jenis Kelamin</label>
+                                                <div class="flex">
+                                                    <label for="laki" class="mr-4">
+                                                        <input type="radio" id="laki" name="jk"
+                                                            value="Pria" {{ old('jk') == 'Pria' ? 'checked' : '' }}>
+                                                        Pria
+                                                    </label>
+                                                    <label for="perempuan">
+                                                        <input type="radio" id="perempuan" name="jk"
+                                                            value="Wanita" {{ old('jk') == 'Wanita' ? 'checked' : '' }}>
+                                                        Wanita
+                                                    </label>
+                                                </div>
+                                                @error('jk')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
                                             <div class="text-base text-gray-700 text-lg ">
                                                 <div class="flex flex-col">
                                                     <label for="alamat" class="leading-loose">Alamat</label>
-                                                    <textarea name="alamat" id="alamat" class="px-4 resize-none py-2 border 
-                                                    @error('alamat') border-red-500 @enderror
-                                                    focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    > {{old('alamat')}}
+                                                    <textarea name="alamat" id="alamat"
+                                                        class="px-4 resize-none py-2 border @error('alamat') border-red-500 @enderror
+                                                    focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"> {{ old('alamat') }}
                                                 </textarea>
-                                                @error('alamat')
-                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
-                                                @enderror
+                                                    @error('alamat')
+                                                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <div class="">
                                                     <label for="no_telp" class="leading-loose">Nomor Telepon</label>
@@ -239,7 +256,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" flex justify-between pt-20">
+                    <div class=" flex justify-between pt-7">
                         <a href="#" id="kembaliortu"
                             class="bg-redbtn flex justify-center items-center w-48
                         text-white px-1 py-2 rounded-md focus:outline-none">
@@ -287,13 +304,13 @@
             }
         });
     </script>
-     <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('kedataortu').addEventListener('click', function() {
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin kembali?',
@@ -317,7 +334,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin kembali?',
@@ -341,7 +358,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data SPP?',
@@ -365,7 +382,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Siswa?',
@@ -389,7 +406,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Tagihan?',
@@ -413,7 +430,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Guru/Staff?',
@@ -437,7 +454,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data User?',

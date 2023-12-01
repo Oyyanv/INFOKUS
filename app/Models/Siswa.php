@@ -9,17 +9,22 @@ class Siswa extends Model
 {
     use HasFactory;
     protected $table = 'siswas';
-    protected $primaryKey = 'NIS_Kelas';
+    protected $primaryKey = 'NIS_Angkatan';
     public $incrementing = false;
 
     protected $fillable = [
-        'NIS_Kelas', 'NIS', 'Nama', 'kelas', 'Jurusan', 'Angkatan','NIK_Orangtua', 
+        'NIS_Angkatan','NIS_Kelas', 'NIS', 'Nama', 'kelas', 'jk', 'Jurusan', 'Angkatan','NIK_Orangtua', 
     ];
 
     public function ortu()
     {
         return $this->belongsTo(Ortu::class, 'NIK_Orangtua', 'NIK_Orangtua');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
+    
 }
 
 

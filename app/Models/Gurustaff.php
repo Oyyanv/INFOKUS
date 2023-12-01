@@ -9,10 +9,14 @@ class Gurustaff extends Model
 {
     use HasFactory;
     protected $table = 'gurustaffs';
-    protected $primaryKey = 'NIP';
+    protected $primaryKey = 'id_nip';
     public $incrementing = false;
 
     protected $fillable = [
-        'NIP', 'nama', 'status'
+        'id_nip', 'NIP', 'nama', 'status'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

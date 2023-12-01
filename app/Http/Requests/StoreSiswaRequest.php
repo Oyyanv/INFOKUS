@@ -29,14 +29,19 @@ class StoreSiswaRequest extends FormRequest
             'kelas' => 'required',
             'angkatan' => 'required|numeric',
             'jurusan' => 'required',
+            'jk' => 'required',
+            //usernya
+            'email' => 'unique',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'nis.required' => ':attribute Tidak Boleh Kosong',
+            'nis.required' => ':attribute Tidak Boleh Kosong',  
+            // 'nis.unique' => ':attribute NIS Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
+            'jk.required' => 'Pilih Salah Satu',
             'kelas.required' => ':attribute Harus Dipilih',
             'angkatan.required' => ':attribute Tidak Boleh Kosong',
             'jurusan.required' => ':attribute Harus Dipilih',

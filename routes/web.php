@@ -6,6 +6,7 @@ use App\Http\Controllers\OrtuSiswaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,14 +64,15 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
     Route::get('/admin/dataspp/index', [AdminController::class, 'indexspp'])->middleware('userAkses:admin');
     Route::get('/admin/dataortu/index', [AdminController::class, 'indexortu'])->middleware('userAkses:admin');
     Route::get('/admin/datatagihan/index', [AdminController::class, 'indextagihan'])->middleware('userAkses:admin');
+    Route::get('/admin/datauser/index', [AdminController::class, 'indexuser'])->middleware('userAkses:admin');
     //datasiswa
     Route::group(['prefix' => '/admin/datasiswa'], function () {
         Route::get('/index', [SiswaController::class, 'index'])->name('/admin/datasiswa/index');
-        Route::get('/show/{NIS_Kelas}', [SiswaController::class, 'show'])->name('/admin/datasiswa/show');  
+        Route::get('/show/{NIS_Angkatan}', [SiswaController::class, 'show'])->name('/admin/datasiswa/show');  
         Route::post('/create', [SiswaController::class, 'store']);
         //UPDATE/edit DATA SISWA
-        Route::put('/update/{NIS_Kelas}', [SiswaController::class, 'update'])->name('/admin/datasiswa/update');
-        Route::delete('/delete/{NIS_Kelas}', [SiswaController::class, 'delete'])->name('/admin/datasiswa/delete');
+        Route::put('/update/{NIS_Angkatan}', [SiswaController::class, 'update'])->name('/admin/datasiswa/update');
+        Route::delete('/delete/{NIS_Angkatan}', [SiswaController::class, 'delete'])->name('/admin/datasiswa/delete');
         //DETAIL INFORMASI SISWA
         Route::get('/detailsiswa/{NIK_Orangtua}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
     });
@@ -91,6 +93,15 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [TagihanController::class, 'store']);
         Route::put('/update/{id_tagihan}', [TagihanController::class, 'update'])->name('/admin/datatagihan/update');
         Route::delete('/delete/{id_tagihan}', [TagihanController::class, 'delete'])->name('/admin/datatagihan/delete');
+    });
+
+     //data user
+     Route::group(['prefix' => '/admin/datauser'], function () {
+        Route::get('/index', [UserController::class, 'index'])->name('/admin/datauser/index');
+        Route::get('/show/{id_user}', [UserController::class, 'show']);
+        Route::post('/create', [UserController::class, 'store']);
+        Route::put('/update/{id_user}', [UserController::class, 'update'])->name('/admin/datauser/update');
+        Route::delete('/delete/{id_user}', [UserController::class, 'delete'])->name('/admin/datauser/delete');
     });
 });
 

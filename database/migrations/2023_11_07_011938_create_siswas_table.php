@@ -12,9 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswas', function (Blueprint $table) {
-            $table->string("NIS_Kelas", 20)->primary();
+            $table->string("NIS_Angkatan", 20)->primary();
+            $table->string("NIS_Kelas", 20);
             $table->string("NIS", 20);
             $table->string("Nama", 100);
+            $table->enum("jk", ['Laki-Laki','Perempuan']);
             $table->enum('kelas', ['XA', 'XB', 'XC', 'XD', 'XE', 'XF', 'XG','XIA', 'XIB', 'XIC', 'XID', 'XIE', 'XIF', 'XIG', 
                                     'XIIA', 'XIIB', 'XIIC', 'XIID', 'XIIE', 'XIIF', 'XIIG']);
             $table->enum("Jurusan", ['TJA', 'TKJ', 'TJAT', 'RPL', 'DKV', 'ANIMASI']);

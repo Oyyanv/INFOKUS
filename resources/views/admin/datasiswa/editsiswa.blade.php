@@ -185,7 +185,7 @@
             @if (session('error'))
                 <div class="" id=""></div>
             @endif
-            <form action="{{ url('admin/datasiswa/update/' . $NIS_Kelas) }}" method="POST">
+            <form action="{{ url('admin/datasiswa/update/' . $NIS_Angkatan) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class=" bg-gray-100 flex flex-col justify-center ">
@@ -197,22 +197,11 @@
                                         <div class="flex flex-col">
                                             <label for="nis" class="leading-loose">NIS</label>
                                             <input type="text" name="nis" id="nis"
-                                                class=" @error('nis') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="NIS" value="{{ $nis }}">
+                                                class="border-none bg-transparent px-4 py-2 focus:outline-none text-gray-600"
+                                                placeholder="NIS" value="{{ $nis }}" readonly>
                                             @error('nis')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
-                                        </div>
-                                        <div class="text-base text-gray-700 text-lg ">
-                                            <div class="flex flex-col">
-                                                <label for="nik" class="leading-loose">NIK Orangtua</label>
-                                                <input type="text" name="nik" id="nik"
-                                                    class=" @error('nik') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                    placeholder="NIK" value="{{ $nik }}">
-                                                @error('nik')
-                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
-                                                @enderror
-                                            </div>
                                         </div>
                                         <div class="text-base text-gray-700 text-lg ">
                                             <div class="flex flex-col">
@@ -223,6 +212,17 @@
                                                 @error('nama')
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                                 @enderror
+                                            </div>
+                                            <div class="text-base text-gray-700 text-lg ">
+                                                <div class="flex flex-col">
+                                                    <label for="nik" class="leading-loose">NIK Orangtua</label>
+                                                    <input type="text" name="nik" id="nik"
+                                                        class=" @error('nik') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                        placeholder="NIK" value="{{ $nik }}">
+                                                    @error('nik')
+                                                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="">
                                                 <div class="">
@@ -297,17 +297,6 @@
                                                             </option>
                                                         </select>
                                                         @error('kelas')
-                                                            <div class="text-red-500 text-sm">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="">
-                                                    <label for="angkatan" class="leading-loose">Angkatan</label>
-                                                    <div class="relative focus-within:text-gray-600 text-gray-400">
-                                                        <input type="text" id="angkatan" name="angkatan"
-                                                            class="@error('angkatan') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                            placeholder="Angkatan" value="{{ $angkatan }}">
-                                                        @error('angkatan')
                                                             <div class="text-red-500 text-sm">{{ $message }}</div>
                                                         @enderror
                                                     </div>

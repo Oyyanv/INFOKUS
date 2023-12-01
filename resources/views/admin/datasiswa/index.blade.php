@@ -203,6 +203,9 @@
                                    Nama
                                </th>
                                <th scope="col" class="px-6 py-3">
+                                   JK
+                               </th>
+                               <th scope="col" class="px-6 py-3">
                                    Kelas
                                </th>
                                <th scope="col" class="px-6 py-3">
@@ -226,6 +229,13 @@
                                        {{ $row->Nama }}
                                    </td>
                                    <td class="px-6 py-4">
+                                    @if ($row->jk == 'Laki-Laki')
+                                        Laki-Laki
+                                    @else
+                                        Perempuan
+                                    @endif
+                                </td>
+                                   <td class="px-6 py-4">
                                        {{ $row->kelas }}
                                    </td>
                                    <td class="px-6 py-4">
@@ -235,7 +245,7 @@
                                        {{ $row->Angkatan }}
                                    </td>
                                    <td class="px-6 py-4 flex justify-center space-x-4">
-                                       <a href="{{ url('/admin/datasiswa/show', $row->NIS_Kelas) }}"
+                                       <a href="{{ url('/admin/datasiswa/show', $row->NIS_Angkatan) }}"
                                            class="font-medium">
                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                fill="currentColor" class="w-6 h-6">
@@ -243,7 +253,7 @@
                                                    d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                            </svg>
                                        </a>
-                                       <a href="{{ route('/admin/datasiswa/detailsiswa', $row->NIS_Kelas) }}"
+                                       <a href="{{ route('/admin/datasiswa/detailsiswa', $row->NIS_Angkatan) }}"
                                            class="font-medium">
                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                fill="currentColor" class="w-6 h-6">
@@ -253,10 +263,10 @@
                                            </svg>
                                        </a>
                                        <form id="hapussiswa" method="POST"
-                                           action="{{ route('/admin/datasiswa/delete', ['NIS_Kelas' => $row->NIS_Kelas]) }}">
+                                           action="{{ route('/admin/datasiswa/delete', ['NIS_Angkatan' => $row->NIS_Angkatan]) }}">
                                            @csrf
                                            @method('DELETE')
-                                           <button type="submit">
+                                           <button type="submit" class="hapussiswas">
                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                    fill="currentColor" class="w-5 h-5">
                                                    <path fill-rule="evenodd"
@@ -308,32 +318,43 @@
                }
            });
        </script>
-       <script>
-           document.addEventListener('DOMContentLoaded', function() {
-               document.getElementById('hapussiswa').addEventListener('click', function(event) {
-                   event.preventDefault();
-                   confirmDelete();
-               });
+        {{-- Confirm Delete --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+    var deleteButtons = document.getElementsByClassName('hapussiswas');
 
-               function confirmDelete() {
-                   Swal.fire({
-                       text: 'Apakah Ingin Menghapus Data Siswa?',
-                       icon: 'warning',
-                       showCancelButton: true,
-                       confirmButtonColor: '#3085d6',
-                       cancelButtonColor: '#d33',
-                       cancelButtonText: 'Tidak',
-                       confirmButtonText: 'Ya'
-                   }).then((result) => {
-                       if (result.isConfirmed) {
-                           document.getElementById('hapussiswa').submit();
-                       }
-                   });
-               }
-           });
-       </script>
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function (event) {
+            event.preventDefault();
+            confirmDelete(event);
+        });
+    }
 
+    function confirmDelete(event) {
+        Swal.fire({
+            text: 'Apakah Ingin Menghapus Data Siswa?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Access the form associated with the clicked button
+                var form = event.target.closest('form');
 
+                // Check if a form is found
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found!');
+                }
+            }
+        });
+    }
+});
+        </script>
    </body>
 
    </html>

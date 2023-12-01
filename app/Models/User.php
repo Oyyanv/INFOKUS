@@ -21,10 +21,11 @@ class User extends Authenticatable
     protected $primaryKey= 'id_user';
 
     protected $fillable = [
-        'name',
         'email',
         'status',
         'password',
+        'NIS_Angkatan',
+        'id_nip',
         
     ];
 
@@ -45,6 +46,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
+
+    public function siswas(){
+        return $this->hasMany(Siswa::class, 'id_user');
+    }
+
+    public function gurustaffs(){
+        return $this->hasMany(Gurustaff::class, 'id_user');
+    }
 }

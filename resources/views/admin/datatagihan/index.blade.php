@@ -269,7 +269,7 @@
                                            action="{{ route('/admin/datatagihan/delete',$row->id_tagihan) }}">
                                            @csrf
                                            @method('DELETE')
-                                           <button type="submit">
+                                           <button type="submit" class="hapustagihans">
                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                    fill="currentColor" class="w-5 h-5">
                                                    <path fill-rule="evenodd"
@@ -321,30 +321,44 @@
                 }
             });
         </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.getElementById('hapustagihan').addEventListener('click', function() {
-                    event.preventDefault();
-                    confirmLogout();
-                });
+       {{-- Confirm Delete --}}
+       <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var deleteButtons = document.getElementsByClassName('hapustagihans');
 
-                function confirmLogout() {
-                    Swal.fire({
-                        text: 'Apakah kamu menghapus Data Tagihan?',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: 'Tidak',
-                        confirmButtonText: 'Ya'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            document.getElementById('hapustagihan').submit();
-                        }
-                    });
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', function (event) {
+            event.preventDefault();
+            confirmDelete(event);
+        });
+    }
+
+    function confirmDelete(event) {
+        Swal.fire({
+            text: 'Apakah Ingin Menghapus Data Tagihan?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Ya'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Access the form associated with the clicked button
+                var form = event.target.closest('form');
+
+                // Check if a form is found
+                if (form) {
+                    form.submit();
+                } else {
+                    console.error('Form not found!');
                 }
-            });
-        </script>
+            }
+        });
+    }
+    });
+
+    </script>
 
 
     </body>

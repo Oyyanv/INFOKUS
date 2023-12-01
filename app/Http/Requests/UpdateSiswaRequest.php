@@ -25,14 +25,14 @@ class UpdateSiswaRequest extends FormRequest
         return [
             // 'nis' => [
             //     'required',
-            //     Rule::unique('siswas', 'NIS')->ignore($this->NIS_Kelas, 'NIS_Kelas'),
+            //     Rule::unique('siswas', 'NIS')->ignore($this->NIS_Angkatan, 'NIS_Angkatan'),
             //     'numeric',
             //     'digits:9',
             // ],
             'nik' => 'nullable|numeric|digits:16',
             'nama' => 'required',
-            'kelas' => 'required',
-            'angkatan' => 'required|numeric',
+            // 'kelas' => 'required',
+            // 'angkatan' => 'required|numeric',
             'jurusan' => 'required',
         ];
     }
@@ -40,13 +40,13 @@ class UpdateSiswaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nis.required' => ':attribute Tidak Boleh Kosong',
+            // 'nis.required' => ':attribute Tidak Boleh Kosong',
             // 'nik.required' => ':attribute Tidak Boleh Kosong',
             // 'nik.unique' => ':attribute Sudah Ada',
             // 'nis.unique' => ':attribute Sudah Ada',
             'nama.required' => ':attribute Tidak Boleh Kosong',
-            'kelas.required' => ':attribute Harus Dipilih',
-            'angkatan.required' => ':attribute Tidak Boleh Kosong',
+            // 'kelas.required' => ':attribute Harus Dipilih',
+            // 'angkatan.required' => ':attribute Tidak Boleh Kosong',
             'jurusan.required' => ':attribute Harus Dipilih',
         ];
     }

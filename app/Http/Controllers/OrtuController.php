@@ -24,25 +24,10 @@ class OrtuController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     return view('admin/dataortu/create');
-    // }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreOrtuRequest $request)
     {
-        $request->validate([
-            'nik' => 'required|numeric',
-            'nama_ortu' => 'required',
-            'alamat' => 'required',
-            'no_telp' => 'required|numeric',
-        ]);
-
         // Simpan data ke dalam database
         Ortu::create([
             'NIK_Orangtua' => $request->nik . "_" . $request->nama_ortu,
@@ -50,10 +35,11 @@ class OrtuController extends Controller
             'Nama' => $request->nama_ortu,
             'Alamat' => $request->alamat,
             'No_Telp' => $request->no_telp,
+            'jk'    => $request->jk
         ]);
     
         return redirect()->route('/admin/dataortu/index')
-            ->with('success', 'Data Berhasil Ditambahkan');
+            ->with('success', 'Data Orang Tua Berhasil Ditambahkan');
 
     }
 
@@ -69,6 +55,7 @@ class OrtuController extends Controller
             'nama_ortu' => $dataortu -> Nama,
             'alamat' => $dataortu -> Alamat,
             'no_telp' => $dataortu -> No_Telp,
+            'jk' => $dataortu -> jk,
         ]);
     }
 
@@ -85,10 +72,11 @@ class OrtuController extends Controller
         $dataortu ->Nama = $request->nama_ortu;
         $dataortu ->Alamat = $request->alamat;
         $dataortu ->No_Telp = $request->no_telp;
+        $dataortu ->jk = $request->jk;
         $dataortu ->save();
 
         return redirect()->route('/admin/dataortu/index')
-            ->with('success', 'Orang Tua Berhasil Di Update');
+            ->with('success', 'Data Orang Tua Berhasil Di Update');
     }
 
     /**

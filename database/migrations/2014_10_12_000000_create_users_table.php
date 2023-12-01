@@ -18,6 +18,16 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            //siswa
+            $table->string('NIS_Angkatan', 20)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtua
+            $table->foreign('NIS_Angkatan')->references('NIS_Angkatan')->on('siswas')->onDelete('set null');
+            // Tambahkan indeks untuk foreign key
+            $table->index('NIS_Angkatan');
+            //guru/staff
+            $table->string('id_nip', 20)->nullable(); // Sesuaikan tipe data dengan primary key di tabel orangtua
+            $table->foreign('id_nip')->references('id_nip')->on('gurustaffs')->onDelete('set null');
+            // Tambahkan indeks untuk foreign key
+            $table->index('id_nip');
         });
     }
 

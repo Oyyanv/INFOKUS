@@ -44,4 +44,10 @@ class AdminController extends Controller
         return view('admin/datatagihan/tambah');
     }
     //tagihan
+
+    //user
+    function indexuser(){
+        return view('admin/datauser/index');
+    }
+    //user
 }
