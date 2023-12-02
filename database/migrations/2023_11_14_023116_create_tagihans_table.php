@@ -16,12 +16,7 @@ return new class extends Migration
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
                 'September', 'Oktober', 'November', 'Desember']);
             $table->string('tagihan', 50);
-            $table->timestamps();
-
-             // Foreign key untuk siswa
-             $table->index('NIS_Angkatan');
-             $table->string('NIS_Angkatan', 20)->nullable();
-             $table->foreign('NIS_Angkatan')->references('NIS_Angkatan')->on('siswas')->onDelete('set null');
+            $table->timestamps(); 
         });
     }
 

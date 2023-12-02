@@ -13,9 +13,9 @@ class Pembayaran extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id_pembayaran', 'tgl_pembayaran',
+        'id_pembayaran', 'tgl_pembayaran', 'total_tagihan', 'bulan',
         'bukti_pembayaran', 'total_pembayaran', 'status', 'NIS_Angkatan', 
-        'id_nip', 'id_tagihan'
+        'id_nip', 'id_tagihan','NIS','email'
         ];
 
         public function siswa()
@@ -34,4 +34,9 @@ class Pembayaran extends Model
         {
             return $this->belongsTo(Tagihan::class, 'id_tagihan', 'id_tagihan');
         }
+        
+        public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

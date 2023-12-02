@@ -1,5 +1,6 @@
     <!DOCTYPE html>
     <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +23,8 @@
                             reda: '#EC0000',
                             bgtable: '#F1F1F1',
                             txttable: '#737373',
+                            redbtn: '#CD2727',
+                            buttons: '#CBCBCB',
                         }
                     }
                 }
@@ -32,7 +35,7 @@
         <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
     </head>
 
-    <body onload="startTime()">
+    <body onload="startTime()" class="overflow-hidden">
         {{-- NAVBAR --}}
         <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -119,60 +122,60 @@
                             </a>
                         </li>
                         <li>
-                        <a href="/admin/dataortu/index"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data Orangtua Siswa</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/datatagihan/index"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data Tagihan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/gurustaff/index" id="kegurustaff"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data Guru/Staff</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/datauser/index" id="keuser"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
-                            <span class="ml-3">Data User</span>
-                        </a>
-                    </li>
-                    <li class="flex items-center justify-center overflow-x-hidden">
-                        <a href="#" id="logoutLink"
-                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-28">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                            </svg>
-                            <button class="ml-4" id="logout">Keluar</button>
-                        </a>
-                    </li>                   
+                            <a href="/admin/dataortu/index"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data Orangtua Siswa</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/datatagihan/index"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data Tagihan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/gurustaff/index" id="kegurustaff"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data Guru/Staff</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/datauser/index" id="keuser"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                                </svg>
+                                <span class="ml-3">Data User</span>
+                            </a>
+                        </li>
+                        <li class="flex items-center justify-center overflow-x-hidden">
+                            <a href="#" id="logoutLink"
+                                class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-28">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                                </svg>
+                                <button class="ml-4" id="logout">Keluar</button>
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -180,7 +183,91 @@
         {{-- Table data siswa  --}}
         <main class="ml-64 p-10">
             <div class="bg-gray-100 py-4 p-5 rounded-md">
-                
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
+                    <table class="w-full text-sm text-center rtl:text-right border border-collapse">
+                        <thead class="text-xs uppercase bg-reda text-white">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">
+                                    NO
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Bulan
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Total Tagihan
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tanggal Pembayaran
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Bukti Pembayaran
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Total Pembayaran
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    NIP
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    SISWA
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    STATUS
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    AKSI
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-txttable bg-bgtable">
+                            @foreach ($pembayaranspp as $row)
+                                <tr>
+                                    <td class="">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $row->bulan }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ 'Rp' . number_format($row->total_tagihan, 0, ',', '.') . ',00' }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $row->tgl_pembayaran ?? '-' }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button type="button" id="bukti">
+                                            <span
+                                                class="text-white bg-redbtn font-medium rounded-lg 
+                                                text-sm px-5 py-2.5   flex float-left ">Gambar
+                                            </span>
+                                        </button>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ 'Rp' . number_format($row->total_pembayaran, 0, ',', '.') . ',00' }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $row->NIP ?? '-'}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ optional($row->siswa)->Nama }} {{ optional($row->siswa)->kelas }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $row->status }}
+                                    </td>
+                                    <td class="px-6 py-4 flex justify-center space-x-4">
+                                        <a href="{{ url('/admin/dataspp/show', ['id_pembayaran' => $row->id_pembayaran]) }}"
+                                            class="font-medium">
+                                            Update
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4">
+                    {{ $pembayaranspp->links() }}
+                </div>
             </div>
         </main>
         @if (session('success'))
@@ -220,4 +307,5 @@
         </script>
 
     </body>
-</html>
+
+    </html>

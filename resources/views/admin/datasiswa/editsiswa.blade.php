@@ -121,15 +121,15 @@
                         </a>
                     </li>
                     <li>
-                    <a href="#" id="kedataortu"
-                        class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                        </svg>
-                        <span class="ml-3">Data Orangtua Siswa</span>
-                    </a>
+                        <a href="#" id="kedataortu"
+                            class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
+                            <span class="ml-3">Data Orangtua Siswa</span>
+                        </a>
                     </li>
                     <li>
                         <a href="/admin/datatagihan/index" id="ketagihan"
@@ -182,9 +182,6 @@
     {{-- FORM TAMBAH DATA SISWA --}}
     <main class="ml-64 p-10">
         <div class="bg-gray-100 py-4 p-5 rounded-md">
-            @if (session('error'))
-                <div class="" id=""></div>
-            @endif
             <form action="{{ url('admin/datasiswa/update/' . $NIS_Angkatan) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -215,7 +212,7 @@
                                             </div>
                                             <div class="text-base text-gray-700 text-lg ">
                                                 <div class="flex flex-col">
-                                                    <label for="nik" class="leading-loose">NIK Orangtua</label>
+                                                    <label for="nik" class="leading-loose">NIK</label>
                                                     <input type="text" name="nik" id="nik"
                                                         class=" @error('nik') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                         placeholder="NIK" value="{{ $nik }}">
@@ -309,16 +306,16 @@
                                                            rounded-md focus:outline-none text-gray-600 @error('jurusan') border-red-500 @enderror"
                                                     name="jurusan" id="jurusan">
                                                     <option value="" selected>-Jurusan-</option>
-                                                    <option value="TJA"
-                                                        {{ $jurusan == 'TJA' ? 'selected' : '' }}>TJA</option>
-                                                    <option value="TKJ"
-                                                        {{ $jurusan == 'TKJ' ? 'selected' : '' }}>TKJ</option>
-                                                    <option value="TJAT"
-                                                        {{ $jurusan == 'TJAT' ? 'selected' : '' }}>TJAT</option>
-                                                    <option value="RPL"
-                                                        {{ $jurusan == 'RPL' ? 'selected' : '' }}>RPL</option>
-                                                    <option value="DKV"
-                                                        {{ $jurusan == 'DKV' ? 'selected' : '' }}>DKV</option>
+                                                    <option value="TJA" {{ $jurusan == 'TJA' ? 'selected' : '' }}>
+                                                        TJA</option>
+                                                    <option value="TKJ" {{ $jurusan == 'TKJ' ? 'selected' : '' }}>
+                                                        TKJ</option>
+                                                    <option value="TJAT" {{ $jurusan == 'TJAT' ? 'selected' : '' }}>
+                                                        TJAT</option>
+                                                    <option value="RPL" {{ $jurusan == 'RPL' ? 'selected' : '' }}>
+                                                        RPL</option>
+                                                    <option value="DKV" {{ $jurusan == 'DKV' ? 'selected' : '' }}>
+                                                        DKV</option>
                                                     <option value="ANIMASI"
                                                         {{ $jurusan == 'ANIMASI' ? 'selected' : '' }}>ANIMASI
                                                     </option>
@@ -383,13 +380,13 @@
         });
     </script>
     @if (session('error'))
-    <script>
-        Swal.fire({
-            title: "Error",
-            text: "{{ session('error') }}",
-            icon: "error"
-        });
-    </script>
+        <script>
+            Swal.fire({
+                title: "Error",
+                text: "{{ session('error') }}",
+                icon: "error"
+            });
+        </script>
     @endif
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -397,7 +394,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin kembali?',
@@ -421,7 +418,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin kembali?',
@@ -445,7 +442,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data SPP?',
@@ -469,7 +466,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Orangtua Siswa?',
@@ -493,7 +490,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Tagihan?',
@@ -517,7 +514,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data Guru/Staff?',
@@ -541,7 +538,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data User?',

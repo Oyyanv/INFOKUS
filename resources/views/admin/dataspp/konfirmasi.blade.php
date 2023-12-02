@@ -34,7 +34,7 @@
     <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
 </head>
 
-<body onload="startTime()">
+<body onload="startTime()" class="overflow-hidden">
     {{-- NAVBAR --}}
     <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -42,7 +42,7 @@
                 <ul class="list-none m-0 p-0">
                     <li class="text-2xl font-semibold text-black ml-48">
                         <a href="#" class="flex items-center">
-                            Edit Data Tagihan
+                            Konfirmasi Pembayaran Bulan {{ $bulan }}
                         </a>
                     </li>
                 </ul>
@@ -182,68 +182,106 @@
     {{-- FORM TAMBAH DATA ORTU --}}
     <main class="ml-64 p-10">
         <div class="bg-gray-100 py-4 p-5 rounded-md">
-            <form action="{{ url('admin/datatagihan/update/'. $id_tagihan) }}" method="post">
+            <form action="{{ url('admin/dataspp/konfirmasi', $id_pembayaran) }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="mt-24 bg-gray-100 flex flex-col justify-center ">
+                <div class="mt-3 bg-gray-100 flex flex-col justify-center ">
                     <div class="relative sm:max-w-xl sm:mx-auto">
                         <div class="relative bg-white shadow rounded-3xl p-10">
                             <div class="max-w-md mx-auto">
                                 <div class="divide-y divide-gray-200">
-                                    <div class="text-base text-gray-700 text-lg ">
+                                    <div class="text-base text-gray-700">
                                         <div class="flex flex-col">
-                                            <label for="tagihan" class="leading-loose">Tagihan</label>
-                                            <input type="text" name="tagihan" id="tagihan"
-                                                class=" @error('tagihan') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                                                placeholder="Rp" value="{{ $tagihan }}">
-                                            @error('tagihan')
+                                            <label for="nis" class="leading-loose text-lg">NIS</label>
+                                            <input type="text" name="nis" id="nis"
+                                                class="w-96 border-none bg-transparent focus:outline-none text-gray-600"
+                                                placeholder="" value="{{ $nis }}" readonly>
+                                            @error('nis')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <label for="bulan" class="leading-loose">Bulan</label>
-                                        <div class="relative focus-within:text-gray-600 text-gray-400">
-                                            <select name="bulan" id="bulan"
+                                        <div class="flex justify-between mt-2">
+                                            <!-- Bukti Pembayaran -->
+                                            <div class="flex flex-col">
+                                                <label for="bukti_pembayaran" class="leading-loose">Bukti
+                                                    Pembayaran</label>
+                                                <button type="button" id="bukti">
+                                                    <span
+                                                        class="text-white bg-redbtn font-medium rounded-lg 
+                                                        text-sm px-5 py-2.5 me-2 mb-2  flex float-left ">Gambar
+                                                        Bukti</span>
+                                                </button>
+                                            </div>
+                                             <!-- Total Tagihan -->
+                                            <div class="flex flex-col">
+                                                <label for="total_tagihan" class="leading-loose">Total Tagihan</label>
+                                                <input type="text" name="total_tagihan" id="total_tagihan"
+                                                    class="w-48 border-none bg-transparent mb-2 focus:outline-none text-gray-600"
+                                                    placeholder=""
+                                                    value="{{ 'Rp' . number_format($total_tagihan, 0, ',', '.') . ',00' }}"
+                                                    readonly>
+                                                @error('total_tagihan')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <!-- Total Pembayaran -->
+                                            <div class="flex flex-col">
+                                                <label for="total_pembayaran" class="leading-loose">Total
+                                                    Pembayaran</label>
+                                                <input type="text" name="total_pembayaran" id="total_pembayaran"
+                                                    class="w-48 border-none bg-transparent focus:outline-none text-gray-600 mb-2"
+                                                    placeholder="Rp"
+                                                    value="{{ 'Rp' . number_format($total_tagihan, 0, ',', '.') . ',00' }}"
+                                                    readonly>
+                                                @error('total_pembayaran')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <!-- Tanggal Pembayaran -->
+                                            <div class="flex flex-col">
+                                                <label for="tgl_pembayaran" class="leading-loose">Tanggal
+                                                    Pembayaran</label>
+                                                <input type="text" name="tgl_pembayaran" id="tgl_pembayaran"
+                                                    class="w-48 border-none bg-transparent focus:outline-none text-gray-600"
+                                                    value="{{ $tgl_pembayaran }}">
+                                                @error('tgl_pembayaran')
+                                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <label for="nip" class="leading-loose text-lg">NIP</label>
+                                            <input type="text" name="nip" id="nip"
                                                 class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300
-                                                   rounded-md focus:outline-none text-gray-600 @error('bulan') border-red-500 @enderror">
-                                                <option value="" selected>-Bulan-</option>
-                                                <option value="Januari"
-                                                    {{ $bulan == 'Januari' ? 'selected' : '' }}>Januari
+                                                rounded-md focus:outline-none text-gray-600 @error('nip') border-red-500 @enderror"
+                                                placeholder="NIP" value="{{ $nip }}">
+                                            @error('nip')
+                                                <div class="text-red-500 text-sm">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <label for="status" class="leading-loose">Status</label>
+                                        <div class="relative focus-within:text-gray-600 text-gray-400">
+                                            <select name="status" id="status"
+                                                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-96 sm:text-sm border-gray-300
+                                                   rounded-md focus:outline-none text-gray-600 @error('status') border-red-500 @enderror">
+                                                <option value="" selected>-Status-</option>
+                                                <option value="Lunas" {{ $status == 'Lunas' ? 'selected' : '' }}>
+                                                    Lunas
                                                 </option>
-                                                <option value="Februari"
-                                                    {{ $bulan == 'Februari' ? 'selected' : '' }}>Februari
+                                                <option value="Menunggu Konfirmasi"
+                                                    {{ $status == 'Menunggu Konfirmasi' ? 'selected' : '' }}>Menunggu
+                                                    Konfirmasi
                                                 </option>
-                                                <option value="Maret" {{ $bulan == 'Maret' ? 'selected' : '' }}>
-                                                    Maret
-                                                </option>
-                                                <option value="April" {{ $bulan == 'April' ? 'selected' : '' }}>
-                                                    April
-                                                </option>
-                                                <option value="Mei" {{ $bulan == 'Mei' ? 'selected' : '' }}>
-                                                    Mei
-                                                </option>
-                                                <option value="Juni" {{ $bulan == 'Juni' ? 'selected' : '' }}>
-                                                    Juni
-                                                </option>
-                                                <option value="Juli" {{ $bulan == 'Juli' ? 'selected' : '' }}>
-                                                    Juli
-                                                </option>
-                                                <option value="Agustus"
-                                                    {{ $bulan == 'Agustus' ? 'selected' : '' }}>Agustus
-                                                </option>
-                                                <option value="September"
-                                                    {{ $bulan == 'September' ? 'selected' : '' }}>September
-                                                </option>
-                                                <option value="Oktober"
-                                                    {{ $bulan == 'Oktober' ? 'selected' : '' }}>Oktober
-                                                </option>
-                                                <option value="November"
-                                                    {{ $bulan == 'November' ? 'selected' : '' }}>November
-                                                </option>
-                                                <option value="Desember"
-                                                    {{ $bulan == 'Desember' ? 'selected' : '' }}>Desember
+                                                <option value="Belum Bayar"
+                                                    {{ $status == 'Belum Bayar' ? 'selected' : '' }}>
+                                                    Belum Bayar
                                                 </option>
                                             </select>
-                                            @error('bulan')
+                                            @error('status')
                                                 <div class="text-red-500 text-sm">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -252,16 +290,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" flex justify-between pt-48">
-                        <a href="#" id="kembalitagihan"
-                            class="bg-redbtn flex justify-center items-center w-48
+                </div>
+                <div class=" flex justify-between pt-20">
+                    <a href="#" id="kembalispp"
+                        class="bg-redbtn flex justify-center items-center w-48
                         text-white px-1 py-2 rounded-md focus:outline-none">
-                            Kembali
-                        </a>
-                        <button type="submit"
-                            class="bg-redbtn flex justify-center items-center w-48
-                            text-white px-1 py-2 rounded-md focus:outline-none">Update</button>
-                    </div>
+                        Kembali
+                    </a>
+                    <button type="submit"
+                        class="bg-redbtn flex justify-center items-center w-48
+                            text-white px-1 py-2 rounded-md focus:outline-none">Konfirmasi</button>
+                </div>
             </form>
         </div>
     </main>
@@ -302,20 +341,20 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('kembalitagihan').addEventListener('click', function() {
+            document.getElementById('ketagihan').addEventListener('click', function() {
                 event.preventDefault();
                 confirmLogout();
             });
 
             function confirmLogout() {
                 Swal.fire({
-                    text: 'Apakah kamu ingin kembali?',
+                    text: 'Apakah kamu ingin ke Data Tagihan?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     cancelButtonText: 'Tidak',
-                    confirmButtonText: 'Ya, saya ingin kembali'
+                    confirmButtonText: 'Ya'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/admin/datatagihan/index";
@@ -357,13 +396,13 @@
 
             function confirmLogout() {
                 Swal.fire({
-                    text: 'Apakah kamu ingin ke Data SPP?',
+                    text: 'Apakah kamu ingin kembali?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     cancelButtonText: 'Tidak',
-                    confirmButtonText: 'Ya'
+                    confirmButtonText: 'Ya, saya ingin kembali'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = "/admin/dataspp/index";
@@ -398,7 +437,7 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('ketagihan').addEventListener('click', function() {
+            document.getElementById('kembalispp').addEventListener('click', function() {
                 event.preventDefault();
                 confirmLogout();
             });
@@ -414,7 +453,7 @@
                     confirmButtonText: 'Ya, saya ingin kembali'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/admin/datatagihan/index";
+                        window.location.href = "/admin/dataspp/index";
                     }
                 });
             }
@@ -426,10 +465,10 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
-                    text: 'Apakah kamu ingin ke Data Guru/Staff?',
+                    text: 'Apakah kamu ingin ke Guru/Staff?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -450,7 +489,7 @@
                 event.preventDefault();
                 confirmLogout();
             });
-    
+
             function confirmLogout() {
                 Swal.fire({
                     text: 'Apakah kamu ingin ke Data User?',
@@ -464,6 +503,27 @@
                     if (result.isConfirmed) {
                         window.location.href = "/admin/datauser/index";
                     }
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bukti').addEventListener('click', function() {
+                event.preventDefault();
+                confirmLogout();
+            });
+
+            function confirmLogout() {
+
+                Swal.fire({
+                    title: "Bukti Pembayaran SPP",
+                    imageUrl: "{{ asset('storage/' . $bukti_pembayaran) }}",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Tutup',
+                    imageAlt: "Belum ada gambar"
                 });
             }
         });

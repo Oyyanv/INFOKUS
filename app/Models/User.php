@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-    protected $primaryKey= 'id_user';
+    protected $primaryKey = 'id_user';
 
     protected $fillable = [
         'email',
@@ -26,7 +26,7 @@ class User extends Authenticatable
         'password',
         'NIS_Angkatan',
         'id_nip',
-        
+
     ];
 
     /**
@@ -49,11 +49,19 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function siswas(){
+    public function siswas()
+    {
         return $this->hasMany(Siswa::class, 'id_user');
     }
 
-    public function gurustaffs(){
+    public function gurustaffs()
+    {
         return $this->hasMany(Gurustaff::class, 'id_user');
     }
+    
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'email', 'email');
+    }
+
 }

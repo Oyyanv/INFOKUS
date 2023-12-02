@@ -10,12 +10,10 @@ use App\Models\User;
 
 class SiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::paginate(7);
         return view('admin.datasiswa.index', compact('siswa'));
     }
     /**
@@ -42,7 +40,7 @@ class SiswaController extends Controller
             }
         }
 
-            // Jika siswa dengan NIS, kelas, dan angkatan yang sama tidak ditemukan, buat baru
+        // Jika siswa dengan NIS, kelas, dan angkatan yang sama tidak ditemukan, buat baru
         if (!$siswasama) {
             $siswaData = [
                 'NIS_Angkatan' => $request->nis . "_" . $request->angkatan,
@@ -66,7 +64,7 @@ class SiswaController extends Controller
             $siswa = Siswa::create($siswaData);
             //dan buat akunnya
             User::create([
-                'email' => $siswa->NIS . '@smktelkom-bjb.sch.id', // Email dari NIS siswa
+                'email' => $siswa->NIS . $siswa->kelas . '@smktelkom-bjb.sch.id', // Email dari NIS siswa
                 'password' => $siswa->NIS . $siswa->Angkatan,
                 'status' => 'siswa', // Tambahkan status siswa
             ]);
@@ -109,22 +107,21 @@ class SiswaController extends Controller
         // Ambil data siswa berdasarkan NIS_Angkatan
         $siswa = Siswa::where('NIS_Angkatan', $NIS_Angkatan)->first();
 
-        // Inisialisasi variabel orangtua
         $orangtua = null;
-
-        if ($request->filled('nik')) {
-            // Jika NIK disediakan, cari orang tua berdasarkan NIK
+        if ($request->nik) {
             $orangtua = Ortu::where('NIK', $request->nik)->first();
 
+            // Jika NIK diisi tetapi tidak valid (tidak ada di tabel ortu), tampilkan error
             if (!$orangtua) {
-                return redirect()->back()->with('error', 'Orang Tua Dengan NIK Yang Diinput Tidak Ditemukan.');
+                return redirect()->back()
+                    ->with('error', 'Orang Tua Dengan NIK Yang Diinput Tidak Ditemukan.');
             }
         }
-        $siswa->NIS_Kelas = $request->nis ."_". $request->kelas;
+
+        $siswa->NIS_Kelas = $request->nis . "_" . $request->kelas;
         $siswa->Nama = $request->nama;
         $siswa->Jurusan = $request->jurusan;
         $siswa->kelas = $request->kelas;
-        $siswa->NIK_Orangtua = $orangtua ? $orangtua->NIK_Orangtua : null;
 
         // Simpan perubahan
         $siswa->save();
@@ -142,8 +139,8 @@ class SiswaController extends Controller
         $siswahapus->delete();
 
         // buat ngecek siswa ada user gk di table user lewat email gabungan dari NIS + @smktelkom-bjb.sch.id
-        $user = User::where('email',$siswahapus->NIS.'@smktelkom-bjb.sch.id')->first();
-        if($user){
+        $user = User::where('email', $siswahapus->NIS . '@smktelkom-bjb.sch.id')->first();
+        if ($user) {
             $user->delete();
         }
 

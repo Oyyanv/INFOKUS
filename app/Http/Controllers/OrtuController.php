@@ -18,7 +18,7 @@ class OrtuController extends Controller
      */
     public function index()
     {
-        $ortu = Ortu::all();
+        $ortu = Ortu::paginate(7);
         // return response()->json($ortu);
         return view('admin/dataortu/index', compact('ortu'));
     }

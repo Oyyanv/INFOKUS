@@ -4,8 +4,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GurustaffController;
 use App\Http\Controllers\OrtuController;
 use App\Http\Controllers\OrtuSiswaController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SPPSiswaController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -115,8 +117,25 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::put('/update/{id_nip}', [GurustaffController::class, 'update'])->name('/admin/gurustaff/update');
         Route::delete('/delete/{id_nip}', [GurustaffController::class, 'delete'])->name('/admin/gurustaff/delete');
     });
-});
 
+    //data dataspp
+    Route::group(['prefix' => '/admin/dataspp'], function () {
+        Route::get('/index', [PembayaranController::class, 'index'])->name('/admin/dataspp/index');
+        Route::get('/show/{id_pembayaran}', [PembayaranController::class, 'show']);
+        Route::put('/konfirmasi/{id_pembayaran}', [PembayaranController::class, 'update'])->name('/siswa/sppsiswa/update');
+    });
+
+    
+});
+Route::middleware(['auth', 'isLogin'])->group(function () {
+//data dataspp
+    Route::get('/siswa/sppsiswa/index', [SPPSiswaController::class, 'sppsiswa'])->middleware('userAkses:siswa');
+    Route::group(['prefix' => '/siswa/sppsiswa'], function () {
+        Route::get('/index', [SPPSiswaController::class, 'index'])->name('/siswa/sppsiswa/index');
+        Route::get('/show/{id_pembayaran}', [SPPSiswaController::class, 'show']);
+        Route::put('/pembayaran/{id_pembayaran}', [SPPSiswaController::class, 'update'])->name('/siswa/sppsiswa/update');
+    });
+});
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka

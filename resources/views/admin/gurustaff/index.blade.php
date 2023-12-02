@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tailwindcss.com"></script>
-        <title>Dashboard</title>
+        <title>INFOKUS</title>
         <script>
             tailwind.config = {
                 theme: {
@@ -289,6 +289,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-4">
+                    {{ $guru->links() }}
                 </div>
             </div>
         </main>

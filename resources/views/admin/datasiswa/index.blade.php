@@ -281,6 +281,9 @@
                        </tbody>
                    </table>
                </div>
+               <div class="mt-4">
+                {{ $siswa->links() }}
+            </div>
            </div>
        </main>
        @if (session('success'))

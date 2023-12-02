@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id('id_pembayaran');
+            $table->string('NIP')->nullable();
+            $table->string('NIS')->nullable();
+            $table->string('email')->nullable();
             $table->date('tgl_pembayaran')->nullable();
+            $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+            'September', 'Oktober', 'November', 'Desember']);
             $table->string('bukti_pembayaran')->nullable();
-            $table->string('total_pembayaran');
+            $table->string('total_pembayaran')->nullable();
+            $table->string('total_tagihan');
             $table->enum('status', ['Lunas','Menunggu Konfirmasi', 'Belum Bayar']);
             $table->timestamps();
 
@@ -23,18 +29,8 @@ return new class extends Migration
             $table->string('NIS_Angkatan', 20)->nullable();
             $table->foreign('NIS_Angkatan')->references('NIS_Angkatan')->on('siswas')->onDelete('set null');
 
-            //foreign table guru/staff
-            $table->unsignedBigInteger('id_nip')->nullable();
-            $table->foreign('id_nip')->references('id_nip')->on('gurustaffs')->onDelete('set null');
-
-            //foreign table tagihan
-            $table->unsignedBigInteger('id_tagihan')->nullable();
-            $table->foreign('id_tagihan')->references('id_tagihan')->on('tagihans')->onDelete('set null');
-
             //index dari masing masing table untuk merelasikan foreign
             $table->index('NIS_Angkatan');
-            $table->index('id_nip');
-            $table->index('id_tagihan');
         });
     }
 

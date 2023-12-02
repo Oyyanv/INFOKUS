@@ -14,7 +14,7 @@ class GurustaffController extends Controller
      */
     public function index()
     {
-        $guru = Gurustaff::all();
+        $guru = Gurustaff::paginate(7);
         return view('admin/gurustaff/index', compact('guru'));
     }
 

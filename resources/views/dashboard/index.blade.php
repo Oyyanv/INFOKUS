@@ -128,19 +128,22 @@
                     {{-- SISWA --}}
                     @if (Auth::user()->status == 'siswa')
                         <li>
-                            <a href="#"
+                            <a href="/siswa/sppsiswa/index"
                                 class="flex items-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
                                 </svg>
-                                <span class="ml-3">Tabel SPP</span>
+                                <span class="ml-3">Data SPP</span>
                             </a>
                         </li>
+                        <br>
+                        <br>
+                        <br>
                         <li class="flex items-center justify-center overflow-x-hidden">
                             <a href="#" id="logoutLink"
-                                class="flex justify-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-64">
+                                class="flex justify-center p-3 rounded-lg dark:hover:bg-hoverside hover:bg-hoverside group pr-32 mt-96">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -346,7 +349,7 @@
                     </div>
             </div>
             <div class="">
-                <div class="mt-48">
+                <div class="mt-40">
                     <div id="clockdate" class="float-right rounded-md p-14">
                         <div class="clockdate-wrapper">
                             <div class="clockWrap flex items-center">

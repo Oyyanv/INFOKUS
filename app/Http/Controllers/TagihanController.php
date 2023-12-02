@@ -6,7 +6,6 @@ use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
 use App\Models\Siswa;
 use App\Models\Tagihan;
-use Carbon\Carbon;
 
 class TagihanController extends Controller
 {
@@ -15,7 +14,7 @@ class TagihanController extends Controller
      */
     public function index()
     {
-        $tagihan = Tagihan::all();
+        $tagihan = Tagihan::paginate(7);
         return view('admin/datatagihan/index', compact('tagihan'));
     }
     /**
@@ -24,50 +23,48 @@ class TagihanController extends Controller
     public function store(StoreTagihanRequest $request)
     {
 
-// Ambil semua siswa
+        $tagihanBulanIni = Tagihan::where('bulan', $request->bulan)->first();
+
+        if (!$tagihanBulanIni) {
+            // Jika belum ada tagihan, buat tagihan baru
+            $tagihanBulanIni = Tagihan::create([
+                'tagihan' => $request->tagihan,
+                'bulan' => $request->bulan,
+            ]);
+        }
+
         $siswas = Siswa::all();
 
         foreach ($siswas as $siswa) {
-            // Ambil bulan saat ini
-            $bulanSaatIni = Carbon::now()->format('F');
-
-            // Periksa apakah siswa sudah membayar untuk bulan ini
+            // Periksa apakah siswa sudah membayar untuk tagihan ini
             $tagihanSudahBayar = $siswa->pembayaran()
                 ->where('status', 'Lunas')
-                ->where('tgl_pembayaran', 'like', Carbon::now()->format('Y-m') . '%')
+                ->where('bulan', $tagihanBulanIni->bulan)
                 ->exists();
-
+        
             if (!$tagihanSudahBayar) {
-                // Jika siswa belum membayar untuk bulan ini, cek apakah sudah ada tagihan bulan ini
-                $tagihanBulanIni = $siswa->pembayaran()
-                    ->where('bulan', $bulanSaatIni)
-                    ->where('status', 'Belum Bayar')
-                    ->first();
-
-                if ($tagihanBulanIni) {
-                    // Jika sudah ada tagihan untuk bulan ini, tambahkan tagihan tersebut
-                    $tagihanBulanIni->update([
-                        'tagihan' => $tagihanBulanIni->tagihan + $request->tagihan,
-                    ]);
-                } else {
-                    // Jika belum ada tagihan untuk bulan ini, buat tagihan baru
-                    $tagihan = Tagihan::create([
-                        'tagihan' => $request->tagihan,
-                        'bulan' => $bulanSaatIni,
-                    ]);
-
-                    // Simpan ID tagihan ke dalam tabel pembayarans untuk setiap siswa
+                // Pemeriksaan tambahan: Apakah tagihan sudah pernah ditambahkan untuk siswa ini?
+                $tagihanSudahDitambahkan = $siswa->pembayaran()
+                    ->where('bulan', $tagihanBulanIni->bulan)
+                    ->exists();
+        
+                // Jika siswa belum membayar dan tagihan belum pernah ditambahkan
+                if (!$tagihanSudahDitambahkan) {
+                    // Jika siswa belum membayar, buat pembayaran untuk tagihan ini
                     $siswa->pembayaran()->create([
-                        'id_tagihan' => $tagihan->id_tagihan,
                         'tgl_pembayaran' => null,
+                        'NIS' => $siswa->NIS,
+                        'email' => $siswa->NIS."@smktelkom-bjb.sch.id",
                         'bukti_pembayaran' => null,
-                        'total_pembayaran' => $request->tagihan,
+                        'total_pembayaran' => null,
+                        'total_tagihan' => $tagihanBulanIni->tagihan,
                         'status' => 'Belum Bayar',
+                        'bulan' => $tagihanBulanIni->bulan,
                     ]);
                 }
             }
         }
-
+        
         return redirect()->route('/admin/datatagihan/index')
             ->with('success', 'Data Tagihan Berhasil Ditambahkan');
 

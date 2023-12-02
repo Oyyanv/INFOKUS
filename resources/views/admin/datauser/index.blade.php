@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tailwindcss.com"></script>
-        <title>Dashboard</title>
+        <title>INFOKUS</title>
         <script>
             tailwind.config = {
                 theme: {
@@ -216,16 +216,6 @@
         {{-- ISI  --}}
         <main class="ml-64 p-10">
             <div class="bg-gray-100 py-4 p-5 rounded-md">
-                <button type="button"
-                    class="text-txttable font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-buttons flex float-right mt-2"
-                    onclick="window.location='#'">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="ml-2">Tambah Data</span>
-                </button>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
                     <table class="w-full text-sm text-center rtl:text-right border border-collapse">
                         <thead class="text-xs uppercase bg-reda text-white">
@@ -257,6 +247,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-4">
+                    {{ $user->links() }}
                 </div>
             </div>
         </main>
