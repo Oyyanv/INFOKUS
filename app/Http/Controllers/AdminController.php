@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {   //datasiswa
     function index(){
+        
         return view('admin/datasiswa/index');
     }
 

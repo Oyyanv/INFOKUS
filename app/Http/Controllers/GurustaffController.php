@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreGurustaffRequest;
 use App\Http\Requests\UpdateGurustaffRequest;
 use App\Models\Gurustaff;
@@ -74,9 +76,9 @@ class GurustaffController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateGurustaffRequest $request, Gurustaff $guru, $id_nip)
+    public function update(UpdateGurustaffRequest $request, $id_nip)
     {
-        $dataguru = $guru->find($id_nip);
+        $dataguru = Gurustaff::find($id_nip);
 
         $dataguru->nama = $request->nama;
         $dataguru->jk = $request->jk;
@@ -101,5 +103,22 @@ class GurustaffController extends Controller
 
         return redirect()->route('/admin/gurustaff/index')
             ->with('success', 'Guru/Staff Berhasil Di Hapus');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+    
+        $gurustaffSearch = Gurustaff::where('id_nip', 'like', "%" . $search . "%")
+        ->orWhere('nip', 'like', "%" . $search . "%")
+        ->orWhere('nama', 'like', "%" . $search . "%")
+        ->orWhere('jk', 'like', "%" . $search . "%")
+        ->orWhere('status', 'like', "%" . $search . "%")
+        ->paginate(7);
+        
+        
+        return view('admin.gurustaff.index', ['guru' => $gurustaffSearch]);
+
+    
     }
 }

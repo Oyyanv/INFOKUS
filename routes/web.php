@@ -80,6 +80,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::delete('/delete/{NIS_Angkatan}', [SiswaController::class, 'delete'])->name('/admin/datasiswa/delete');
         //DETAIL INFORMASI SISWA
         Route::get('/detailsiswa/{NIK_Orangtua}', [OrtuSiswaController::class, 'index'])->name('/admin/datasiswa/detailsiswa');
+        Route::get('/search', [SiswaController::class, 'search'])->name('/admin/datasiswa/search');
+        Route::get('/detail/{NIS_Angkatan}', [SiswaController::class, 'detail'])->name('admin.datasiswa.detail');
     });
     //dataortu
     Route::group(['prefix' => '/admin/dataortu'], function () {
@@ -90,6 +92,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::delete('/delete/{NIK_Orangtua}', [OrtuController::class, 'delete'])->name('/admin/dataortu/delete');
         //DETAIL INFORMASI ORANGTUA
         Route::get('/detailortu/{NIK_Orangtua}', [OrtuSiswaController::class, 'indexortu'])->name('/admin/dataortu/detailortu');
+        Route::get('/search', [OrtuController::class, 'search'])->name('/admin/dataortu/search');
+        Route::get('/detail/{NIK_Orangtua}', [OrtuController::class, 'detail'])->name('admin.dataortu.detail');
     });
     //data tagihan
     Route::group(['prefix' => '/admin/datatagihan'], function () {
@@ -98,6 +102,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [TagihanController::class, 'store']);
         Route::put('/update/{id_tagihan}', [TagihanController::class, 'update'])->name('/admin/datatagihan/update');
         Route::delete('/delete/{id_tagihan}', [TagihanController::class, 'delete'])->name('/admin/datatagihan/delete');
+        Route::get('/search', [TagihanController::class, 'search'])->name('/admin/datatagihan/search');
     });
 
      //data user
@@ -107,6 +112,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [UserController::class, 'store']);
         Route::put('/update/{id_user}', [UserController::class, 'update'])->name('/admin/datauser/update');
         Route::delete('/delete/{id_user}', [UserController::class, 'delete'])->name('/admin/datauser/delete');
+        Route::get('/search', [UserController::class, 'search'])->name('/admin/datauser/search');
     });
 
      //data gurustaff
@@ -116,6 +122,7 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::post('/create', [GurustaffController::class, 'store']);
         Route::put('/update/{id_nip}', [GurustaffController::class, 'update'])->name('/admin/gurustaff/update');
         Route::delete('/delete/{id_nip}', [GurustaffController::class, 'delete'])->name('/admin/gurustaff/delete');
+        Route::get('/search', [GurustaffController::class, 'search'])->name('/admin/gurustaff/search');
     });
 
     //data dataspp
@@ -123,6 +130,8 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::get('/index', [PembayaranController::class, 'index'])->name('/admin/dataspp/index');
         Route::get('/show/{id_pembayaran}', [PembayaranController::class, 'show']);
         Route::put('/konfirmasi/{id_pembayaran}', [PembayaranController::class, 'update'])->name('/siswa/sppsiswa/update');
+        Route::get('/detail/{id_pembayaran}', [PembayaranController::class, 'detail'])->name('admin.dataspp.detail');
+        Route::get('/search', [PembayaranController::class, 'search'])->name('/admin/dataspp/search');
     });
 
     
@@ -136,6 +145,10 @@ Route::middleware(['auth', 'isLogin'])->group(function () {
         Route::put('/pembayaran/{id_pembayaran}', [SPPSiswaController::class, 'update'])->name('/siswa/sppsiswa/update');
     });
 });
+
+// ubah password
+// Route::get('profile/password/edit', [UpdatePasswordController::class, 'edit'])->name('profile.password.edit');
+// Route::put('profile/password/edit', [UpdatePasswordController::class, 'update']);
 
 // Route::get('/dashboard', function () {
 //     // Periksa status pengguna dan arahkan sesuai status mereka

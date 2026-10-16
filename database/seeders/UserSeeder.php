@@ -21,6 +21,11 @@ class UserSeeder extends Seeder
             'status'   => 'admin',
             'password' => Hash::make('123')
         ]);
-        
+        // DB::table('users')->insert([
+        //     'id_user' => '0010',
+        //     'email' => 'siswa@smktelkom-bjb.sch.id',
+        //     'status'   => 'siswa',
+        //     'password' => Hash::make('123')
+        // ]);
     }
 }

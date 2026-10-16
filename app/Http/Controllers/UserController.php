@@ -39,4 +39,20 @@ class UserController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+    
+        $userSearch = User::where('id_user', 'like', "%" . $search . "%")
+        ->orWhere('email', 'like', "%" . $search . "%")
+        ->orWhere('status', 'like', "%" . $search . "%")
+        ->paginate(7);
+        
+        
+        return view('admin.datauser.index', ['user' => $userSearch]);
+
+    
+    }
+
 }

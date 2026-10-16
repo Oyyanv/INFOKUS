@@ -89,4 +89,32 @@ class OrtuController extends Controller
         return redirect()->route('/admin/dataortu/index')
             ->with('success', 'Data Orang Tua Berhasil Di Hapus');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+    
+        $ortuSearch = Ortu::where('NIK_Orangtua', 'like', "%" . $search . "%")
+        ->orWhere('NIK', 'like', "%" . $search . "%")
+        ->orWhere('Nama', 'like', "%" . $search . "%")
+        ->orWhere('Alamat', 'like', "%" . $search . "%")
+        ->orWhere('No_Telp', 'like', "%" . $search . "%")
+        ->orWhere('jk', 'like', "%" . $search . "%")
+        ->paginate(7);
+        
+        
+        return view('admin.dataortu.index', ['ortu' => $ortuSearch]);
+
+    
+    }
+
+    public function detail(Ortu $ortu, $NIK_Orangtua)
+    {
+        // Find the parent record
+        $ortuDetail = Ortu::with('siswas')->find($NIK_Orangtua);
+    
+        // Return the parent record along with the related data
+        return response()->json($ortuDetail);
+    }
+
 }

@@ -23,7 +23,8 @@ class UpdateKonfirmasiRequest extends FormRequest
     public function rules(): array
     {
         return [
-           'nip' => 'required|digits:18' 
+           'nip' => 'required|digits:18', 
+           'status'=> 'required'
         ];
     }
 
@@ -32,13 +33,15 @@ class UpdateKonfirmasiRequest extends FormRequest
         return [
             'nip.digits'=> ':attribute Wajib 18 Digit',
             'nip.required'=> ':attribute Tidak Boleh Kosong',
+            'status.required'=> ':attribute Harus Dipilih',
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'nip'=>'NIP'
+            'nip'=>'NIP',
+            'status'=> 'Status'
         ];
     }
 }

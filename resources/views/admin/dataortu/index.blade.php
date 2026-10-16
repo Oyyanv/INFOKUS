@@ -6,6 +6,9 @@
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta http-equiv="X-UA-Compatible" content="ie=edge">
        <script src="https://cdn.tailwindcss.com"></script>
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /> 
        <title>INFOKUS</title>
        <script>
            tailwind.config = {
@@ -33,7 +36,53 @@
        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
        <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
    </head>
-
+   <style>
+    .blocker {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    z-index: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(227, 227, 227, 0.533);
+    background-color: rgba(227, 227, 227, 0.533);
+    text-align: center;
+   }
+   .blocker:before{
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.05em;
+   }
+   .blocker.behind {
+    background-color: transparent;
+   }
+   
+   .modal {
+    display: none;
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    box-sizing: border-box;
+    width: 90%;
+    background: #C40404;
+    padding: 15px 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -o-border-radius: 8px;
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px #000;
+    -moz-box-shadow: 0 0 10px #000;
+    -o-box-shadow: 0 0 10px #000;
+    -ms-box-shadow: 0 0 10px #000;
+    box-shadow: 0 0 10px #000;
+    text-align: left;
+   }
+   </style>
    <body onload="startTime()" class="overflow-hidden">
        {{-- NAVBAR --}}
        <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
@@ -192,6 +241,17 @@
                    </svg>
                    <span class="ml-2">Tambah Data</span>
                </button>
+               <div class="text-txttable font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-buttons flex float-left mt-2">
+                <p class="m-1">Cari Data Ortu : </p>
+                <form action="/admin/dataortu/search" method="GET">
+                 <input type="text" name="search" placeholder="" value="{{ old('search') }}" class="m-1 bg-transparent border-b border-gray-500 focus:outline-none">
+                 <button type="submit" value="Search" class="ml-2">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 32 32" stroke-width="0" stroke="currentColor" class="w-6 h-6" viewBox="0 0 32 32">
+                         <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                     </svg>
+                 </button>
+                </form>
+             </div>
                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
                    <table class="w-full text-sm text-center rtl:text-right border border-collapse">
                        <thead class="text-xs uppercase bg-reda text-white">
@@ -247,7 +307,9 @@
                                                    d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                            </svg>
                                        </a>
-                                       <a href="{{ route('/admin/dataortu/detailortu', $row->NIK_Orangtua) }}" class="font-medium">
+                                       <a href="javascript:void(0)"
+                                       id="showDetail"
+                                       data-url="{{ route('admin.dataortu.detail', $row->NIK_Orangtua) }}" class="font-medium">
                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                fill="currentColor" class="w-6 h-6">
                                                <path fill-rule="evenodd"
@@ -279,6 +341,106 @@
             </div>
            </div>
        </main>
+       <div id="userShowModal">
+        <div class="modal-dialog w-96 p-4 text-white">
+          <div class="modal-content">
+                    <h1 class="text-2xl font-semibold text-white mb-8">Detail Ortu</h1>
+              <a href="#" rel="modal:close" class="close-modal">&#10006;</a>
+            </div>
+            <div class="modal-body">
+                <p><strong>NIK :</strong> <span id="user-nik"></span></p>
+                <p><strong>Nama:</strong> <span id="user-namaortu"></span></p>
+                <p><strong>Alamat:</strong> <span id="user-alamat"></span></p>
+                <p><strong>No Telepon:</strong> <span id="user-notelp"></span></p>
+    
+                <h1 class="text-2xl font-semibold text-white mb-8 mt-4">Siswa yang terkait</h1>
+                <p><strong>NIS:</strong> <span id="user-id"></span></p>
+                <p><strong>Nama:</strong> <span id="user-name"></span></p>
+                <p><strong>Jenis Kelamin:</strong> <span id="user-jk"></span></p>
+                <p><strong>Kelas:</strong> <span id="user-kl"></span></p>
+                <p><strong>Jurusan:</strong> <span id="user-jr"></span></p>
+                <p><strong>Angkatan:</strong> <span id="user-ak"></span></p>
+               
+            </div>
+            {{-- <div class="modal-footer">
+              <a href="#" rel="modal:close" class="btn btn-secondary bg-red-700 text-white">Close</a>
+            </div> --}}
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+                // Hide the dropdown content initially
+                var dropdownContent = document.getElementById("dropdownContent");
+                dropdownContent.classList.add("hidden");
+            });
+        
+            function toggleDropdown() {
+                var dropdownContent = document.getElementById("dropdownContent");
+                dropdownContent.classList.toggle("hidden");
+            }
+        
+            function selectItem(item) {
+                document.getElementById("selectedItem").innerText = "Selected Item: " + item;
+                toggleDropdown(); // Close the dropdown after selecting an item
+            }
+        </script>
+        
+          <script type="text/javascript">
+            $(document).ready(function () {
+              $('body').on('click', '#showDetail', function () {
+                var userURL = $(this).data('url');
+          
+                $.get(userURL, function (data) {
+                  console.log("Fetched Data:", data); // Log the fetched data to the console
+          
+                  // Display the modal and populate its content
+                  $('#userShowModal').modal();
+          
+                  $('#user-nik').text(data.NIK);
+                  $('#user-namaortu').text(data.Nama);
+                  $('#user-alamat').text(data.Alamat);
+                  $('#user-notelp').text(data.No_Telp);
+          
+                  // Check if siswas data is available
+                  if (data.siswas && data.siswas.length > 0) {
+                    // Display the name of the first student in #user-namasiswa  
+                    $('#user-id').text(data.siswas[0].NIS);
+                    $('#user-name').text(data.siswas[0].Nama);
+                    $('#user-jk').text(data.siswas[0].jk);
+                    $('#user-kl').text(data.siswas[0].kelas);
+                    $('#user-jr').text(data.siswas[0].Jurusan);
+                    $('#user-ak').text(data.siswas[0].Angkatan);
+          
+                    // Clear previous data if any
+                    $('#siswa-details').empty();
+          
+                    // Loop through each siswa and append their details
+                    data.siswas.forEach(function (siswa) {
+                      $('#siswa-details').append(`
+                          <div>
+                              <p><strong>Nama Siswa:</strong> ${siswa.Nama}</p>
+                              <p><strong>NIS Siswa:</strong> ${siswa.NIS}</p>
+                              <!-- Add more lines for other siswa properties if needed -->
+                          </div>
+                      `);
+                    });
+                  } else {
+                    // Handle case where siswas data is not available
+                    $('#user-id').text('N/A');
+                    $('#user-name').text('N/A');
+                    $('#user-jk').text('N/A');
+                    $('#user-kl').text('N/A');
+                    $('#user-jr').text('N/A');
+                    $('#user-ak').text('N/A');
+                    $('#siswa-details').html('<p>No student data available</p>');
+                  }
+                });
+              });
+            });
+          </script>
+          
        @if (session('success'))
            <script>
                Swal.fire({

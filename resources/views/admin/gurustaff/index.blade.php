@@ -226,6 +226,18 @@
                     </svg>
                     <span class="ml-2">Tambah Data</span>
                 </button>
+                <div class="text-txttable font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 bg-buttons flex float-left mt-2">
+                    <p class="m-1">Cari Data Guru/Staff : </p>
+                    <form action="/admin/gurustaff/search" method="GET">
+                        @csrf
+                     <input type="text" name="search" placeholder="" value="{{ old('search') }}" class="m-1 bg-transparent border-b border-gray-500 focus:outline-none">
+                     <button type="submit" value="Search" class="ml-2">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 32 32" stroke-width="0" stroke="currentColor" class="w-6 h-6" viewBox="0 0 32 32">
+                             <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                         </svg>
+                     </button>
+                    </form>
+                 </div>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
                     <table class="w-full text-sm text-center rtl:text-right border border-collapse">
                         <thead class="text-xs uppercase bg-reda text-white">
@@ -238,6 +250,9 @@
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     NAMA
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Jenis Kelamin
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     STATUS
@@ -258,6 +273,13 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $row->nama }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if ($row->jk == 'Pria')
+                                            Pria
+                                        @else
+                                            Wanita
+                                        @endif
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $row->status }}

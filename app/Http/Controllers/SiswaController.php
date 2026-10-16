@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use App\Models\Ortu;
 use App\Models\Siswa;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
 
     public function index()
     {
-        $siswa = Siswa::paginate(7);
+        $siswa = Siswa::paginate(100);
         return view('admin.datasiswa.index', compact('siswa'));
     }
     /**
@@ -22,28 +24,36 @@ class SiswaController extends Controller
     public function store(StoreSiswaRequest $request)
     {
 
-        // Ini untuk variabel baru untuk mengecek apakah ada siswa dengan nis kelas angkatan yang sama
+        // cek siswa dengan NIS yang sama
         $siswasama = Siswa::where('NIS', $request->nis)
             ->where('kelas', $request->kelas)
             ->where('Angkatan', $request->angkatan)
             ->first();
 
-        // Jika orang tua tidak ditemukan, berikan respons atau lakukan penanganan yang sesuai
-        $orangtua = null;
-        if ($request->nik) {
-            $orangtua = Ortu::where('NIK', $request->nik)->first();
+        // cek email yang sama
+        $emailSama = User::where('email', $request->nis . '@smktelkom-bjb.sch.id')->first();
 
-            // Jika NIK diisi tetapi tidak valid (tidak ada di tabel ortu), tampilkan error
-            if (!$orangtua) {
-                return redirect()->back()
-                    ->with('error', 'Orang Tua Dengan NIK Yang Diinput Tidak Ditemukan.');
-            }
-        }
-
-        // Jika siswa dengan NIS, kelas, dan angkatan yang sama tidak ditemukan, buat baru
+        // Jika siswa dengan NIS atau email yang sama tidak ditemukan, buat baru
         if (!$siswasama) {
+            // Jika NIK diisi tetapi tidak valid (tidak ada di tabel ortu), tampilkan error
+            $orangtua = null;
+            if ($request->nik) {
+                $orangtua = Ortu::where('NIK', $request->nik)->first();
+
+                if (!$orangtua) {
+                    return redirect()->back()
+                        ->with('error', 'Orang Tua Dengan NIK Yang Diinput Tidak Ditemukan.');
+                }
+            }
+
+            $incrementnis = Siswa::where('NIS_Angkatan', 'like', $request->nis . "_" . $request->angkatan . '_%')
+            ->max(DB::raw('CAST(SUBSTRING_INDEX(NIS_Angkatan, "_", -1) AS UNSIGNED)'));
+        
+            $increment = $incrementnis ? $incrementnis + 1 : 1;
+
+            // Buat data siswa
             $siswaData = [
-                'NIS_Angkatan' => $request->nis . "_" . $request->angkatan,
+                'NIS_Angkatan' => $request->nis . "_" . $request->angkatan . "_" . $increment,
                 'NIS_Kelas' => $request->nis . "_" . $request->kelas,
                 'NIS' => $request->nis,
                 'Nama' => $request->nama,
@@ -52,19 +62,22 @@ class SiswaController extends Controller
                 'Angkatan' => $request->angkatan,
                 'jk' => $request->jk,
             ];
-
             // Cek apakah NIK orang tua ada atau tidak
             if ($orangtua) {
                 $siswaData['NIK_Orangtua'] = $orangtua->NIK_Orangtua;
             } else {
                 $siswaData['NIK_Orangtua'] = null; // Misalnya jika NIK tidak diisi, set null
             }
-
-            // Buat data siswa
             $siswa = Siswa::create($siswaData);
-            //dan buat akunnya
+            if ($emailSama) {
+
+                return redirect()->route('/admin/datasiswa/index')
+                    ->with('success', 'Data Siswa Berhasil Ditambahkan');
+            }
+
+            // dan buat akunnya
             User::create([
-                'email' => $siswa->NIS . $siswa->kelas . '@smktelkom-bjb.sch.id', // Email dari NIS siswa
+                'email' => $siswa->NIS . '@smktelkom-bjb.sch.id', // Email dari NIS siswa
                 'password' => $siswa->NIS . $siswa->Angkatan,
                 'status' => 'siswa', // Tambahkan status siswa
             ]);
@@ -72,9 +85,8 @@ class SiswaController extends Controller
             return redirect()->route('/admin/datasiswa/index')
                 ->with('success', 'Data Siswa Berhasil Ditambahkan');
         } else {
-            // Jika siswa dengan NIS, kelas, dan angkatan yang sama sudah ada, tampilkan error
             return redirect()->back()
-                ->with('error', 'Siswa dengan NIS, Kelas Dan Angkatan Sudah Ada.');
+                ->with('success', 'Siswa dengan NIS, Kelas, dan Angkatan sudah terdaftar.');
         }
 
     }
@@ -104,27 +116,44 @@ class SiswaController extends Controller
      */
     public function update(UpdateSiswaRequest $request, Siswa $siswa, $NIS_Angkatan)
     {
-        // Ambil data siswa berdasarkan NIS_Angkatan
-        $siswa = Siswa::where('NIS_Angkatan', $NIS_Angkatan)->first();
+        $request->validate([
+            'nik' => 'nullable|numeric|digits:16',
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jurusan' => 'required',
+        ]);
 
+        
+        // Ambil data siswa berdasarkan NIS_Angkatan
+        // $siswas = Siswa::findOrFail('NIS_Angkatan', $NIS_Angkatan);
+        // dd($siswa);
+        $siswas = Siswa::where('NIS_Angkatan', 'like', $request->nis . "_" . $request->angkatan . '_%')
+        ->orderBy(DB::raw('CAST(SUBSTRING_INDEX(NIS_Angkatan, "_", -1) AS UNSIGNED)'), 'desc')
+        ->firstOrFail();
+    
         $orangtua = null;
         if ($request->nik) {
             $orangtua = Ortu::where('NIK', $request->nik)->first();
-
+            // dd($orangtua);
             // Jika NIK diisi tetapi tidak valid (tidak ada di tabel ortu), tampilkan error
             if (!$orangtua) {
                 return redirect()->back()
                     ->with('error', 'Orang Tua Dengan NIK Yang Diinput Tidak Ditemukan.');
             }
+            //kalo ada
+            $siswas->NIK_Orangtua = $orangtua->NIK_Orangtua;
+        }else{
+            // kalo gk ada null
+            $siswas->NIK_Orangtua = null;
         }
 
-        $siswa->NIS_Kelas = $request->nis . "_" . $request->kelas;
-        $siswa->Nama = $request->nama;
-        $siswa->Jurusan = $request->jurusan;
-        $siswa->kelas = $request->kelas;
+        $siswas->NIS_Kelas = $request->nis . "_" . $request->kelas;
+        $siswas->Nama = $request->nama;
+        $siswas->Jurusan = $request->jurusan;
+        $siswas->kelas = $request->kelas;
 
         // Simpan perubahan
-        $siswa->save();
+        $siswas->save();
 
         return redirect('/admin/datasiswa/index')->with('success', 'Data Siswa Berhasil Diupdate.');
 
@@ -147,4 +176,34 @@ class SiswaController extends Controller
         return redirect()->route('/admin/datasiswa/index')
             ->with('success', 'Data Siswa Berhasil Di Hapus');
     }
+
+    public function detail(Siswa $siswa, $NIS_Angkatan)
+    {
+    
+        $siswaDetail = Siswa::with('ortu')->where('NIS_Angkatan', $NIS_Angkatan)->first();
+    
+        return response()->json($siswaDetail);
+    }
+
+     public function search(Request $request)
+    {
+        $search = $request->search;
+    
+        $siswaSearch = Siswa::where('NIS_Angkatan', 'like', "%" . $search . "%")
+        ->orWhere('NIS_Kelas', 'like', "%" . $search . "%")
+        ->orWhere('NIS', 'like', "%" . $search . "%")
+        ->orWhere('Nama', 'like', "%" . $search . "%")
+        ->orWhere('kelas', 'like', "%" . $search . "%")
+        ->orWhere('Jurusan', 'like', "%" . $search . "%")
+        ->orWhere('Angkatan', 'like', "%" . $search . "%")
+        ->orWhere('jk', 'like', "%" . $search . "%")
+        ->paginate(7);
+        
+        
+        return view('admin.datasiswa.index', ['siswa' => $siswaSearch]);
+
+    
+    }
+
+
 }

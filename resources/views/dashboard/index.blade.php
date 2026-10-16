@@ -7,6 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/glide.min.js" integrity="sha512-IkLiryZhI6G4pnA3bBZzYCT9Ewk87U4DGEOz+TnRD3MrKqaUitt+ssHgn2X/sxoM7FxCP/ROUp6wcxjH/GcI5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.min.css" integrity="sha512-YQlbvfX5C6Ym6fTUSZ9GZpyB3F92hmQAZTO5YjciedwAaGRI9ccNs4iw2QTCJiSPheUQZomZKHQtuwbHkA9lgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.theme.min.css" integrity="sha512-wCwx+DYp8LDIaTem/rpXubV/C1WiNRsEVqoztV0NZm8tiTvsUeSlA/Uz02VTGSiqfzAHD4RnqVoevMcRZgYEcQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <title>Dashboard</title>
         <script>
             tailwind.config = {
@@ -14,6 +18,7 @@
                     extend: {
                         colors: {
                             merah: '#C40404',
+                            merah2: '#D54F4F',
                             inputbox: '#EFEBEB',
                             bgside: '#E6E6E6',
                             hoverside: '#FF8383',
@@ -58,12 +63,53 @@
         </script>
 
 
+
         {{-- alert logout --}}
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
     </head>
+    <style>
+    .glide{
+    width: 100%;
+    height: 33vh;
+    margin-top: 10px;
+    background-color: transparent;
+    position: relative;
+}
 
-    <body onload="startTime()" class="overflow-hidden">
+.glide__track{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.glide__slides{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.glide__slides > img{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glide__arrows{
+    position: absolute;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+    </style>
+
+    <body onload="startTime()" class="overflow">
         {{-- NAVBAR --}}
         <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -91,16 +137,23 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
-                                class="block py-2 pl-3 pr-4 rounded md:border-0 hover:text-black md:p-0 text-black text-black hover:text-black hover-bg-transparent">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="w-6 h-6">
-                                    <path fill-rule="evenodd"
-                                        d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
+                            <div class="relative inline-block text-left">
+                                <button onclick="toggleDropdown()" type="button">
+                                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                              d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"/>
+                                    </svg>
+                                </button>
+                                                            
+                            <div id="dropdownContent" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                    <a href="#" onclick="selectItem('Item 1')"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Profil</a>
+                                    <a href="{{route('profile.password.edit')}}" onclick="selectItem('Item 2')"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Ubah Kata Sandi</a>
+                                </div>
+                            </div>
+                            </div>
                     </ul>
                 </div>
             </div>
@@ -241,7 +294,42 @@
         <main class="ml-64 p-10">
             <div class="bg-gray-100 py-4 p-5 rounded-md">
                 @if (Auth::user()->status == 'admin')
-                    <div class="flex flex-row">
+
+                <div class="flex justify-center mb-10">
+
+                    <div class="max-w-sm p-6 mr-10 bg-merah2 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <p class="mb-3 font-normal text-white">Total Siswa</p>
+                        </a>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-white">{{$siswaTotal ? $siswaTotal : 'N/A'}}</h5>
+                    </div>
+
+                    <div class="max-w-sm p-6 mr-10 bg-merah2 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <p class="mb-3 font-normal text-white">Total Orangtua Siswa</p>
+                        </a>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white-900 text-white">{{$orangtuaTotal ? $orangtuaTotal : 'N/A'}}</h5>
+                    </div>
+
+                    <div class="max-w-sm p-6 mr-10 bg-merah2 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <p class="mb-3 font-normal text-white">Total Guru / Staff</p>
+                        </a>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white-900 text-white">{{$gurustaffTotal ? $gurustaffTotal : 'N/A'}}</h5>
+                    </div>
+
+                    <div class="max-w-sm p-6 bg-merah2 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <a href="#">
+                            <p class="mb-3 font-normal text-white">Total User</p>
+                        </a>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white-900 text-white">{{$userTotal ? $userTotal : 'N/A'}}</h5>
+                    </div>
+
+
+                    
+                    
+                </div>
+                    {{-- <div class="flex flex-row">
                         <ul class="max-w-md w-3/12 space-y-2 list-none list-inside" id="listItems">
                             <li data-index="0" class="cursor-pointer">
                                 <div class="box bg-green rounded-md text-center text-black m-0 py-2.5 px-2 shadow-xl">
@@ -258,7 +346,7 @@
                                     <p>Menunggu Konfirmasi</p>
                                 </div>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <div class="absolute p-10 mt-32">
                             <div id="clockdate" class="float-right rounded-md bg-gray-300 p-14">
                                 <div class="clockdate-wrapper">
@@ -271,7 +359,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-2/3 ml-14 block">
+                        {{-- <div class="w-2/3 ml-14 block">
                             <canvas class="" id="chartLine"></canvas>
                         </div>
                     </div>
@@ -279,7 +367,7 @@
                         <div class="flex">
                             <img src="{{ url('image/iconweb.png') }}" alt=""
                                 class="h-20 w-70 mr-4 ml-3 mt-10 rounded-lg">
-                            <p class="text-justify indent-10 mr-6">
+                            <p class="text-justify indent-10 mr-6"> --}}
                                 INFOKUS (Informasi Keuangan Siswa) adalah sebuah web yang dirancang untuk pembayaran SPP
                                 siswa siswi
                                 SMK TELKOM BANJARBARU yang dibuat untuk memudahkan pembayaran SPP siswa dengan
@@ -348,6 +436,45 @@
                         </p>
                     </div>
             </div>
+            <div class="glide">
+                <!-- main container -->
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 1">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 2">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 3">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 4">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 5">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 6">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 7">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 8">
+                      </li>
+                      <li class="glide__slide">
+                        <img src="https://picsum.photos/1280/720/?random" alt="Random Image 9">
+                      </li>
+                    </ul>
+                  </div>                  
+                <!-- For controller button -->
+                <div class="glide__arrows" data-glide-el="controls">
+                    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+                    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+                  </div>
+              </div>
             <div class="">
                 <div class="mt-40">
                     <div id="clockdate" class="float-right rounded-md p-14">
@@ -366,7 +493,32 @@
                 </div>
 @endif
 </main>
-
+<script src="https://unpkg.com/glide@3.6.0/dist/glide.js"></script>
+<script>
+    new Glide('.glide', {
+            type: "carousel", 
+            perView: 3,
+            autoplay: 2000,
+            hoverpause: true
+        }).mount();
+  </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Hide the dropdown content initially
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.classList.add("hidden");
+        });
+    
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.classList.toggle("hidden");
+        }
+    
+        function selectItem(item) {
+            document.getElementById("selectedItem").innerText = "Selected Item: " + item;
+            toggleDropdown(); // Close the dropdown after selecting an item
+        }
+    </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
     integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="

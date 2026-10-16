@@ -15,7 +15,7 @@ class Pembayaran extends Model
     protected $fillable = [
         'id_pembayaran', 'tgl_pembayaran', 'total_tagihan', 'bulan',
         'bukti_pembayaran', 'total_pembayaran', 'status', 'NIS_Angkatan', 
-        'id_nip', 'id_tagihan','NIS','email'
+        'NIP', 'id_tagihan','NIS','email'
         ];
 
         public function siswa()
@@ -26,7 +26,7 @@ class Pembayaran extends Model
         // Relasi gurustaffs
         public function guruStaff()
         {
-            return $this->belongsTo(Gurustaff::class, 'id_nip', 'id_nip');
+            return $this->belongsTo(Gurustaff::class, 'NIP', 'NIP');
         }
     
         // Relasi tagihans

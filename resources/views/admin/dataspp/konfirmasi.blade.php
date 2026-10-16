@@ -34,7 +34,7 @@
     <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
 </head>
 
-<body onload="startTime()" class="overflow-hidden">
+<body class="overflow-hidden">
     {{-- NAVBAR --}}
     <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">

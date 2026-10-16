@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreTagihanRequest;
 use App\Http\Requests\UpdateTagihanRequest;
 use App\Models\Siswa;
@@ -109,5 +110,20 @@ class TagihanController extends Controller
 
         return redirect()->route('/admin/datatagihan/index')
             ->with('success', 'Tagihan Berhasil Di Hapus');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+    
+        $tagihanSearch = Tagihan::where('id_tagihan', 'like', "%" . $search . "%")
+        ->orWhere('tagihan', 'like', "%" . $search . "%")
+        ->orWhere('bulan', 'like', "%" . $search . "%")
+        ->paginate(7);
+        
+        
+        return view('admin.datatagihan.index', ['tagihan' => $tagihanSearch]);
+
+    
     }
 }

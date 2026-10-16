@@ -34,7 +34,7 @@
     <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
 </head>
 
-<body onload="startTime()" class="overflow-hidden">
+<body  class="overflow-hidden">
     {{-- NAVBAR --}}
     <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-32 p-4 z-50">
@@ -204,7 +204,7 @@
                                             <div class="flex flex-col">
                                                 <label for="nama" class="leading-loose">Nama</label>
                                                 <input type="text" name="nama" id="nama"
-                                                    class="@error('nama') border-red-500 @enderror px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                                                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                                                     placeholder="Nama" value="{{ $nama }}">
                                                 @error('nama')
                                                     <div class="text-red-500 text-sm">{{ $message }}</div>
@@ -325,7 +325,6 @@
                                                 @enderror
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

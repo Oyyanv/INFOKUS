@@ -21,6 +21,6 @@ class Gurustaff extends Model
     }
 
     public function pembayaran(){
-        return $this->hasMany(Pembayaran::class, 'id_nip', 'id_nip');
+        return $this->hasMany(Pembayaran::class, 'NIP', 'NIP');
     }
 }

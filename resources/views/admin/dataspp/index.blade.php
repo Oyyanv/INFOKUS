@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" /> 
         <title>INFOKUS</title>
         <script>
             tailwind.config = {
@@ -34,7 +37,56 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="icon" type="image" href="{{ url('image/iconweb.png') }}">
     </head>
-
+    <style>
+        .blocker {
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        width: 100%; height: 100%;
+        overflow: auto;
+        z-index: 1;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: rgba(227, 227, 227, 0.533);
+        background-color: rgba(227, 227, 227, 0.533);
+        text-align: center;
+       }
+       .blocker:before{
+        content: "";
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.05em;
+       }
+       .blocker.behind {
+        background-color: transparent;
+       }
+       
+       .modal {
+        display: none;
+        vertical-align: middle;
+        position: relative;
+        z-index: 2;
+        max-width: 500px;
+        box-sizing: border-box;
+        width: 90%;
+        background: #C40404;
+        padding: 15px 30px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -o-border-radius: 8px;
+        -ms-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0 0 10px #000;
+        -moz-box-shadow: 0 0 10px #000;
+        -o-box-shadow: 0 0 10px #000;
+        -ms-box-shadow: 0 0 10px #000;
+        box-shadow: 0 0 10px #000;
+        text-align: left;
+       }
+       #user-img{
+        display: none;
+       }
+       </style>
     <body onload="startTime()" class="overflow-hidden">
         {{-- NAVBAR --}}
         <nav class="border-gray-200 bg-white bg-white border-gray-700 shadow-lg">
@@ -182,6 +234,18 @@
         </aside>
         {{-- Table data siswa  --}}
         <main class="ml-64 p-10">
+            <div class="text-txttable font-medium rounded-lg text-sm px-4 py-2.5 ml-6 mt-6 bg-buttons flex float-left mt-2">
+                <p class="m-1">Cari Data SPP : </p>
+                <form action="/admin/dataspp/search" method="GET">
+                    @csrf
+                 <input type="text" name="search" placeholder="" value="{{ old('search') }}" class="m-1 bg-transparent border-b border-gray-500 focus:outline-none">
+                 <button type="submit" value="Search" class="ml-2">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="gray" viewBox="0 0 32 32" stroke-width="0" stroke="currentColor" class="w-6 h-6" viewBox="0 0 32 32">
+                         <path d="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z"></path>
+                     </svg>
+                 </button>
+                </form>
+             </div>
             <div class="bg-gray-100 py-4 p-5 rounded-md">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20 flex">
                     <table class="w-full text-sm text-center rtl:text-right border border-collapse">
@@ -235,12 +299,16 @@
                                         {{ $row->tgl_pembayaran ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <button type="button" id="bukti">
+                                        <a href="javascript:void(0)"
+                                        id="showDetail"
+                                        data-url="{{ route('admin.dataspp.detail', $row->id_pembayaran) }}" class="font-medium">
+                                        <button type="button" id="bukti" onclick="showImg()">
                                             <span
                                                 class="text-white bg-redbtn font-medium rounded-lg 
                                                 text-sm px-5 py-2.5   flex float-left ">Gambar
                                             </span>
                                         </button>
+                                    </a>
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ 'Rp' . number_format($row->total_pembayaran, 0, ',', '.') . ',00' }}
@@ -270,6 +338,43 @@
                 </div>
             </div>
         </main>
+        <div id="userShowModal">
+            <div class="modal-dialog w-96 p-4 text-white">
+                <div class="modal-content">
+                    <h1 class="text-2xl font-semibold text-white mb-8 "></h1>
+                    <a href="#" rel="modal:close" class="close-modal">&#10006;</a>
+                </div>
+                <div class="modal-body">
+                    <div class="bg-none border-none">
+                        <img id="user-img" class="object-scale-down h-48 w-96" border-none>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('body').on('click', '#showDetail', function () {
+                    var userURL = $(this).data('url');
+        
+                    $.get(userURL, function (data) {
+                        console.log("Fetched Data:", data); // Log the fetched data to the console
+        
+                        // Display the modal and populate its content
+                        $('#userShowModal').modal();
+        
+                        // Set the src attribute of the image using the base URL and bukti_pembayaran
+                        var imageUrl = "{{ url('storage/bukti') }}/" + data.bukti_pembayaran;
+                        $('#user-img').attr('src', imageUrl);
+                    });
+                });
+                
+            });
+            function showImg() {
+            document.getElementById("user-img").style.display = "block";
+}
+        </script>
+        
         @if (session('success'))
             <script>
                 Swal.fire({
